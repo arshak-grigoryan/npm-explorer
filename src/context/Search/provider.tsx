@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { SearchContext } from './context';
 import { npmRegistry, perPage, searchEndpoint } from '../../api/configs';
-import { PerPageData } from '../../types';
+import { Response } from '../../types';
 
 export default function SearchContextProvider({ children }: { children: ReactNode }) {
   const [searchString, onSearchStringChange] = useState('');
@@ -9,34 +9,53 @@ export default function SearchContextProvider({ children }: { children: ReactNod
   const [quality, setQuality] = useState(0);
   const [maintenance, setMaintenance] = useState(0);
   const [from, setFrom] = useState(0);
-  const [data, setData] = useState<PerPageData>([]);
+  const [data, setData] = useState<Response | null>(null);
   const [isFetching, setIsFetching] = useState(false);
 
+  const isSortOptionsAvailable = popularity || quality || maintenance;
+
   const onSearchClick = () => {
-    const searchConfig = new Request(`${npmRegistry}${searchEndpoint}?text=${searchString}`);
     setIsFetching(true);
+    setPopularity(0);
+    setQuality(0);
+    setMaintenance(0);
+    const searchConfig = new Request(`${npmRegistry}${searchEndpoint}?text=${searchString}`);
     fetch(searchConfig)
       .then((res) => res.json())
       .then((res) => {
-        setData([{ page: 1, response: res }]);
+        setData(res);
         setIsFetching(false);
       });
   };
 
   const onPageChange = (page: number) => {
-    const pageData = data.find((item) => item.page === page);
-
-    if (pageData) return;
     const from = page * perPage - perPage;
-    const searchConfig = new Request(
-      `${npmRegistry}${searchEndpoint}?text=${searchString}&from=${from}`,
-    );
+    const url = isSortOptionsAvailable
+      ? `${npmRegistry}${searchEndpoint}?text=${searchString}&popularity=${popularity}&quality=${quality}&maintenance=${maintenance}`
+      : `${npmRegistry}${searchEndpoint}?text=${searchString}&from=${from}`;
+    const searchConfig = new Request(url);
     setIsFetching(true);
 
     fetch(searchConfig)
       .then((res) => res.json())
       .then((res) => {
-        setData((prev) => [...prev, { page, response: res }]);
+        setData(res);
+        setIsFetching(false);
+      });
+  };
+
+  const onSortClick = () => {
+    if (!isSortOptionsAvailable) {
+      onSearchClick();
+      return;
+    }
+    const searchQuery = `${npmRegistry}${searchEndpoint}?text=${searchString}&popularity=${popularity}&quality=${quality}&maintenance=${maintenance}`;
+    const searchConfig = new Request(searchQuery);
+    setIsFetching(true);
+    fetch(searchConfig)
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res);
         setIsFetching(false);
       });
   };
@@ -48,16 +67,17 @@ export default function SearchContextProvider({ children }: { children: ReactNod
         searchString,
         onSearchStringChange,
         popularity,
-        setPopularity,
+        onPopularityChange: setPopularity,
         quality,
-        setQuality,
+        onQualityChange: setQuality,
         maintenance,
-        setMaintenance,
+        onMaintenanceChange: setMaintenance,
         from,
         setFrom,
         onPageChange,
         onSearchClick,
         isFetching,
+        onSortClick,
       }}
     >
       {children}

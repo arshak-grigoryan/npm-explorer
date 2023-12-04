@@ -3,37 +3,39 @@ import { noop } from 'lodash';
 import { Response } from '../../types';
 
 type SearchContext = {
-  data: { page: number; response: Response }[];
+  data: Response | null;
   searchString: string;
   onSearchStringChange: (value: string) => void;
   popularity: number;
-  setPopularity: (value: number) => void;
+  onPopularityChange: (value: number) => void;
   quality: number;
-  setQuality: (value: number) => void;
+  onQualityChange: (value: number) => void;
   maintenance: number;
-  setMaintenance: (value: number) => void;
+  onMaintenanceChange: (value: number) => void;
   from: number;
   setFrom: (value: number) => void;
   onPageChange: (value: number) => void;
   onSearchClick: () => void;
   isFetching: boolean;
+  onSortClick: () => void;
 };
 
 const defaultValue = {
-  data: [],
+  data: null,
   searchString: '',
   onSearchStringChange: noop,
   popularity: 0,
-  setPopularity: noop,
+  onPopularityChange: noop,
   quality: 0,
-  setQuality: noop,
+  onQualityChange: noop,
   maintenance: 0,
-  setMaintenance: noop,
+  onMaintenanceChange: noop,
   from: 0,
   setFrom: noop,
   onPageChange: noop,
   onSearchClick: noop,
   isFetching: false,
+  onSortClick: noop,
 };
 
 export const SearchContext = createContext<SearchContext>(defaultValue);

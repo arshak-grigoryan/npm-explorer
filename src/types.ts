@@ -37,7 +37,7 @@ type Package = {
   maintainers: Maintainers;
 };
 
-type Objects = {
+export type PackageObject = {
   package: Package;
   flags: Flags;
   score: Score;
@@ -45,7 +45,7 @@ type Objects = {
 };
 
 export type Response = {
-  objects: Objects[];
+  objects: PackageObject[];
   total: number;
   time: string;
 };

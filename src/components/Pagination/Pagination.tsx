@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useContext, useState } from 'react';
-import { SearchContext } from '../../contexts/Search/context';
+import { SearchContext } from '../../context/Search/context';
 import { Pagination as MuiPagination } from '@mui/material';
 import { perPage } from '../../api/configs';
 

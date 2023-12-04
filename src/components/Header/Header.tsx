@@ -1,6 +1,6 @@
 import { KeyboardEvent, useContext } from 'react';
 import Box from '@mui/material/Box';
-import { SearchContext } from '../../contexts/Search/context';
+import { SearchContext } from '../../context/Search/context';
 import SearchIcon from '@mui/icons-material/Search';
 import Logo from '../../assets/npm-logo-black.svg?react';
 import { StyledButton, StyledInput, StyledInputWrapper } from './styled';
