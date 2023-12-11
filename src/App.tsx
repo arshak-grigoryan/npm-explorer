@@ -1,10 +1,10 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import Header from './components/Header/Header';
-import SearchResult from './components/SearchResult/SearchResult';
-import SearchContextProvider from './context/Search/provider';
-import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './main.css';
+import SearchPage from './components/pages/SearchPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/pages/HomePage';
+
 const theme = createTheme({
   typography: {
     fontFamily: `sans-serif`,
@@ -13,16 +13,16 @@ const theme = createTheme({
 
 export default function App() {
   return (
-    <SearchContextProvider>
+    <>
+      <CssBaseline />
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Box>
-          <Header />
-          <Box component="main">
-            <SearchResult />
-          </Box>
-        </Box>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search" element={<SearchPage />} />
+          </Routes>
+        </Router>
       </ThemeProvider>
-    </SearchContextProvider>
+    </>
   );
 }

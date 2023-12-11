@@ -1,14 +1,11 @@
-import { KeyboardEvent, useContext } from 'react';
 import Box from '@mui/material/Box';
-import { SearchContext } from '../../context/Search/context';
-import SearchIcon from '@mui/icons-material/Search';
-import Logo from '../../assets/npm-logo-black.svg?react';
-import { StyledButton, StyledInput, StyledInputWrapper } from './styled';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
-  const { searchString, onSearchStringChange, onSearchClick } = useContext(SearchContext);
   return (
     <Box
+      justifyContent={'space-between'}
       component="header"
       display={'flex'}
       alignItems={'center'}
@@ -17,25 +14,22 @@ export default function Header() {
       px={4}
       py={2}
     >
-      <Logo style={{ width: 70 }} />
-      <Box display={'flex'} width={'100%'}>
-        <StyledInputWrapper display={'flex'} p={1} alignItems={'center'} gap={2} width={'100%'}>
-          <SearchIcon sx={{ fontSize: 18 }} />
-          <StyledInput
-            name="npm-search"
-            autoComplete="npm-search"
-            value={searchString}
-            onChange={(e) => onSearchStringChange(e.target.value)}
-            onKeyUp={(e: KeyboardEvent<HTMLInputElement>) => {
-              if (e.key === 'Enter') {
-                onSearchClick();
-              }
-            }}
-            placeholder="Search packages"
-            type="search"
-          />
-        </StyledInputWrapper>
-        <StyledButton onClick={onSearchClick}>Search</StyledButton>
+      <Box>
+        <Link to={'/'}>
+          <Typography fontWeight={700} fontSize={20}>
+            NPM Explorer
+          </Typography>
+        </Link>
+      </Box>
+      <Box>
+        <Link
+          to="/search"
+          style={{
+            fontSize: 14,
+          }}
+        >
+          <Typography>Search</Typography>
+        </Link>
       </Box>
     </Box>
   );

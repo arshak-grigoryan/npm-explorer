@@ -44,10 +44,10 @@ export type PackageObject = {
   searchScore: number;
 };
 
-export type Response = {
+export type PackageResponse = {
   objects: PackageObject[];
   total: number;
   time: string;
 };
 
-export type PerPageData = { page: number; response: Response }[];
+export type PerPageData = { page: number; response: PackageResponse }[];
