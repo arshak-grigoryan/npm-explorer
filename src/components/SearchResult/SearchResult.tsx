@@ -14,6 +14,7 @@ export default function SearchResult() {
   const { data, isFetching, isFetched, error } = useGetPackages();
   const [page, setPage] = useState(Number(searchParams.get('from') || perPage) / perPage || 1);
 
+  const searchString = searchParams.get('text') || '';
   const showPagination = data && data.total > perPage;
 
   if (!isFetched) {
@@ -21,7 +22,7 @@ export default function SearchResult() {
   }
 
   if (isFetching) {
-    return <div>skeleton.</div>;
+    return <div>Skeleton</div>;
   }
 
   if (error) {
@@ -65,7 +66,7 @@ export default function SearchResult() {
             <Stack width={'calc(100% - 250px)'}>
               <Box>
                 {data.objects.map((obj) => (
-                  <ListPackage key={obj.package.name} obj={obj} />
+                  <ListPackage key={obj.package.name} obj={obj} searchString={searchString} />
                 ))}
               </Box>
               {showPagination && (

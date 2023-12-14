@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { Stack } from '@mui/material';
 import { Slider, SliderLabel, StyledSortButton } from './styled';
 import { useSearchParams } from 'react-router-dom';
 
