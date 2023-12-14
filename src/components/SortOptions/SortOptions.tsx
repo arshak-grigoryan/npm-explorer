@@ -1,9 +1,8 @@
 import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
-import { StyledSortButton } from './styled';
+import { Slider, SliderLabel, StyledSortButton } from './styled';
 import { useSearchParams } from 'react-router-dom';
 
 export default function SortOptions() {
@@ -46,55 +45,52 @@ export default function SortOptions() {
 
   return (
     <Box>
-      <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} mb={2}>
-        <Typography fontSize={'1rem'}>Sort Options</Typography>
-        <StyledSortButton onClick={onSortClick} fontSize={'1rem'}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mb: 2,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: '1rem',
+          }}
+        >
+          Sort Packages
+        </Typography>
+        <StyledSortButton
+          onClick={onSortClick}
+          sx={{
+            fontSize: '0.875rem',
+          }}
+        >
           Sort
         </StyledSortButton>
-      </Stack>
-      <Typography gutterBottom fontSize={'0.875rem'}>
-        Popularity
-      </Typography>
+      </Box>
+      <SliderLabel text="Popularity" />
       <Slider
-        aria-label="Temperature"
+        aria-label="Popularity"
         value={popularity}
-        valueLabelDisplay="auto"
-        step={0.1}
-        marks
-        min={0}
-        max={1}
         onChange={(_, value) => onPopularityChange(value as number)}
         sx={{
           color: '#29abe2',
         }}
       />
-      <Typography gutterBottom fontSize={'0.875rem'}>
-        Quality
-      </Typography>
+      <SliderLabel text="Quality" />
       <Slider
-        aria-label="Temperature"
+        aria-label="Quality"
         value={quality}
-        valueLabelDisplay="auto"
-        step={0.1}
-        marks
-        min={0}
-        max={1}
         onChange={(_, value) => onQualityChange(value as number)}
         sx={{
           color: '#8956ff',
         }}
       />
-      <Typography gutterBottom fontSize={'0.875rem'}>
-        Maintenance
-      </Typography>
+      <SliderLabel text="Maintenance" />
       <Slider
-        aria-label="Temperature"
+        aria-label="Maintenance"
         value={maintenance}
-        valueLabelDisplay="auto"
-        step={0.1}
-        marks
-        min={0}
-        max={1}
         onChange={(_, value) => onMaintenanceChange(value as number)}
         sx={{
           color: '#cb3837',

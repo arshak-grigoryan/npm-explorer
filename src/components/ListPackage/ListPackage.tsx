@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { Link } from '@mui/material';
 import { format } from 'date-fns';
-import Score from '../Score/Score';
+import Score from '../reusable/molecules/Score/Score';
 import { PackageObject } from '../../types';
 
 type Props = {

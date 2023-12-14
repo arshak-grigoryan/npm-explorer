@@ -1,20 +1,20 @@
 import { useEffect, useMemo, useState } from 'react';
 import { PackageResponse } from '../types';
-import { useSearchParams } from 'react-router-dom';
 import { BASE_URL } from '../api/configs';
+import useGetSearchParams from './getSearchParams';
 
 export default function useGetPackages() {
   const [error, setError] = useState<Error | null>(null);
   const [isFetching, setIsFetching] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
-  const [searchParams] = useSearchParams();
   const [data, setData] = useState<PackageResponse | null>(null);
 
-  const searchString = searchParams.get('text') ?? '';
-  const popularity = searchParams.get('popularity') ?? 0;
-  const quality = searchParams.get('quality') ?? 0;
-  const maintenance = searchParams.get('maintenance') ?? 0;
-  const from = searchParams.get('from');
+  const searchString = useGetSearchParams('text', '');
+  const popularity = useGetSearchParams('popularity', 0);
+  const quality = useGetSearchParams('quality', 0);
+  const maintenance = useGetSearchParams('maintenance', 0);
+  // TODO change to page
+  const from = useGetSearchParams('from');
 
   const isSortOptionsAvailable = popularity || quality || maintenance;
 

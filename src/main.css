@@ -5,3 +5,8 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-background-clip: text;
 }
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}

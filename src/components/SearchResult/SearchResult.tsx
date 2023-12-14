@@ -16,7 +16,11 @@ export default function SearchResult() {
 
   const showPagination = data && data.total > perPage;
 
-  if (isFetching || !isFetched) {
+  if (!isFetched) {
+    return null;
+  }
+
+  if (isFetching) {
     return <div>skeleton.</div>;
   }
 
@@ -53,34 +57,36 @@ export default function SearchResult() {
             />
           )}
         </Box>
-        <Stack direction={'row'} gap={4} px={4} py={2}>
-          <Box width={250}>
-            <SortOptions />
-          </Box>
-          <Stack width={'calc(100% - 250px)'}>
-            <Box>
-              {data.objects.map((obj) => (
-                <ListPackage key={obj.package.name} obj={obj} />
-              ))}
+        {Boolean(data.objects.length) && (
+          <Stack direction={'row'} gap={4} px={4} py={2}>
+            <Box width={250}>
+              <SortOptions />
             </Box>
-            {showPagination && (
-              <Box py={2}>
-                <Pagination
-                  count={Math.ceil(data.total / perPage)}
-                  page={page}
-                  onChange={(_, page) => {
-                    setPage(page);
-                    const from = page * perPage - perPage;
-                    setSearchParams((params) => {
-                      params.set('from', String(from));
-                      return params;
-                    });
-                  }}
-                />
+            <Stack width={'calc(100% - 250px)'}>
+              <Box>
+                {data.objects.map((obj) => (
+                  <ListPackage key={obj.package.name} obj={obj} />
+                ))}
               </Box>
-            )}
+              {showPagination && (
+                <Box py={2}>
+                  <Pagination
+                    count={Math.ceil(data.total / perPage)}
+                    page={page}
+                    onChange={(_, page) => {
+                      setPage(page);
+                      const from = page * perPage - perPage;
+                      setSearchParams((params) => {
+                        params.set('from', String(from));
+                        return params;
+                      });
+                    }}
+                  />
+                </Box>
+              )}
+            </Stack>
           </Stack>
-        </Stack>
+        )}
       </Box>
     );
   }

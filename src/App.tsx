@@ -1,15 +1,9 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './main.css';
 import SearchPage from './components/pages/SearchPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/pages/HomePage';
-
-const theme = createTheme({
-  typography: {
-    fontFamily: `sans-serif`,
-  },
-});
+import theme from './theme/theme';
+import { ThemeProvider } from '@mui/material';
 
 export default function App() {
   return (
@@ -18,8 +12,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/" element={<SearchPage />} />
           </Routes>
         </Router>
       </ThemeProvider>
