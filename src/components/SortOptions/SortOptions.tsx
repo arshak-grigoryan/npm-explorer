@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { Slider, SliderLabel, StyledSortButton } from './styled';
 import { useSearchParams } from 'react-router-dom';
+import colors from '../../styles/colors';
 
 export default function SortOptions() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -74,7 +75,7 @@ export default function SortOptions() {
         value={popularity}
         onChange={(_, value) => onPopularityChange(value as number)}
         sx={{
-          color: '#29abe2',
+          color: colors.c7,
         }}
       />
       <SliderLabel text="Quality" />
@@ -83,7 +84,7 @@ export default function SortOptions() {
         value={quality}
         onChange={(_, value) => onQualityChange(value as number)}
         sx={{
-          color: '#8956ff',
+          color: colors.c8,
         }}
       />
       <SliderLabel text="Maintenance" />
@@ -92,7 +93,7 @@ export default function SortOptions() {
         value={maintenance}
         onChange={(_, value) => onMaintenanceChange(value as number)}
         sx={{
-          color: '#cb3837',
+          color: colors.c9,
         }}
       />
     </Box>

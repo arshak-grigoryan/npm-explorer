@@ -1,3 +1,5 @@
+import colors from "../../../../styles/colors";
+
 type Props = {
   max: number;
   value: number;
@@ -13,7 +15,7 @@ export default function MeterBar({ color, value, max }: Props) {
       style={{
         position: 'relative',
         width: width,
-        background: 'rgba(0,0,0,0.1)',
+        background: colors.c1,
         height: 2,
       }}
     >

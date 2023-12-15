@@ -5,6 +5,7 @@ import { ButtonElement, InputElement } from './styles';
 import { useSearchParams } from 'react-router-dom';
 import { Button as BaseButton } from '@mui/base/Button';
 import { Input as BaseInput } from '@mui/base/Input';
+import colors from '../../styles/colors';
 
 export default function SearchForm() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,10 +32,10 @@ export default function SearchForm() {
           display: 'flex',
           alignItems: 'center',
           width: '100%',
-          background: '#f2f2f2',
-          border: '1px solid #f2f2f2',
+          background: colors.c10,
+          border: `1px solid ${colors.c10}`,
           '&:focus-within': {
-            border: '1px solid #231f20',
+            border: `1px solid ${colors.c11}`,
           },
         }}
       >

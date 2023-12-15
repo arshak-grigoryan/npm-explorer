@@ -9,6 +9,7 @@ import ListPackage from '../ListPackage/ListPackage';
 import useGetPackages from '../../hooks/useGetPackages';
 import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
+import colors from '../../styles/colors';
 
 export default function SearchResult() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,9 +35,9 @@ export default function SearchResult() {
     return (
       <Box>
         <Box
-          sx={{ backgroundColor: '#f9f9f9' }}
-          borderTop="1px solid rgba(0,0,0,.1)"
-          borderBottom="1px solid rgba(0,0,0,.1)"
+          sx={{ backgroundColor: colors.c14 }}
+          borderTop={`1px solid ${colors.c1}`}
+          borderBottom={`1px solid ${colors.c1}`}
           py={2}
           px={4}
           display={'flex'}

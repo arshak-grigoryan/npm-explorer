@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MeterBar from '../../atoms/MeterBar/MeterBar';
+import colors from '../../../../styles/colors';
 
 type Props = { score: { name: string; value: number; color: string }[]; max: number };
 
@@ -21,7 +22,7 @@ export default function Score({ score, max }: Props) {
             <Typography
               fontSize={'0.75rem'}
               fontWeight={600}
-              color={'rgba(0, 0, 0, .9)'}
+              color={colors.c2}
               lineHeight={1}
             >
               {name}

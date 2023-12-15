@@ -2,6 +2,7 @@ import { Link, Stack, Box, Typography, Chip } from '@mui/material';
 import { format } from 'date-fns';
 import Score from '../reusable/molecules/Score/Score';
 import { PackageObject } from '../../api/types';
+import colors from '../../styles/colors';
 
 type Props = {
   obj: PackageObject;
@@ -22,14 +23,14 @@ export default function ListPackage({ obj, searchString }: Props) {
         pt: 2,
         pb: 1,
         gap: 4,
-        borderBottom: '1px solid rgba(0,0,0,.1)',
+        borderBottom: `1px solid ${colors.c1}`,
       }}
     >
       <Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           <Link
             underline="hover"
-            color={'#000'}
+            color={colors.c4}
             sx={{
               '&.MuiLink-underlineHover': {
                 cursor: 'pointer',
@@ -51,7 +52,7 @@ export default function ListPackage({ obj, searchString }: Props) {
               label="exact match"
               sx={{
                 '&.MuiChip-root': {
-                  backgroundColor: '#efe7fc',
+                  backgroundColor: colors.c3,
                   borderRadius: 1,
                   px: 1,
                   py: 0.5,
@@ -59,7 +60,7 @@ export default function ListPackage({ obj, searchString }: Props) {
                 '& .MuiChip-label': {
                   px: 0,
                   fontSize: '0.875rem',
-                  color: 'rgba(0,0,0,.9)',
+                  color: colors.c2,
                 },
               }}
             />
@@ -75,19 +76,19 @@ export default function ListPackage({ obj, searchString }: Props) {
               label={key}
               sx={{
                 '&.MuiChip-root': {
-                  backgroundColor: 'rgba(0,0,0,.05)',
+                  backgroundColor: colors.c5,
                   borderRadius: 1,
                   px: 1,
                   py: 0.5,
                   '&:hover': {
-                    backgroundColor: 'rgba(0,0,0,.1)',
+                    backgroundColor: colors.c1,
                     cursor: 'pointer',
                   },
                 },
                 '& .MuiChip-label': {
                   px: 0,
                   fontSize: '0.875rem',
-                  color: 'rgba(0,0,0,.9)',
+                  color: colors.c2,
                 },
               }}
             />
@@ -99,7 +100,7 @@ export default function ListPackage({ obj, searchString }: Props) {
           </Typography>
           <Typography
             fontSize={'0.875rem'}
-            color={'#666666'}
+            color={colors.c6}
             component={'span'}
           >{`published ${version} • ${format(new Date(date), 'MMMM dd yyyy')}`}</Typography>
         </Stack>
@@ -109,17 +110,17 @@ export default function ListPackage({ obj, searchString }: Props) {
           {
             name: 'p',
             value: score.detail.popularity,
-            color: '#29abe2',
+            color: colors.c7,
           },
           {
             name: 'q',
             value: score.detail.quality,
-            color: '#8956ff',
+            color: colors.c8,
           },
           {
             name: 'm',
             value: score.detail.maintenance,
-            color: '#cb3837',
+            color: colors.c9,
           },
         ]}
         max={1}

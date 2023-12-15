@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import Logo from '../../assets/npm-logo-black.svg?react';
+import colors from '../../styles/colors';
 
 export default function LogoText() {
   return (
@@ -17,7 +18,7 @@ export default function LogoText() {
         sx={{
           fontSize: '1rem',
           fontWeight: 700,
-          color: '#000',
+          color: colors.c4,
         }}
       >
         Explorer

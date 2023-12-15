@@ -1,9 +1,10 @@
 import { Button } from '@mui/base';
 import { Typography, styled } from '@mui/material';
 import MuiSlider, { SliderProps } from '@mui/material/Slider';
+import colors from '../../styles/colors';
 
 export const StyledSortButton = styled(Button)`
-  border: 1px solid #cccccc;
+  border: 1px solid ${colors.c16};
   padding: 6px 12px;
   &:hover {
     cursor: pointer;
@@ -19,10 +20,10 @@ export function Slider(props: SliderProps) {
       valueLabelDisplay="auto"
       sx={{
         '& .MuiSlider-valueLabel': {
-          background: '#999',
+          background: colors.c15,
         },
         '& .MuiSlider-valueLabelCircle': {
-          background: '#999',
+          background: colors.c15,
         },
       }}
       slotProps={{
