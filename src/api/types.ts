@@ -49,5 +49,3 @@ export type PackageResponse = {
   total: number;
   time: string;
 };
-
-export type PerPageData = { page: number; response: PackageResponse }[];

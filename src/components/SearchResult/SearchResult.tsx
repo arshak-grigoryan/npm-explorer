@@ -8,13 +8,14 @@ import SortOptions from '../SortOptions/SortOptions';
 import ListPackage from '../ListPackage/ListPackage';
 import useGetPackages from '../../hooks/useGetPackages';
 import { useSearchParams } from 'react-router-dom';
+import useGetSearchParams from '../../hooks/useGetSearchParams';
 
 export default function SearchResult() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { data, isFetching, isFetched, error } = useGetPackages();
   const [page, setPage] = useState(Number(searchParams.get('from') || perPage) / perPage || 1);
 
-  const searchString = searchParams.get('text') || '';
+  const searchString = useGetSearchParams('text', '');
   const showPagination = data && data.total > perPage;
 
   if (!isFetched) {

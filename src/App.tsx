@@ -1,21 +1,15 @@
-import CssBaseline from '@mui/material/CssBaseline';
-import './main.css';
 import SearchPage from './components/pages/SearchPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import theme from './theme/theme';
-import { ThemeProvider } from '@mui/material';
+import StyleProvider from './styles/StyleProvider';
 
 export default function App() {
   return (
-    <>
-      <CssBaseline />
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<SearchPage />} />
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </>
+    <StyleProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+        </Routes>
+      </Router>
+    </StyleProvider>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { PackageResponse } from '../types';
+import { PackageResponse } from '../api/types';
 import { BASE_URL } from '../api/configs';
-import useGetSearchParams from './getSearchParams';
+import useGetSearchParams from './useGetSearchParams';
 
 export default function useGetPackages() {
   const [error, setError] = useState<Error | null>(null);

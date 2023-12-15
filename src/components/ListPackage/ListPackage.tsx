@@ -1,7 +1,7 @@
 import { Link, Stack, Box, Typography, Chip } from '@mui/material';
 import { format } from 'date-fns';
 import Score from '../reusable/molecules/Score/Score';
-import { PackageObject } from '../../types';
+import { PackageObject } from '../../api/types';
 
 type Props = {
   obj: PackageObject;
