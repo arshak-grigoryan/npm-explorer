@@ -1,5 +1,5 @@
 import SearchPage from './components/pages/SearchPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import StyleProvider from './styles/StyleProvider';
 
 export default function App() {
