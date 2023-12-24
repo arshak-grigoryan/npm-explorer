@@ -1,6 +1,9 @@
 import SearchPage from './components/pages/SearchPage';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 import StyleProvider from './styles/StyleProvider';
+import { isDev } from './configs';
+
+const Router = isDev ? BrowserRouter : HashRouter
 
 export default function App() {
   return (
