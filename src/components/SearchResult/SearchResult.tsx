@@ -68,7 +68,12 @@ export default function SearchResult() {
             <Stack width={'calc(100% - 250px)'}>
               <Box>
                 {data.objects.map((obj) => (
-                  <ListPackage key={obj.package.name} obj={obj} searchString={searchString} />
+                  <ListPackage key={obj.package.name} obj={obj} searchString={searchString} handleKeywordClick={(keyword: string) => {
+                    setSearchParams((params) => {
+                      params.set('text', `keywords:${keyword}`);
+                      return params;
+                    });
+                  }}/>
                 ))}
               </Box>
               {showPagination && (

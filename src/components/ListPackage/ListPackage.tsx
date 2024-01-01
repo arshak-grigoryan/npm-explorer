@@ -7,9 +7,10 @@ import colors from '../../styles/colors';
 type Props = {
   obj: PackageObject;
   searchString: string;
+  handleKeywordClick: (keyword:string) => void;
 };
 
-export default function ListPackage({ obj, searchString }: Props) {
+export default function ListPackage({ obj, searchString, handleKeywordClick }: Props) {
   const { package: foundPackage, score } = obj;
   const { name, description, keywords, publisher, date, version } = foundPackage;
 
@@ -74,6 +75,7 @@ export default function ListPackage({ obj, searchString }: Props) {
             <Chip
               key={key + i}
               label={key}
+              onClick={() => handleKeywordClick(key)}
               sx={{
                 '&.MuiChip-root': {
                   backgroundColor: colors.c5,

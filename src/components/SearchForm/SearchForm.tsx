@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import { ButtonElement, InputElement } from './styles';
@@ -9,7 +9,12 @@ import colors from '../../styles/colors';
 
 export default function SearchForm() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchString, onSearchStringChange] = useState(searchParams.get('text') || '');
+  const searchString = searchParams.get('text') || ''
+  const [inputSearchString, setInputSearchString] = useState(searchString);
+
+  useEffect(() => {
+    setInputSearchString(searchString)
+  }, [searchString]);
 
   const serachWrap = () => {
     setSearchParams((params) => {
@@ -46,8 +51,8 @@ export default function SearchForm() {
           id="npm-search"
           name="npm-search"
           autoComplete="npm-search"
-          value={searchString}
-          onChange={(e) => onSearchStringChange(e.target.value)}
+          value={inputSearchString}
+          onChange={(e) => setInputSearchString(e.target.value)}
           onKeyUp={(e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === 'Enter') {
               serachWrap();
