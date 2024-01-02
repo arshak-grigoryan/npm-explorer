@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
 import { SEARCH_PARAMS, perPage } from '../../api/configs';
@@ -12,18 +11,16 @@ import useGetSearchParams from '../../hooks/useGetSearchParams';
 import colors from '../../styles/colors';
 
 export default function SearchResult() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
   const { data, isFetching, isFetched, error } = useGetPackages();
-  const [page, setPage] = useState(Number(searchParams.get(SEARCH_PARAMS.from) || perPage) / perPage || 1);
 
+  const page = Number(useGetSearchParams(SEARCH_PARAMS.page, 1))
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
   const showPagination = data && data.total > perPage;
 
   function handlePageChange(page: number) {
-    setPage(page);
-    const from = page * perPage - perPage;
     setSearchParams((params) => {
-      params.set(SEARCH_PARAMS.from, String(from));
+      params.set(SEARCH_PARAMS.page, String(page));
       return params;
     });
   }
