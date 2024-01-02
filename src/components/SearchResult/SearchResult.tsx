@@ -3,10 +3,10 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
-import { perPage } from '../../api/configs';
+import { SEARCH_PARAMS, perPage } from '../../api/configs';
 import SortOptions from '../SortOptions/SortOptions';
 import ListPackage from '../ListPackage/ListPackage';
-import useGetPackages from '../../hooks/useGetPackages';
+import useGetPackages from '../../api/hooks/useGetPackages';
 import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
 import colors from '../../styles/colors';
@@ -14,10 +14,19 @@ import colors from '../../styles/colors';
 export default function SearchResult() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { data, isFetching, isFetched, error } = useGetPackages();
-  const [page, setPage] = useState(Number(searchParams.get('from') || perPage) / perPage || 1);
+  const [page, setPage] = useState(Number(searchParams.get(SEARCH_PARAMS.from) || perPage) / perPage || 1);
 
-  const searchString = useGetSearchParams('text', '');
+  const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
   const showPagination = data && data.total > perPage;
+
+  function handlePageChange(page: number) {
+    setPage(page);
+    const from = page * perPage - perPage;
+    setSearchParams((params) => {
+      params.set(SEARCH_PARAMS.from, String(from));
+      return params;
+    });
+  }
 
   if (!isFetched) {
     return null;
@@ -49,14 +58,7 @@ export default function SearchResult() {
             <Pagination
               count={Math.ceil(data.total / perPage)}
               page={page}
-              onChange={(_, page) => {
-                setPage(page);
-                const from = page * perPage - perPage;
-                setSearchParams((params) => {
-                  params.set('from', String(from));
-                  return params;
-                });
-              }}
+              onChange={(_, page) => handlePageChange(page)}
             />
           )}
         </Box>
@@ -68,12 +70,17 @@ export default function SearchResult() {
             <Stack width={'calc(100% - 250px)'}>
               <Box>
                 {data.objects.map((obj) => (
-                  <ListPackage key={obj.package.name} obj={obj} searchString={searchString} handleKeywordClick={(keyword: string) => {
-                    setSearchParams((params) => {
-                      params.set('text', `keywords:${keyword}`);
-                      return params;
-                    });
-                  }}/>
+                  <ListPackage
+                    key={obj.package.name}
+                    obj={obj}
+                    searchString={searchString}
+                    handleKeywordClick={(keyword: string) => {
+                      setSearchParams((params) => {
+                        params.set(SEARCH_PARAMS.text, `keywords:${keyword}`);
+                        return params;
+                      });
+                    }}
+                  />
                 ))}
               </Box>
               {showPagination && (
@@ -81,14 +88,7 @@ export default function SearchResult() {
                   <Pagination
                     count={Math.ceil(data.total / perPage)}
                     page={page}
-                    onChange={(_, page) => {
-                      setPage(page);
-                      const from = page * perPage - perPage;
-                      setSearchParams((params) => {
-                        params.set('from', String(from));
-                        return params;
-                      });
-                    }}
+                    onChange={(_, page) => handlePageChange(page)}
                   />
                 </Box>
               )}

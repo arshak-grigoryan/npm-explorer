@@ -4,13 +4,14 @@ import Typography from '@mui/material/Typography';
 import { Slider, SliderLabel, StyledSortButton } from './styled';
 import { useSearchParams } from 'react-router-dom';
 import colors from '../../styles/colors';
+import { SEARCH_PARAMS } from '../../api/configs';
 
 export default function SortOptions() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [popularity, setPopularity] = useState(Number(searchParams.get('popularity')) || 0);
-  const [quality, setQuality] = useState(Number(searchParams.get('quality')) || 0);
-  const [maintenance, setMaintenance] = useState(Number(searchParams.get('maintenance')) || 0);
+  const [popularity, setPopularity] = useState(Number(searchParams.get(SEARCH_PARAMS.popularity)) || 0);
+  const [quality, setQuality] = useState(Number(searchParams.get(SEARCH_PARAMS.quality)) || 0);
+  const [maintenance, setMaintenance] = useState(Number(searchParams.get(SEARCH_PARAMS.maintenance)) || 0);
 
   const isSortOptionsAvailable = popularity || quality || maintenance;
 
@@ -29,15 +30,15 @@ export default function SortOptions() {
   const onSortClick = () => {
     if (isSortOptionsAvailable) {
       setSearchParams((params) => {
-        params.set('popularity', String(popularity));
+        params.set(SEARCH_PARAMS.popularity, String(popularity));
         return params;
       });
       setSearchParams((params) => {
-        params.set('quality', String(quality));
+        params.set(SEARCH_PARAMS.quality, String(quality));
         return params;
       });
       setSearchParams((params) => {
-        params.set('maintenance', String(maintenance));
+        params.set(SEARCH_PARAMS.maintenance, String(maintenance));
         return params;
       });
     }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { PackageResponse } from '../api/types';
-import { BASE_URL } from '../api/configs';
-import useGetSearchParams from './useGetSearchParams';
+import { PackageResponse } from '../types';
+import { BASE_URL, SEARCH_PARAMS } from '../configs';
+import useGetSearchParams from '../../hooks/useGetSearchParams';
 
 export default function useGetPackages() {
   const [error, setError] = useState<Error | null>(null);
@@ -9,12 +9,12 @@ export default function useGetPackages() {
   const [isFetched, setIsFetched] = useState(false);
   const [data, setData] = useState<PackageResponse | null>(null);
 
-  const searchString = useGetSearchParams('text', '');
-  const popularity = useGetSearchParams('popularity', 0);
-  const quality = useGetSearchParams('quality', 0);
-  const maintenance = useGetSearchParams('maintenance', 0);
+  const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
+  const popularity = useGetSearchParams(SEARCH_PARAMS.popularity, 0);
+  const quality = useGetSearchParams(SEARCH_PARAMS.quality, 0);
+  const maintenance = useGetSearchParams(SEARCH_PARAMS.maintenance, 0);
   // TODO change to page
-  const from = useGetSearchParams('from');
+  const from = useGetSearchParams(SEARCH_PARAMS.from);
 
   const isSortOptionsAvailable = popularity || quality || maintenance;
 

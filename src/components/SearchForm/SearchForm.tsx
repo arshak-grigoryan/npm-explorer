@@ -6,10 +6,11 @@ import { useSearchParams } from 'react-router-dom';
 import { Button as BaseButton } from '@mui/base/Button';
 import { Input as BaseInput } from '@mui/base/Input';
 import colors from '../../styles/colors';
+import { SEARCH_PARAMS } from '../../api/configs';
 
 export default function SearchForm() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchString = searchParams.get('text') || ''
+  const searchString = searchParams.get(SEARCH_PARAMS.text) || ''
   const [inputSearchString, setInputSearchString] = useState(searchString);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function SearchForm() {
 
   const serachWrap = () => {
     setSearchParams((params) => {
-      params.set('text', searchString);
+      params.set(SEARCH_PARAMS.text, inputSearchString);
       return params;
     });
   };
