@@ -25,6 +25,10 @@ export default function SearchResult() {
     });
   }
 
+  function handleKeywordClick(keyword: string) {
+    setSearchParams({[SEARCH_PARAMS.text]: `keywords:${keyword}`})
+  }
+
   if (!isFetched) {
     return null;
   }
@@ -71,12 +75,7 @@ export default function SearchResult() {
                     key={obj.package.name}
                     obj={obj}
                     searchString={searchString}
-                    handleKeywordClick={(keyword: string) => {
-                      setSearchParams((params) => {
-                        params.set(SEARCH_PARAMS.text, `keywords:${keyword}`);
-                        return params;
-                      });
-                    }}
+                    handleKeywordClick={handleKeywordClick}
                   />
                 ))}
               </Box>
