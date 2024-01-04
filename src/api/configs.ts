@@ -8,5 +8,6 @@ export const SEARCH_PARAMS = {
   quality: 'quality',
   maintenance: 'maintenance',
   from: 'from',
-  page: 'page'
+  page: 'page',
+  activeTab: 'activeTab'
 }

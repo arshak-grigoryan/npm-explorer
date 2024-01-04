@@ -1,4 +1,5 @@
 import SearchPage from './components/pages/SearchPage';
+import PackagePage from './components/pages/PackagePage';
 import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 import StyleProvider from './styles/StyleProvider';
 import { isDev } from './configs';
@@ -11,6 +12,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" element={<SearchPage />} />
+          <Route path="/package/:name" element={<PackagePage />} />
         </Routes>
       </Router>
     </StyleProvider>

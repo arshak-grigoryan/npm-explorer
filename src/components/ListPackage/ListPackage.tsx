@@ -1,8 +1,9 @@
-import { Link, Stack, Box, Typography, Chip } from '@mui/material';
+import { Stack, Box, Typography, Chip } from '@mui/material';
 import { format } from 'date-fns';
 import Score from '../reusable/molecules/Score/Score';
 import { PackageObject } from '../../api/types';
 import colors from '../../styles/colors';
+import Link from '../reusable/atoms/Link/Link';
 
 type Props = {
   obj: PackageObject;
@@ -31,6 +32,8 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: P
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           <Link
             underline="hover"
+            to={`/package/${name}`}
+            state={{version }}
             color={colors.c4}
             sx={{
               '&.MuiLink-underlineHover': {
