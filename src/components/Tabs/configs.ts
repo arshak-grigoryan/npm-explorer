@@ -2,7 +2,7 @@ import Readme from '../../assets/Readme.svg?react';
 import Code from '../../assets/Code.svg?react';
 import Dependency from '../../assets/Dependency.svg?react';
 import Dependents from '../../assets/Dependents.svg?react';
-import Versions from '../../assets/versions.svg?react';
+import Versions from '../../assets/Versions.svg?react';
 
 export enum TabsEnum {
   Readme = 'Readme',
