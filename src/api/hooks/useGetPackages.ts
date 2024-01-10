@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { PackageResponse } from '../types';
-import { BASE_URL, SEARCH_PARAMS, perPage } from '../configs';
+import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../configs';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
 
 export default function useGetPackages() {
@@ -22,16 +22,16 @@ export default function useGetPackages() {
   // TODO: check for url validity
   const url = useMemo(() => {
     if (isSortOptionsAvailable && !from) {
-      return `${BASE_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.popularity}=${popularity}&${SEARCH_PARAMS.quality}=${quality}&${SEARCH_PARAMS.maintenance}=${maintenance}`;
+      return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.popularity}=${popularity}&${SEARCH_PARAMS.quality}=${quality}&${SEARCH_PARAMS.maintenance}=${maintenance}`;
     }
     if (isSortOptionsAvailable && from) {
-      return `${BASE_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.popularity}=${popularity}&${SEARCH_PARAMS.quality}=${quality}&${SEARCH_PARAMS.maintenance}=${maintenance}&${SEARCH_PARAMS.from}=${from}`;
+      return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.popularity}=${popularity}&${SEARCH_PARAMS.quality}=${quality}&${SEARCH_PARAMS.maintenance}=${maintenance}&${SEARCH_PARAMS.from}=${from}`;
     }
     if (!isSortOptionsAvailable && from) {
-      return `${BASE_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.from}=${from}`;
+      return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.from}=${from}`;
     }
 
-    return `${BASE_URL}?${SEARCH_PARAMS.text}=${searchString}`;
+    return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}`;
   }, [searchString, popularity, quality, maintenance, from]);
 
   useEffect(() => {

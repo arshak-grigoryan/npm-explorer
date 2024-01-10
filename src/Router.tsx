@@ -1,0 +1,19 @@
+import SearchPage from './components/pages/SearchPage';
+import PackagePage from './components/pages/PackagePage';
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
+import { isDev } from './configs';
+import HomePage from './components/pages/HomePage';
+
+const Router = isDev ? BrowserRouter : HashRouter;
+
+export default function AppRouter() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/package/:name" element={<PackagePage />} />
+      </Routes>
+    </Router>
+  );
+}

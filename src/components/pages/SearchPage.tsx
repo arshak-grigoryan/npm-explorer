@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import SearchResult from '../SearchResult/SearchResult';
 import SearchForm from '../SearchForm/SearchForm';
 import Logo from '../../assets/npm-logo-black.svg?react';
+import Link from '../reusable/atoms/Link/Link';
 
 export default function SearchPage() {
   return (
@@ -17,7 +18,9 @@ export default function SearchPage() {
           py: 2,
         }}
       >
-        <Logo height={16} />
+        <Link to="/">
+          <Logo height={16} />
+        </Link>
         <SearchForm />
       </Box>
       <Box component="main">

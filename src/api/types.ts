@@ -49,3 +49,9 @@ export type PackageResponse = {
   total: number;
   time: string;
 };
+
+export type DownloadsPoint = {
+  downloads: number;
+  start: string;
+  end: string;
+};

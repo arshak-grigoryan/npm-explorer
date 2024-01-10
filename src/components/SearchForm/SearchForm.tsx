@@ -20,7 +20,7 @@ export default function SearchForm() {
 
   const serachWrap = () => {
     navigate({
-      pathname: '/',
+      pathname: '/search',
       search: createSearchParams({ [SEARCH_PARAMS.text]: inputSearchString }).toString(),
     });
   };

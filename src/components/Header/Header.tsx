@@ -12,8 +12,6 @@ export default function Header() {
         display: 'flex',
         alignItems: 'center',
         gap: 4,
-        px: 4,
-        py: 2,
       }}
     >
       <Box>
