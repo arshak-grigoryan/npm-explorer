@@ -15,10 +15,26 @@ export default function Readme() {
 
   useEffect(() => {
     if (packageData) {
-      const data = Object.values(packageData.versions)
-        .reverse()
-        .find(({ readme }) => readme);
-      const htmlData = markdown.render(data?.readme || '');
+      let readme = '';
+      const data = Object.values(packageData.versions).sort((a, b) =>
+        b.version.localeCompare(a.version),
+      );
+
+      if (packageData.readme) {
+        readme = packageData.readme;
+      } else {
+        // TODO: find right resource to extract readme content
+        for (let i = data.length - 1; i >= 0; i--) {
+          if (
+            data[i].version.localeCompare(packageData['dist-tags'].latest) === 1 &&
+            data[i].readme
+          ) {
+            readme = data[i].readme;
+            break;
+          }
+        }
+      }
+      const htmlData = markdown.render(readme);
       (ref.current as HTMLDivElement).innerHTML = htmlData;
     }
   }, [packageData]);

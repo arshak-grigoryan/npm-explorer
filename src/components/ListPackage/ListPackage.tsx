@@ -26,8 +26,7 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: L
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           <Link
             underline="hover"
-            to={`/package/${name}`}
-            state={{version }}
+            to={`/package/${encodeURIComponent(name)}`}
             color={colors.c4}
             sx={{
               '&.MuiLink-underlineHover': {
