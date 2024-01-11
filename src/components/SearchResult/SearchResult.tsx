@@ -5,14 +5,14 @@ import Pagination from '@mui/material/Pagination';
 import { SEARCH_PARAMS, perPage } from '../../api/configs';
 import SortOptions from '../SortOptions/SortOptions';
 import ListPackage from '../ListPackage/ListPackage';
-import useGetPackages from '../../api/hooks/useGetPackages';
+import useSearchPackages from '../../api/hooks/useSearchPackages';
 import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
 import colors from '../../styles/colors';
 
 export default function SearchResult() {
   const [_, setSearchParams] = useSearchParams();
-  const { data, isFetching, isFetched, error } = useGetPackages();
+  const { data, isFetching, isFetched, error } = useSearchPackages();
 
   const page = Number(useGetSearchParams(SEARCH_PARAMS.page, 1))
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');

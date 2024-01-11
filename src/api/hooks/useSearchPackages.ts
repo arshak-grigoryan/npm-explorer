@@ -3,7 +3,7 @@ import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../configs';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
 import useFetch, { FetchResponse } from './useFetch';
 
-type PackageObject = {
+export type PackageObject = {
   package: {
     name: string;
     scope: string;
@@ -48,7 +48,7 @@ type SearchPackageResponse = FetchResponse & {
   };
 };
 
-export default function useGetPackages() {
+export default function useSearchPackages() {
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
   const popularity = useGetSearchParams(SEARCH_PARAMS.popularity, 0);
   const quality = useGetSearchParams(SEARCH_PARAMS.quality, 0);

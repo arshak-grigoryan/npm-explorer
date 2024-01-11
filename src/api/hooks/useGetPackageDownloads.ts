@@ -6,7 +6,7 @@ type DownloadsPointResponse = FetchResponse & {
   };
 };
 
-export default function useGetLastDayDownloads(url: string) {
+export default function useGetPackageDownloads(url: string) {
   const res = useFetch(url) as DownloadsPointResponse;
 
   return res;

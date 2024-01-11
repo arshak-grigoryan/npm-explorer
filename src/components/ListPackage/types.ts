@@ -1,4 +1,4 @@
-import { PackageObject } from '../../api/types/searchPackage';
+import { PackageObject } from "../../api/hooks/useSearchPackages";
 
 export type ListPackageProps = {
   obj: PackageObject;

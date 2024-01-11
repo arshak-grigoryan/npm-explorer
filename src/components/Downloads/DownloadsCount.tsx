@@ -1,9 +1,9 @@
 import { Box, Typography } from '@mui/material';
 import colors from '../../styles/colors';
-import useGetLastDayDownloads from '../../api/hooks/useGetDownloads';
+import useGetPackageDownloads from '../../api/hooks/useGetPackageDownloads';
 
 export default function DownloadsCount({ url, text }: { url: string; text: string }) {
-  const { data, isFetching, isFetched, error } = useGetLastDayDownloads(url);
+  const { data, isFetching, isFetched, error } = useGetPackageDownloads(url);
 
   if (!isFetched) {
     return null;
