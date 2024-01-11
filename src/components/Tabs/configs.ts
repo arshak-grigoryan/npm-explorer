@@ -1,29 +1,11 @@
-import Readme from '../../assets/Readme.svg?react';
-import Code from '../../assets/Code.svg?react';
-import Dependency from '../../assets/Dependency.svg?react';
-import Dependents from '../../assets/Dependents.svg?react';
-import Versions from '../../assets/Versions.svg?react';
+import ReadmeIcon from '../../assets/Readme.svg?react';
+import CodeIcon from '../../assets/Code.svg?react';
+import DependencyIcon from '../../assets/Dependency.svg?react';
+import DependentsIcon from '../../assets/Dependents.svg?react';
+import VersionsIcon from '../../assets/Versions.svg?react';
+import { TabConfig, TabsEnum } from './types';
 
-export enum TabsEnum {
-  Readme = 'Readme',
-  Code = 'Code',
-  Dependencies = 'Dependencies',
-  Dependents = 'Dependents',
-  Versions = 'Versions',
-}
-
-export type Tab = {
-  name: string;
-  colors: {
-    text: string;
-    background: string;
-    hover: string;
-    border: string;
-  };
-  Icon: any;
-};
-
-export const TabsConfig: Tab[] = [
+export const TabsConfig: TabConfig[] = [
   {
     name: TabsEnum.Readme,
     colors: {
@@ -32,7 +14,7 @@ export const TabsConfig: Tab[] = [
       hover: 'rgb(255, 249, 229)',
       border: '#ffcd3a',
     },
-    Icon: Readme,
+    Icon: ReadmeIcon,
   },
   {
     name: TabsEnum.Code,
@@ -42,7 +24,7 @@ export const TabsConfig: Tab[] = [
       hover: 'rgb(250, 235, 235)',
       border: '#bc3433',
     },
-    Icon: Code,
+    Icon: CodeIcon,
   },
   {
     name: TabsEnum.Dependencies,
@@ -52,7 +34,7 @@ export const TabsConfig: Tab[] = [
       hover: 'rgb(250, 235, 249)',
       border: '#c836c3',
     },
-    Icon: Dependency,
+    Icon: DependencyIcon,
   },
   {
     name: TabsEnum.Dependents,
@@ -62,7 +44,7 @@ export const TabsConfig: Tab[] = [
       hover: 'rgb(237, 229, 255)',
       border: '#8956ff',
     },
-    Icon: Dependents,
+    Icon: DependentsIcon,
   },
   {
     name: TabsEnum.Versions,
@@ -72,6 +54,6 @@ export const TabsConfig: Tab[] = [
       hover: 'rgb(233, 246, 252)',
       border: '#29abe2',
     },
-    Icon: Versions,
+    Icon: VersionsIcon,
   },
 ];

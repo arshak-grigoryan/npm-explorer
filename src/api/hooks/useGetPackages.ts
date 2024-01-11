@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import { PackageResponse } from '../types';
 import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../configs';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
+import { SearchPackageResponse } from '../types/searchPackage';
 
 export default function useGetPackages() {
   const [error, setError] = useState<Error | null>(null);
   const [isFetching, setIsFetching] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
-  const [data, setData] = useState<PackageResponse | null>(null);
+  const [data, setData] = useState<SearchPackageResponse | null>(null);
 
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
   const popularity = useGetSearchParams(SEARCH_PARAMS.popularity, 0);

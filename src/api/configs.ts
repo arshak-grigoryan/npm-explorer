@@ -1,4 +1,4 @@
-const npmRegistry = {
+export const npmRegistry = {
   base: 'https://registry.npmjs.org',
   search: '/-/v1/search',
 };

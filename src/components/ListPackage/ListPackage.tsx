@@ -1,17 +1,11 @@
 import { Stack, Box, Typography, Chip } from '@mui/material';
 import { format } from 'date-fns';
 import Score from '../reusable/molecules/Score/Score';
-import { PackageObject } from '../../api/types';
 import colors from '../../styles/colors';
 import Link from '../reusable/atoms/Link/Link';
+import { ListPackageProps } from './types';
 
-type Props = {
-  obj: PackageObject;
-  searchString: string;
-  handleKeywordClick: (keyword:string) => void;
-};
-
-export default function ListPackage({ obj, searchString, handleKeywordClick }: Props) {
+export default function ListPackage({ obj, searchString, handleKeywordClick }: ListPackageProps) {
   const { package: foundPackage, score } = obj;
   const { name, description, keywords, publisher, date, version } = foundPackage;
 

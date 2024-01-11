@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { DownloadsPoint } from '../types';
+import { DownloadsPointResponse } from '../types/downloads';
 
 // TODO: Memoize response
 export default function useGetLastDayDownloads(url: string) {
   const [error, setError] = useState<Error | null>(null);
   const [isFetching, setIsFetching] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
-  const [data, setData] = useState<DownloadsPoint | null>(null);
+  const [data, setData] = useState<DownloadsPointResponse | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
