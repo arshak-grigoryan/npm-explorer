@@ -11,25 +11,25 @@ export const markdown = markdownit({
 export default function Readme() {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const { data: packageData } = useGetSinglePackage();
+  const { data } = useGetSinglePackage();
 
   useEffect(() => {
-    if (packageData) {
+    if (data) {
       let readme = '';
-      const data = Object.values(packageData.versions).sort((a, b) =>
+      const packageData = Object.values(data.versions).sort((a, b) =>
         b.version.localeCompare(a.version),
       );
 
-      if (packageData.readme) {
-        readme = packageData.readme;
+      if (data.readme) {
+        readme = data.readme;
       } else {
         // TODO: find right resource to extract readme content
-        for (let i = data.length - 1; i >= 0; i--) {
+        for (let i = packageData.length - 1; i >= 0; i--) {
           if (
-            data[i].version.localeCompare(packageData['dist-tags'].latest) === 1 &&
-            data[i].readme
+            packageData[i].version.localeCompare(data['dist-tags'].latest) === 1 &&
+            packageData[i].readme
           ) {
-            readme = data[i].readme;
+            readme = packageData[i].readme;
             break;
           }
         }
@@ -37,7 +37,7 @@ export default function Readme() {
       const htmlData = markdown.render(readme);
       (ref.current as HTMLDivElement).innerHTML = htmlData;
     }
-  }, [packageData]);
+  }, [data]);
 
   return <div ref={ref}></div>;
 }

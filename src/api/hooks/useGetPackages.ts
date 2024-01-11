@@ -1,14 +1,54 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../configs';
 import useGetSearchParams from '../../hooks/useGetSearchParams';
-import { SearchPackageResponse } from '../types/searchPackage';
+import useFetch, { FetchResponse } from './useFetch';
+
+type PackageObject = {
+  package: {
+    name: string;
+    scope: string;
+    version: string;
+    description: string;
+    keywords: string[];
+    date: string;
+    links: {
+      npm: string;
+      homepage: string;
+      repository: string;
+      bugs: string;
+    };
+    publisher: {
+      username: string;
+      email: string;
+    };
+    maintainers: {
+      username: string;
+      email: string;
+    }[];
+  };
+  flags: {
+    insecure: number;
+  };
+  score: {
+    final: number;
+    detail: {
+      quality: number;
+      popularity: number;
+      maintenance: number;
+    };
+  };
+  searchScore: number;
+};
+
+type SearchPackageResponse = FetchResponse & {
+  data: {
+    objects: PackageObject[];
+    total: number;
+    time: string;
+  };
+};
 
 export default function useGetPackages() {
-  const [error, setError] = useState<Error | null>(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
-  const [data, setData] = useState<SearchPackageResponse | null>(null);
-
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
   const popularity = useGetSearchParams(SEARCH_PARAMS.popularity, 0);
   const quality = useGetSearchParams(SEARCH_PARAMS.quality, 0);
@@ -34,47 +74,7 @@ export default function useGetPackages() {
     return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}`;
   }, [searchString, popularity, quality, maintenance, from]);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    async function getPackages() {
-      if (searchString) {
-        setIsFetching(true);
-        setIsFetched(false);
-        try {
-          const response = await fetch(url, { signal: controller.signal });
-          if (controller.signal.aborted) {
-            return;
-          }
-          if (response.status >= 500) {
-            setError(new Error(response.statusText));
-          }
-          const result = await response.json();
-          if (result.error) {
-            setError(new Error(result.error));
-          } else {
-            setData(result);
-          }
-          setIsFetching(false);
-          setIsFetched(true);
-        } catch (error: any) {
-          if (error.name !== 'AbortError') {
-            setError(error);
-          }
-        }
-      }
-    }
+  const res = useFetch(url) as SearchPackageResponse;
 
-    getPackages();
-
-    return () => {
-      controller.abort();
-    };
-  }, [url]);
-
-  return {
-    data,
-    error,
-    isFetching,
-    isFetched,
-  };
+  return res;
 }
