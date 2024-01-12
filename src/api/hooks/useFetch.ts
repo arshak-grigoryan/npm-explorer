@@ -4,14 +4,14 @@ export type FetchResponse = {
   data: unknown | null,
   error: Error | null,
   isFetching: boolean,
-  isFetched: boolean,
+  isStartedFetch: boolean,
 }
 
 // TODO: Memoize response
 export default function useFetch(url: string): FetchResponse {
   const [error, setError] = useState<Error | null>(null);
   const [isFetching, setIsFetching] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
+  const [isStartedFetch, setIsStartedFetched] = useState(false);
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function useFetch(url: string): FetchResponse {
     async function getPackages() {
       if (url) {
         setIsFetching(true);
-        setIsFetched(false);
+        setIsStartedFetched(false);
         try {
           const response = await fetch(url, { signal: controller.signal });
           if (controller.signal.aborted) {
@@ -35,7 +35,7 @@ export default function useFetch(url: string): FetchResponse {
             setData(result);
           }
           setIsFetching(false);
-          setIsFetched(true);
+          setIsStartedFetched(true);
         } catch (error: any) {
           if (error.name !== 'AbortError') {
             setError(error);
@@ -55,6 +55,6 @@ export default function useFetch(url: string): FetchResponse {
     data,
     error,
     isFetching,
-    isFetched,
+    isStartedFetch,
   };
 }
