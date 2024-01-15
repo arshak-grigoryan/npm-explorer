@@ -18,7 +18,8 @@ const colors = {
   c17: '#fab231',
   c18: '#efefef',
   c19: '#333',
-  c20: '#fee933'
+  c20: '#fee933',
+  c21: '#111'
 }
 
 export default colors

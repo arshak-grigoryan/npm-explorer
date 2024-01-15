@@ -6,11 +6,12 @@ import useGetSearchParams from '../../../../hooks/useGetSearchParams';
 import { SEARCH_PARAMS } from '../../../../api/configs';
 import Readme from '../Readme/Readme';
 import { TabProps, TabsEnum } from './types';
+import Dependency from '../Dependencies/Dependencies';
 
 const TabComponent = {
   [TabsEnum.Readme]: <Readme />,
   [TabsEnum.Code]: <></>,
-  [TabsEnum.Dependencies]: <></>,
+  [TabsEnum.Dependencies]: <Dependency/>,
   [TabsEnum.Dependents]: <></>,
   [TabsEnum.Versions]: <></>,
 };

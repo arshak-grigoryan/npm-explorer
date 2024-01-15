@@ -8,20 +8,32 @@ type LayoutState = {
 };
 
 type LayoutSlots = {
-  PreFetchComp: ReactNode;
-  LoaderComp: ReactNode;
-  ErrorComp: ReactNode;
-  Data: ReactNode;
-  NoData: ReactNode;
+  PreFetchComp?: ReactNode;
+  LoaderComp?: ReactNode;
+  ErrorComp?: ReactNode;
+  DataComp: (props: { data: any } & any) => JSX.Element;
+  NoData?: ReactNode;
 };
+
+type LayoutSlotProps = {
+  DataComp?: any;
+};
+
 type FetchLayoutProps = {
   slots: LayoutSlots;
   state: LayoutState;
+  slotProps?: LayoutSlotProps;
 };
 
-export default function FetchLayout({ state, slots }: FetchLayoutProps) {
+export default function FetchLayout({ state, slots, slotProps }: FetchLayoutProps) {
   const { isStartedFetch, isFetching, error, data } = state;
-  const { PreFetchComp, LoaderComp, ErrorComp, Data, NoData } = slots;
+  const {
+    PreFetchComp = null,
+    LoaderComp = null,
+    ErrorComp = null,
+    DataComp,
+    NoData = null,
+  } = slots;
 
   if (!isStartedFetch) {
     return PreFetchComp;
@@ -36,7 +48,7 @@ export default function FetchLayout({ state, slots }: FetchLayoutProps) {
   }
 
   if (data) {
-    return Data;
+    return <DataComp data={data} {...slotProps} />;
   }
 
   return NoData;

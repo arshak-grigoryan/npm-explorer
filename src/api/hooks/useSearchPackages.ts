@@ -40,13 +40,15 @@ export type PackageObject = {
   searchScore: number;
 };
 
-type SearchPackageResponse = FetchResponse & {
+export type SearchPackage = {
   data: {
     objects: PackageObject[];
     total: number;
     time: string;
   };
 };
+
+type SearchPackageResponse = FetchResponse & SearchPackage;
 
 export default function useSearchPackages() {
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
