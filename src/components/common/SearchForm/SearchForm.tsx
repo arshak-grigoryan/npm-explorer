@@ -29,7 +29,7 @@ export default function SearchForm() {
     <Box
       sx={{
         display: 'flex',
-        width: '100%',
+        flexGrow: '1',
       }}
     >
       <Box

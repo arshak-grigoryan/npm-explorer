@@ -4,6 +4,7 @@ import DiscoverPackages from './DiscoverPackages/DiscoverPackages';
 import Downloads from './Downloads/Downloads';
 import Link from '../../common/Link/Link';
 import Logo from '../../common/Logo/Logo';
+import colors from '../../../styles/colors';
 
 export default function HomePage() {
   return (
@@ -11,37 +12,57 @@ export default function HomePage() {
       <Box
         component={'header'}
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          gap: 4,
-          px: 4,
-          py: 2,
+          position: 'relative',
+          borderBottom: `1px solid ${colors.c1}`,
+          boxShadow: `0 4px 13px -3px ${colors.c1}`,
         }}
       >
-        <Link to="/">
-          <Logo/>
-        </Link>
-        <SearchForm />
+        <Box
+          sx={{
+            maxWidth: 1536,
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            margin: 'auto',
+            gap: 4,
+            px: 4,
+            py: 2,
+          }}
+        >
+          <Link to="/">
+            <Logo />
+          </Link>
+          <SearchForm />
+        </Box>
       </Box>
       <Box
         component="main"
         sx={{
-          px: 4,
-          py: 2,
           backgroundColor: '#fafafa',
         }}
       >
-        <Box sx={{
-          backgroundColor: '#fff',
-          border: '1px solid rgba(0,0,0,.1)',
-          borderRadius: '0.25rem',
-          display: 'flex',
-          gap: 4,
+        <Box
+          sx={{
+            maxWidth: 1536,
 
-        }}>
-          <DiscoverPackages />
-          <Downloads />
+            px: 4,
+            py: 2,
+            margin: 'auto',
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: '#fff',
+              border: '1px solid rgba(0,0,0,.1)',
+              borderRadius: '0.25rem',
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 4,
+            }}
+          >
+            <DiscoverPackages />
+            <Downloads />
+          </Box>
         </Box>
       </Box>
     </Box>
