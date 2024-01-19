@@ -19,7 +19,10 @@ const colors = {
   c18: '#efefef',
   c19: '#333',
   c20: '#fee933',
-  c21: '#111'
-}
+  c21: '#111',
+  c22: 'rgba(0,0,0,.2)',
+  c23: 'rgba(0,0,0,.6)',
+  c24: 'rgba(0,0,0,.8)',
+};
 
-export default colors
+export default colors;

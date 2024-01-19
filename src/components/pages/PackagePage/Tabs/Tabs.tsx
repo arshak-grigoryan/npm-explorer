@@ -7,13 +7,14 @@ import { SEARCH_PARAMS } from '../../../../api/configs';
 import Readme from '../Readme/Readme';
 import { TabProps, TabsEnum } from './types';
 import Dependency from '../Dependencies/Dependencies';
+import Versions from '../Versions/Versions';
 
 const TabComponent = {
   [TabsEnum.Readme]: <Readme />,
   [TabsEnum.Code]: <></>,
   [TabsEnum.Dependencies]: <Dependency/>,
   [TabsEnum.Dependents]: <></>,
-  [TabsEnum.Versions]: <></>,
+  [TabsEnum.Versions]: <Versions/>,
 };
 
 function Tab({ label, icon, colors, selected, onClick }: TabProps) {
