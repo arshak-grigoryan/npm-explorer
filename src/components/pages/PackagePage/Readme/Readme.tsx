@@ -1,6 +1,7 @@
 import markdownit from 'markdown-it';
 import { useEffect, useRef } from 'react';
 import useGetSinglePackage from '../../../../api/hooks/useGetSinglePackage';
+import { useParams } from 'react-router-dom';
 
 export const markdown = markdownit({
   html: true,
@@ -10,34 +11,22 @@ export const markdown = markdownit({
 
 export default function Readme() {
   const ref = useRef<HTMLDivElement | null>(null);
-
+  const { version } = useParams();
   const { data } = useGetSinglePackage();
 
   useEffect(() => {
     if (data) {
       let readme = '';
-      const packageData = Object.values(data.versions).sort((a, b) =>
-        b.version.localeCompare(a.version),
-      );
-
-      if (data.readme) {
-        readme = data.readme;
-      } else {
-        // TODO: find right resource to extract readme content
-        for (let i = packageData.length - 1; i >= 0; i--) {
-          if (
-            packageData[i].version.localeCompare(data['dist-tags'].latest) === 1 &&
-            packageData[i].readme
-          ) {
-            readme = packageData[i].readme;
-            break;
-          }
-        }
+      if (version) {
+        readme = data.versions[version].readme ?? '';
+      }
+      if (!version || version === data['dist-tags'].latest) {
+        readme = data.readme ?? '';
       }
       const htmlData = markdown.render(readme);
       (ref.current as HTMLDivElement).innerHTML = htmlData;
     }
-  }, [data]);
+  }, [data, version]);
 
   return <div ref={ref}></div>;
 }

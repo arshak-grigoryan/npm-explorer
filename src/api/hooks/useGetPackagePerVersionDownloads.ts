@@ -4,6 +4,7 @@ import useFetch, { FetchResponse } from './useFetch';
 
 export type PerVersionDownloads = {
   data: {
+    package: string;
     downloads: Record<string, number>;
   };
 };

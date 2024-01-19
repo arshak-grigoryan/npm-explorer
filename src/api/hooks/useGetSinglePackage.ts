@@ -23,8 +23,8 @@ export type SinglePackage = {
 type SinglePackageResponse = FetchResponse & SinglePackage;
 
 export default function useGetSinglePackage() {
-  const { name: packageName } = useParams();
-  const url = packageName ? `${npmRegistry.base}/${packageName}` : '';
+  const { name } = useParams();
+  const url = name ? `${npmRegistry.base}/${name}` : '';
 
   const res = useFetch(url) as SinglePackageResponse;
 

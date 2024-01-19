@@ -65,7 +65,7 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
           <Box sx={{ fontWeight: 600 }}>Tag</Box>
         </Box>
       </Box>
-      <VersionList data={currentTagsDownloadStats} />
+      <VersionList data={currentTagsDownloadStats} packageName={downloadsData.package}/>
       <Box sx={{ fontSize: '1.125rem', fontWeight: 600 }}>Version History</Box>
       <Box sx={{ display: 'flex' }}>
         <Box sx={{ fontWeight: 600 }}>Version</Box>
@@ -76,7 +76,7 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
           <Box sx={{ fontWeight: 600 }}>Published</Box>
         </Box>
       </Box>
-      <VersionList data={versionHostoryDownloadStats} />
+      <VersionList data={versionHostoryDownloadStats} packageName={downloadsData.package}/>
     </Box>
   );
 }
