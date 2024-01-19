@@ -1,22 +1,16 @@
 import { ReactNode } from 'react';
+import { FetchResponse } from '../../../api/hooks/useFetch';
 
-type LayoutState = {
-  isStartedFetch: boolean;
-  isFetching: boolean;
-  error: Error | null;
-  data: unknown;
-};
+type LayoutState = FetchResponse;
 
 type LayoutSlots = {
-  PreFetchComp?: ReactNode;
-  LoaderComp?: ReactNode;
+  Loader?: ReactNode;
   ErrorComp?: ReactNode;
-  DataComp: (props: { data: any } & any) => JSX.Element;
-  NoData?: ReactNode;
+  Content: (props: { data: any } & any) => JSX.Element;
 };
 
 type LayoutSlotProps = {
-  DataComp?: any;
+  Content?: Record<string, any>;
 };
 
 type FetchLayoutProps = {
@@ -26,30 +20,20 @@ type FetchLayoutProps = {
 };
 
 export default function FetchLayout({ state, slots, slotProps }: FetchLayoutProps) {
-  const { isStartedFetch, isFetching, error, data } = state;
-  const {
-    PreFetchComp = null,
-    LoaderComp = null,
-    ErrorComp = null,
-    DataComp,
-    NoData = null,
-  } = slots;
+  const { isFetching, isFetched, error, data } = state;
+  const { Loader = null, ErrorComp = null, Content } = slots;
 
-  if (!isStartedFetch) {
-    return PreFetchComp;
+  if (!isFetched || isFetching) {
+    return Loader;
   }
 
-  if (isFetching) {
-    return LoaderComp;
+  if (data) {
+    return <Content data={data} {...slotProps?.Content} />;
   }
 
   if (error) {
     return ErrorComp;
   }
 
-  if (data) {
-    return <DataComp data={data} {...slotProps} />;
-  }
-
-  return NoData;
+  return null;
 }

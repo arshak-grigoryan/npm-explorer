@@ -83,18 +83,13 @@ function Result({ data }: SearchPackage) {
 }
 
 export default function SearchResult() {
-  const { data, isFetching, isStartedFetch, error } = useSearchPackages();
+  const res = useSearchPackages();
 
   return (
     <FetchLayout
-      state={{
-        isFetching,
-        isStartedFetch,
-        error,
-        data,
-      }}
+      state={res}
       slots={{
-        DataComp: Result,
+        Content: Result,
       }}
     />
   );

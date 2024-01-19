@@ -3,7 +3,11 @@ import colors from '../../../../styles/colors';
 import useGetPackageDownloads, { Downloads } from '../../../../api/hooks/useGetPackageDownloads';
 import FetchLayout from '../../../common/FetchLayout/FetchLayout';
 
-function Count({ data, text }: Downloads & { text: string }) {
+type CountProps = Downloads & {
+  text: string;
+};
+
+function Count({ data, text }: CountProps) {
   return (
     <Box
       sx={{
@@ -31,21 +35,16 @@ function Count({ data, text }: Downloads & { text: string }) {
 }
 
 export default function DownloadsCount({ url, text }: { url: string; text: string }) {
-  const { data, isFetching, isStartedFetch, error } = useGetPackageDownloads(url);
+  const res = useGetPackageDownloads(url);
 
   return (
     <FetchLayout
-      state={{
-        isFetching,
-        isStartedFetch,
-        error,
-        data,
-      }}
+      state={res}
       slots={{
-        DataComp: Count,
+        Content: Count,
       }}
       slotProps={{
-        DataComp: text,
+        Content: { text },
       }}
     />
   );

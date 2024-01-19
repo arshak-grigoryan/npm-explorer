@@ -9,7 +9,9 @@ import Link from '../../../common/Link/Link';
 function Dep({ deps, label }: { deps: string[]; label: string }) {
   return (
     <Box sx={{ mt: 3 }}>
-      <Typography sx={{ color: colors.c21, fontSize: '1.25rem', fontWeight: 500 }}>{label}</Typography>
+      <Typography sx={{ color: colors.c21, fontSize: '1.25rem', fontWeight: 500 }}>
+        {label}
+      </Typography>
       <Divider sx={{ my: 1 }} />
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
         {deps.map((dep) => {
@@ -21,7 +23,7 @@ function Dep({ deps, label }: { deps: string[]; label: string }) {
                 color: colors.c9,
                 '&:hover': { color: colors.c4 },
                 transition: 'color .15s ease-in',
-                fontSize: '1.25rem'
+                fontSize: '1.25rem',
               }}
             >
               {dep}
@@ -47,18 +49,13 @@ function Deps({ data }: SinglePackageversion) {
 }
 
 export default function Dependency() {
-  const { data, isFetching, isStartedFetch, error } = useGetSinglePackageVersion();
+  const res = useGetSinglePackageVersion();
 
   return (
     <FetchLayout
-      state={{
-        isFetching,
-        isStartedFetch,
-        error,
-        data,
-      }}
+      state={res}
       slots={{
-        DataComp: Deps,
+        Content: Deps,
       }}
     />
   );
