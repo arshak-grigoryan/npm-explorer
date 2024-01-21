@@ -19,7 +19,7 @@ export default function SearchPage() {
         }}
       >
         <Link to="/">
-          <Logo/>
+          <Logo />
         </Link>
         <SearchForm />
       </Box>

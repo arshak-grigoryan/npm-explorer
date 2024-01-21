@@ -12,7 +12,7 @@ import colors from '../../../../styles/colors';
 import FetchLayout from '../../../common/FetchLayout/FetchLayout';
 
 function Result({ data }: SearchPackage) {
-  const [_, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const page = Number(useGetSearchParams(SEARCH_PARAMS.page, 1));
   const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');

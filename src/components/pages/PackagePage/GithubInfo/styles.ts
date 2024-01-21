@@ -13,5 +13,5 @@ export const TitleContent = styled(Typography)`
 `;
 
 export const StyledDivider = styled(Divider)`
-  background-color: ${colors.c1}
-`
+  background-color: ${colors.c1};
+`;

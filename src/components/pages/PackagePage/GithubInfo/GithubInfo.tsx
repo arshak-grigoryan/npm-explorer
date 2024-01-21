@@ -14,11 +14,11 @@ import WeeklyDownloads from './WeeklyDownloads';
 function GithubInfo(props: SinglePackage) {
   const { 'dist-tags': distTags, repository, homepage, license, name } = props.data;
   const { version } = useParams();
-  const isLatestVersion = version === distTags.latest;
+  const isLatestVersion = !version || (version && version === distTags.latest);
   const installCmd = version ? (isLatestVersion ? name : `${name}@${version}`) : name;
 
   const GithubUrl = new URL(repository.url.replace('git+', '').replace('.git', ''));
-  const HomepageUrl = new URL(homepage);
+  const HomepageUrl = homepage && new URL(homepage);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -78,34 +78,38 @@ function GithubInfo(props: SinglePackage) {
         </Link>
       </Box>
       <StyledDivider />
-      <Box>
-        <Title>Homepage</Title>
-        <Link to={HomepageUrl.href} target="_blank">
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 1,
-              alignItems: 'center',
-              color: colors.c24,
-              fontSize: '1.25rem',
-            }}
-          >
-            <Box>
-              <LinkIcon style={{ width: 16, height: 16 }} />
-            </Box>
-            <TitleContent
-              sx={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {HomepageUrl.host + HomepageUrl.pathname}
-            </TitleContent>
+      {HomepageUrl && (
+        <>
+          <Box>
+            <Title>Homepage</Title>
+            <Link to={HomepageUrl.href} target="_blank">
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                  alignItems: 'center',
+                  color: colors.c24,
+                  fontSize: '1.25rem',
+                }}
+              >
+                <Box>
+                  <LinkIcon style={{ width: 16, height: 16 }} />
+                </Box>
+                <TitleContent
+                  sx={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {HomepageUrl.host + HomepageUrl.pathname}
+                </TitleContent>
+              </Box>
+            </Link>
           </Box>
-        </Link>
-      </Box>
-      <StyledDivider />
+          <StyledDivider />
+        </>
+      )}
       {isLatestVersion && <WeeklyDownloads />}
       <Box sx={{ display: 'flex' }}>
         <Box sx={{ width: '50%' }}>

@@ -36,8 +36,8 @@ export default function useFetch(url: string): FetchResponse {
           }
           setIsFetching(false);
           setIsFetched(true);
-        } catch (error: any) {
-          if (error.name !== 'AbortError') {
+        } catch (error) {
+          if (error instanceof Error && error.name !== 'AbortError') {
             setError(error);
           }
         }

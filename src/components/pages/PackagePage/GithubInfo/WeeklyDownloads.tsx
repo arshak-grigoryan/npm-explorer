@@ -16,7 +16,7 @@ function WeeklyDownloads(props: Downloads) {
           </Box>
           <Title>Weekly Downloads</Title>
         </Box>
-        <Typography>{props.data.downloads.toLocaleString()}</Typography>;
+        <Typography>{props.data.downloads.toLocaleString()}</Typography>
       </Box>
       <StyledDivider />
     </>

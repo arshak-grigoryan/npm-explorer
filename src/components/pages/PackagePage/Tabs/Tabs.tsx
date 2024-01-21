@@ -30,7 +30,7 @@ function Tab({ label, icon, colors, selected, onClick }: TabProps) {
 }
 
 export default function Tabs() {
-  const [_, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const activeTab: TabsEnum = useGetSearchParams(SEARCH_PARAMS.activeTab, TabsEnum.Readme);
 
   return (
@@ -51,7 +51,7 @@ export default function Tabs() {
       </StyledTabs>
       <Box sx={{ display: 'flex' }}>
         <Box sx={{ width: 'calc(100% / 3 * 2)', mr: 2, mt: 2 }}>{TabComponent[activeTab]}</Box>
-        <Box sx={{ width: 'calc(100% / 3)', mx:2, mt: 2 }}>
+        <Box sx={{ width: 'calc(100% / 3)', mx: 2, mt: 2 }}>
           <GithubInfo />
         </Box>
       </Box>

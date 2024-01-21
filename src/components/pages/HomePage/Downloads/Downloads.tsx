@@ -14,7 +14,7 @@ export default function Downloads() {
     <Box
       sx={{
         p: 2,
-        flex:1
+        flex: 1,
       }}
     >
       <Box
@@ -25,7 +25,7 @@ export default function Downloads() {
           alignItems: 'center',
         }}
       >
-        <ChartIcon style={{ color: 'currentColor', height: 18 }}/>
+        <ChartIcon style={{ color: 'currentColor', height: 18 }} />
         <Typography> By the numbers</Typography>
       </Box>
       <Divider

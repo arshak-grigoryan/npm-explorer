@@ -12,7 +12,6 @@ type VersionListProps = {
 };
 
 export default function VersionList({ data, packageName }: VersionListProps) {
-  console.log(packageName)
   return data.map((value) => {
     const version = value[0];
     const downloads = value[1];
@@ -30,7 +29,13 @@ export default function VersionList({ data, packageName }: VersionListProps) {
             fontSize: '1rem',
           }}
         >
-          <Link to={`/package/${encodeURIComponent(packageName)}/${version}`} color={'inherit'} underline='always'>{version}</Link>
+          <Link
+            to={`/package/${encodeURIComponent(packageName)}/${version}`}
+            color={'inherit'}
+            underline="always"
+          >
+            {version}
+          </Link>
         </Box>
         <Box
           sx={{

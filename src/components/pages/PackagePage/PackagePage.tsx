@@ -19,7 +19,7 @@ export default function PackagePage() {
         }}
       >
         <Link to="/">
-          <Logo/>
+          <Logo />
         </Link>
         <SearchForm />
       </Box>

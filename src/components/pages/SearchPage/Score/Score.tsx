@@ -19,12 +19,7 @@ export default function Score({ score, max }: Props) {
             key={name}
           >
             <MeterBar value={value} max={max} color={color} />
-            <Typography
-              fontSize={'0.75rem'}
-              fontWeight={600}
-              color={colors.c2}
-              lineHeight={1}
-            >
+            <Typography fontSize={'0.75rem'} fontWeight={600} color={colors.c2} lineHeight={1}>
               {name}
             </Typography>
           </Box>

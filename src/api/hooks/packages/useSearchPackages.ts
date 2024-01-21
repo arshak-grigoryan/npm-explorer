@@ -74,7 +74,7 @@ export default function useSearchPackages() {
     }
 
     return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}`;
-  }, [searchString, popularity, quality, maintenance, from]);
+  }, [searchString, popularity, quality, maintenance, from, isSortOptionsAvailable]);
 
   const res = useFetch(url) as SearchPackageResponse;
 

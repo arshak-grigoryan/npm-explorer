@@ -9,9 +9,13 @@ import { SEARCH_PARAMS } from '../../../../api/configs';
 export default function SortOptions() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [popularity, setPopularity] = useState(Number(searchParams.get(SEARCH_PARAMS.popularity)) || 0);
+  const [popularity, setPopularity] = useState(
+    Number(searchParams.get(SEARCH_PARAMS.popularity)) || 0,
+  );
   const [quality, setQuality] = useState(Number(searchParams.get(SEARCH_PARAMS.quality)) || 0);
-  const [maintenance, setMaintenance] = useState(Number(searchParams.get(SEARCH_PARAMS.maintenance)) || 0);
+  const [maintenance, setMaintenance] = useState(
+    Number(searchParams.get(SEARCH_PARAMS.maintenance)) || 0,
+  );
 
   const isSortOptionsAvailable = popularity || quality || maintenance;
 

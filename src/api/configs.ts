@@ -12,7 +12,7 @@ export const npmApi = {
   lastDay: '/last-day',
   lastWeek: '/last-week',
   lastMonth: '/last-month',
-  versions: '/versions'
+  versions: '/versions',
 };
 
 export const NPM_DOWNLOADS_POINT = `${npmApi.base}${npmApi.downloadsPoint}`;

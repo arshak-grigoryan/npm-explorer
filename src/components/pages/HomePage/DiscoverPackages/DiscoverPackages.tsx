@@ -10,7 +10,7 @@ export default function DiscoverPackages() {
     <Box
       sx={{
         p: 2,
-        flex: 1
+        flex: 1,
       }}
     >
       <Box
@@ -24,9 +24,11 @@ export default function DiscoverPackages() {
         <SearchIcon />
         <Typography>Discover packages</Typography>
       </Box>
-      <Divider sx={{
-        borderColor: appColors.c17
-      }}/>
+      <Divider
+        sx={{
+          borderColor: appColors.c17,
+        }}
+      />
       <Box
         sx={{
           display: 'flex',

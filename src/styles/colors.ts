@@ -24,7 +24,7 @@ const colors = {
   c23: 'rgba(0,0,0,.6)',
   c24: 'rgba(0,0,0,.8)',
   c25: '#757575',
-  c26: '#cccccc'
+  c26: '#cccccc',
 };
 
 export default colors;

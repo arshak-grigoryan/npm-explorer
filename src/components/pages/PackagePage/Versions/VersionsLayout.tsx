@@ -10,6 +10,7 @@ type VersionsProps = {
 
 export default function VersionsLayout({ data: { downloadsData, packageData } }: VersionsProps) {
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     time: { modified, created, ...versions },
     'dist-tags': currentTags,
   } = packageData;
@@ -31,7 +32,7 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
 
   const currentTagsKeyValueSwaped: Record<string, string> = {};
 
-  for (let key in currentTags) {
+  for (const key in currentTags) {
     currentTagsKeyValueSwaped[currentTags[key]] = key;
   }
 
@@ -52,7 +53,7 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
-        color: colors.c24
+        color: colors.c24,
       }}
     >
       <Box sx={{ fontSize: '1.125rem', fontWeight: 600, mt: 2 }}>Current Tags</Box>
@@ -65,7 +66,7 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
           <Box sx={{ fontWeight: 600 }}>Tag</Box>
         </Box>
       </Box>
-      <VersionList data={currentTagsDownloadStats} packageName={downloadsData.package}/>
+      <VersionList data={currentTagsDownloadStats} packageName={downloadsData.package} />
       <Box sx={{ fontSize: '1.125rem', fontWeight: 600 }}>Version History</Box>
       <Box sx={{ display: 'flex' }}>
         <Box sx={{ fontWeight: 600 }}>Version</Box>
@@ -76,7 +77,7 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
           <Box sx={{ fontWeight: 600 }}>Published</Box>
         </Box>
       </Box>
-      <VersionList data={versionHostoryDownloadStats} packageName={downloadsData.package}/>
+      <VersionList data={versionHostoryDownloadStats} packageName={downloadsData.package} />
     </Box>
   );
 }
