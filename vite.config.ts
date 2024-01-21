@@ -9,5 +9,10 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [svgr(), react(), checker({ typescript: true })],
     base: isDev ? '/' : '/npm-explorer/',
+    resolve: {
+      alias: {
+        src: '/src',
+      },
+    },
   };
 });

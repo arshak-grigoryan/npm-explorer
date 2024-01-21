@@ -1,5 +1,5 @@
 import { StyledLink, StyledTab, StyledTabs } from './styles';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { TabsConfig } from './configs';
 import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from '../../../../hooks/useGetSearchParams';
@@ -8,13 +8,14 @@ import Readme from '../Readme/Readme';
 import { TabProps, TabsEnum } from './types';
 import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';
+import GithubInfo from '../GithubInfo/GithubInfo';
 
 const TabComponent = {
   [TabsEnum.Readme]: <Readme />,
   [TabsEnum.Code]: <></>,
-  [TabsEnum.Dependencies]: <Dependency/>,
+  [TabsEnum.Dependencies]: <Dependency />,
   [TabsEnum.Dependents]: <></>,
-  [TabsEnum.Versions]: <Versions/>,
+  [TabsEnum.Versions]: <Versions />,
 };
 
 function Tab({ label, icon, colors, selected, onClick }: TabProps) {
@@ -48,7 +49,12 @@ export default function Tabs() {
           />
         ))}
       </StyledTabs>
-      {TabComponent[activeTab]}
+      <Box sx={{ display: 'flex' }}>
+        <Box sx={{ width: 'calc(100% / 3 * 2)', mr: 2, mt: 2 }}>{TabComponent[activeTab]}</Box>
+        <Box sx={{ width: 'calc(100% / 3)', mx:2, mt: 2 }}>
+          <GithubInfo />
+        </Box>
+      </Box>
     </>
   );
 }

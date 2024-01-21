@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
-import colors from '../../../../styles/colors';
-import useGetPackageDownloads, { Downloads } from '../../../../api/hooks/useGetPackageDownloads';
+import colors from 'src/styles/colors';
+import useGetPackageDownloads, { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
 import FetchLayout from '../../../common/FetchLayout/FetchLayout';
 
 type CountProps = Downloads & {

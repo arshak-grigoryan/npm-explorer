@@ -1,7 +1,7 @@
 import { Box, Divider, Typography } from '@mui/material';
 import useGetSinglePackageVersion, {
   SinglePackageversion,
-} from '../../../../api/hooks/useGetSinglePackageVersion';
+} from '../../../../api/hooks/packages/useGetSinglePackageVersion';
 import FetchLayout from '../../../common/FetchLayout/FetchLayout';
 import colors from '../../../../styles/colors';
 import Link from '../../../common/Link/Link';

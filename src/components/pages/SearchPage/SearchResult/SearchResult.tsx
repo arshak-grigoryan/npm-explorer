@@ -5,7 +5,7 @@ import Pagination from '@mui/material/Pagination';
 import { SEARCH_PARAMS, perPage } from '../../../../api/configs';
 import SortOptions from '../SortOptions/SortOptions';
 import ListPackage from '../ListPackage/ListPackage';
-import useSearchPackages, { SearchPackage } from '../../../../api/hooks/useSearchPackages';
+import useSearchPackages, { SearchPackage } from '../../../../api/hooks/packages/useSearchPackages';
 import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from '../../../../hooks/useGetSearchParams';
 import colors from '../../../../styles/colors';

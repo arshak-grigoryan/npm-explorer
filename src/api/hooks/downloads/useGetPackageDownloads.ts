@@ -1,4 +1,4 @@
-import useFetch, { FetchResponse } from './useFetch';
+import useFetch, { FetchResponse } from '../useFetch';
 
 export type Downloads = {
   data: {

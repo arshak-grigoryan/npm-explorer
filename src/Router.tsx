@@ -13,6 +13,7 @@ export default function AppRouter() {
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/package/:name/:version?" element={<PackagePage />} />
+        <Route path='*' element={<>Not found</>}/>
       </Routes>
     </Router>
   );

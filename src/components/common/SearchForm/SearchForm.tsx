@@ -1,6 +1,6 @@
 import { KeyboardEvent, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from 'src/assets/SearchBig.svg?react';
 import { ButtonElement, InputElement } from './styles';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { Button as BaseButton } from '@mui/base/Button';
@@ -46,7 +46,7 @@ export default function SearchForm() {
           },
         }}
       >
-        <SearchIcon sx={{ fontSize: 18 }} />
+        <SearchIcon style={{ width: 18, height: 18 }} />
         <BaseInput
           slots={{ input: InputElement }}
           style={{ width: '100%' }}

@@ -1,6 +1,6 @@
 import markdownit from 'markdown-it';
 import { useEffect, useRef } from 'react';
-import useGetSinglePackage from '../../../../api/hooks/useGetSinglePackage';
+import useGetSinglePackage from '../../../../api/hooks/packages/useGetSinglePackage';
 import { useParams } from 'react-router-dom';
 
 export const markdown = markdownit({

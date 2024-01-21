@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../configs';
-import useGetSearchParams from '../../hooks/useGetSearchParams';
-import useFetch, { FetchResponse } from './useFetch';
+import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../../configs';
+import useGetSearchParams from '../../../hooks/useGetSearchParams';
+import useFetch, { FetchResponse } from '../useFetch';
 
 export type PackageObject = {
   package: {

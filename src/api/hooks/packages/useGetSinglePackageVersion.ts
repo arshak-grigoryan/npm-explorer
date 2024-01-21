@@ -1,6 +1,6 @@
-import { npmRegistry } from '../configs';
+import { npmRegistry } from '../../configs';
 import { useParams } from 'react-router-dom';
-import useFetch, { FetchResponse } from './useFetch';
+import useFetch, { FetchResponse } from '../useFetch';
 
 export type SinglePackageversion = {
   data: {
