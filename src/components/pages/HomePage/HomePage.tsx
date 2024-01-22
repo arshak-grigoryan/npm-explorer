@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
 import SearchForm from '../../common/SearchForm/SearchForm';
-import DiscoverPackages from './DiscoverPackages/DiscoverPackages';
-import Downloads from './Downloads/Downloads';
 import Link from '../../common/Link/Link';
 import Logo from '../../common/Logo/Logo';
 import colors from '../../../styles/colors';
+import Downloads from './Downloads/Downloads';
+import DiscoverPackages from './DiscoverPackages/DiscoverPackages';
 
 export default function HomePage() {
   return (

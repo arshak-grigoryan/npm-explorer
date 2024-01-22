@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { NPM_DOWNLOADS_POINT_LAST_WEEK } from 'src/api/configs';
+import { npmApi } from 'src/api/configs';
 import useGetPackageDownloads, { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
-import { StyledDivider, Title } from './styles';
 import DownloadIcon from 'src/assets/Download.svg?react';
+import { StyledDivider, Title } from './styles';
 
 function WeeklyDownloads(props: Downloads) {
   return (
@@ -25,7 +25,7 @@ function WeeklyDownloads(props: Downloads) {
 
 export default function WeeklyDownloadsContainer() {
   const { name } = useParams();
-  const url = name ? `${NPM_DOWNLOADS_POINT_LAST_WEEK}/${name}` : '';
+  const url = name ? `${npmApi.allPackagesLastWeekDownloadsUrl}/${name}` : '';
   const res = useGetPackageDownloads(url);
   return (
     <FetchLayout

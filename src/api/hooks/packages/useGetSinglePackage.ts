@@ -1,5 +1,5 @@
-import { npmRegistry } from '../../configs';
 import { useParams } from 'react-router-dom';
+import { npmRegistry } from 'src/api/configs';
 import useFetch, { FetchResponse } from '../useFetch';
 
 export type SinglePackage = {
@@ -30,7 +30,7 @@ type SinglePackageResponse = FetchResponse & SinglePackage;
 
 export default function useGetSinglePackage() {
   const { name } = useParams();
-  const url = name ? `${npmRegistry.base}/${name}` : '';
+  const url = name ? npmRegistry.getSinglePackageUrl(name) : '';
 
   const res = useFetch(url) as SinglePackageResponse;
 

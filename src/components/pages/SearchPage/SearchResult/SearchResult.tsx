@@ -2,31 +2,31 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
-import { SEARCH_PARAMS, perPage } from '../../../../api/configs';
-import SortOptions from '../SortOptions/SortOptions';
-import ListPackage from '../ListPackage/ListPackage';
-import useSearchPackages, { SearchPackage } from '../../../../api/hooks/packages/useSearchPackages';
 import { useSearchParams } from 'react-router-dom';
-import useGetSearchParams from '../../../../hooks/useGetSearchParams';
-import colors from '../../../../styles/colors';
-import FetchLayout from '../../../common/FetchLayout/FetchLayout';
+import useSearchPackages, { SearchPackage } from 'src/api/hooks/packages/useSearchPackages';
+import useGetSearchParams from 'src/hooks/useGetSearchParams';
+import { PAGE, PER_PAGE_PACKAGES_COUNT, npmRegistry } from 'src/api/configs';
+import colors from 'src/styles/colors';
+import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
+import ListPackage from '../ListPackage/ListPackage';
+import SortOptions from '../SortOptions/SortOptions';
 
 function Result({ data }: SearchPackage) {
   const [, setSearchParams] = useSearchParams();
 
-  const page = Number(useGetSearchParams(SEARCH_PARAMS.page, 1));
-  const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
-  const showPagination = data && data.total > perPage;
+  const page = Number(useGetSearchParams(PAGE, 1));
+  const searchString = useGetSearchParams(npmRegistry.searchParams.text, '');
+  const showPagination = data && data.total > PER_PAGE_PACKAGES_COUNT;
 
   function handlePageChange(page: number) {
     setSearchParams((params) => {
-      params.set(SEARCH_PARAMS.page, String(page));
+      params.set(PAGE, String(page));
       return params;
     });
   }
 
   function handleKeywordClick(keyword: string) {
-    setSearchParams({ [SEARCH_PARAMS.text]: `keywords:${keyword}` });
+    setSearchParams({ [npmRegistry.searchParams.text]: `keywords:${keyword}` });
   }
 
   return (
@@ -44,7 +44,7 @@ function Result({ data }: SearchPackage) {
         <Typography>{data.total} packages found</Typography>
         {showPagination && (
           <Pagination
-            count={Math.ceil(data.total / perPage)}
+            count={Math.ceil(data.total / PER_PAGE_PACKAGES_COUNT)}
             page={page}
             onChange={(_, page) => handlePageChange(page)}
           />
@@ -69,7 +69,7 @@ function Result({ data }: SearchPackage) {
             {showPagination && (
               <Box py={2}>
                 <Pagination
-                  count={Math.ceil(data.total / perPage)}
+                  count={Math.ceil(data.total / PER_PAGE_PACKAGES_COUNT)}
                   page={page}
                   onChange={(_, page) => handlePageChange(page)}
                 />

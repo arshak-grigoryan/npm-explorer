@@ -1,12 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import ChartIcon from '../../../../assets/Chart.svg?react';
 import Divider from '@mui/material/Divider';
+import ChartIcon from '../../../../assets/Chart.svg?react';
 import appColors from '../../../../styles/colors';
-import {
-  NPM_DOWNLOADS_POINT_LAST_DAY,
-  NPM_DOWNLOADS_POINT_LAST_MONTH,
-  NPM_DOWNLOADS_POINT_LAST_WEEK,
-} from '../../../../api/configs';
+import { npmApi } from '../../../../api/configs';
 import DownloadsCount from './DownloadsCount';
 
 export default function Downloads() {
@@ -41,9 +37,12 @@ export default function Downloads() {
           mt: 2,
         }}
       >
-        <DownloadsCount url={NPM_DOWNLOADS_POINT_LAST_DAY} text="Downloads · Last Day" />
-        <DownloadsCount url={NPM_DOWNLOADS_POINT_LAST_WEEK} text="Downloads · Last Week" />
-        <DownloadsCount url={NPM_DOWNLOADS_POINT_LAST_MONTH} text="Downloads · Last Month" />
+        <DownloadsCount url={npmApi.allPackagesLastDayDownloadsUrl} text="Downloads · Last Day" />
+        <DownloadsCount url={npmApi.allPackagesLastWeekDownloadsUrl} text="Downloads · Last Week" />
+        <DownloadsCount
+          url={npmApi.allPackagesLastMonthDownloadsUrl}
+          text="Downloads · Last Month"
+        />
       </Box>
     </Box>
   );

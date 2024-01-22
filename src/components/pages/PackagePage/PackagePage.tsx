@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
-import PackageInfo from './PackageInfo/PackageInfo';
 import SearchForm from '../../common/SearchForm/SearchForm';
 import Logo from '../../common/Logo/Logo';
 import Link from '../../common/Link/Link';
+import PackageInfo from './PackageInfo/PackageInfo';
 
 export default function PackagePage() {
   return (

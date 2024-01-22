@@ -1,9 +1,9 @@
 import { Box, Typography } from '@mui/material';
-import SearchIcon from '../../../../assets/Search.svg?react';
 import Divider from '@mui/material/Divider';
-import { KeywordConfig } from './config';
+import SearchIcon from '../../../../assets/Search.svg?react';
 import Link from '../../../common/Link/Link';
 import appColors from '../../../../styles/colors';
+import { KeywordConfig } from './config';
 
 export default function DiscoverPackages() {
   return (

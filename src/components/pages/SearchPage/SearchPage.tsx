@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
-import SearchResult from './SearchResult/SearchResult';
 import SearchForm from '../../common/SearchForm/SearchForm';
 import Link from '../../common/Link/Link';
 import Logo from '../../common/Logo/Logo';
+import SearchResult from './SearchResult/SearchResult';
 
 export default function SearchPage() {
   return (

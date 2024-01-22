@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { NPM_SEARCH_URL, SEARCH_PARAMS, perPage } from '../../configs';
-import useGetSearchParams from '../../../hooks/useGetSearchParams';
+import { PAGE, PER_PAGE_PACKAGES_COUNT, npmRegistry } from 'src/api/configs';
+import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import useFetch, { FetchResponse } from '../useFetch';
 
 export type PackageObject = {
@@ -50,31 +50,36 @@ export type SearchPackage = {
 
 type SearchPackageResponse = FetchResponse & SearchPackage;
 
+const {
+  searchUrl,
+  searchParams: { text: t, popularity: p, quality: q, maintenance: m, from: f },
+} = npmRegistry;
+
 export default function useSearchPackages() {
-  const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
-  const popularity = useGetSearchParams(SEARCH_PARAMS.popularity, 0);
-  const quality = useGetSearchParams(SEARCH_PARAMS.quality, 0);
-  const maintenance = useGetSearchParams(SEARCH_PARAMS.maintenance, 0);
-  const page = useGetSearchParams(SEARCH_PARAMS.page, 1);
+  const text = useGetSearchParams(t, '');
+  const popularity = useGetSearchParams(p, 0);
+  const quality = useGetSearchParams(q, 0);
+  const maintenance = useGetSearchParams(m, 0);
+  const page = useGetSearchParams(PAGE, 1);
 
-  const from = page * perPage - perPage;
+  const from = page * PER_PAGE_PACKAGES_COUNT - PER_PAGE_PACKAGES_COUNT;
 
-  const isSortOptionsAvailable = popularity || quality || maintenance;
+  const isSortable = popularity || quality || maintenance;
 
   // TODO: check for url validity
   const url = useMemo(() => {
-    if (isSortOptionsAvailable && !from) {
-      return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.popularity}=${popularity}&${SEARCH_PARAMS.quality}=${quality}&${SEARCH_PARAMS.maintenance}=${maintenance}`;
+    if (isSortable && !from) {
+      return `${searchUrl}?${t}=${text}&${p}=${popularity}&${q}=${quality}&${m}=${maintenance}`;
     }
-    if (isSortOptionsAvailable && from) {
-      return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.popularity}=${popularity}&${SEARCH_PARAMS.quality}=${quality}&${SEARCH_PARAMS.maintenance}=${maintenance}&${SEARCH_PARAMS.from}=${from}`;
+    if (isSortable && from) {
+      return `${searchUrl}?${t}=${text}&${p}=${popularity}&${q}=${quality}&${m}=${maintenance}&${f}=${from}`;
     }
-    if (!isSortOptionsAvailable && from) {
-      return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}&${SEARCH_PARAMS.from}=${from}`;
+    if (!isSortable && from) {
+      return `${searchUrl}?${t}=${text}&${f}=${from}`;
     }
 
-    return `${NPM_SEARCH_URL}?${SEARCH_PARAMS.text}=${searchString}`;
-  }, [searchString, popularity, quality, maintenance, from, isSortOptionsAvailable]);
+    return `${searchUrl}?${t}=${text}`;
+  }, [text, popularity, quality, maintenance, from, isSortable]);
 
   const res = useFetch(url) as SearchPackageResponse;
 

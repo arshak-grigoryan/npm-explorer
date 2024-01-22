@@ -1,17 +1,17 @@
 import { KeyboardEvent, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import SearchIcon from 'src/assets/SearchBig.svg?react';
-import { ButtonElement, InputElement } from './styles';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { Button as BaseButton } from '@mui/base/Button';
 import { Input as BaseInput } from '@mui/base/Input';
+import SearchIcon from 'src/assets/SearchBig.svg?react';
 import colors from '../../../styles/colors';
-import { SEARCH_PARAMS } from '../../../api/configs';
+import { npmRegistry } from '../../../api/configs';
 import useGetSearchParams from '../../../hooks/useGetSearchParams';
+import { ButtonElement, InputElement } from './styles';
 
 export default function SearchForm() {
   const navigate = useNavigate();
-  const searchString = useGetSearchParams(SEARCH_PARAMS.text, '');
+  const searchString = useGetSearchParams(npmRegistry.searchParams.text, '');
   const [inputSearchString, setInputSearchString] = useState(searchString);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function SearchForm() {
   const serachWrap = () => {
     navigate({
       pathname: '/search',
-      search: createSearchParams({ [SEARCH_PARAMS.text]: inputSearchString }).toString(),
+      search: createSearchParams({ [npmRegistry.searchParams.text]: inputSearchString }).toString(),
     });
   };
 

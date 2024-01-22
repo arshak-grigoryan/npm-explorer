@@ -1,36 +1,32 @@
-export const npmRegistry = {
-  base: 'https://registry.npmjs.org',
-  search: '/-/v1/search',
-};
+const NPM_REGISTRY = 'https://registry.npmjs.org';
+const NPM_API = 'https://api.npmjs.org';
 
-export const NPM_SEARCH_URL = `${npmRegistry.base}${npmRegistry.search}`;
+export const npmRegistry = {
+  searchUrl: `${NPM_REGISTRY}/-/v1/search`,
+  searchParams: {
+    text: 'text',
+    popularity: 'popularity',
+    quality: 'quality',
+    maintenance: 'maintenance',
+    from: 'from',
+  },
+  getSinglePackageUrl: function (packageName: string) {
+    return `${NPM_REGISTRY}/${packageName}`;
+  },
+  getSinglePackageVersionUrl: function (packageName: string, version?: string) {
+    return `${NPM_REGISTRY}/${packageName}/${version ?? 'latest'}`;
+  },
+};
 
 export const npmApi = {
-  base: 'https://api.npmjs.org',
-  downloadsPoint: '/downloads/point',
-  downloadsRange: '/downloads/range',
-  lastDay: '/last-day',
-  lastWeek: '/last-week',
-  lastMonth: '/last-month',
-  versions: '/versions',
+  allPackagesLastDayDownloadsUrl: `${NPM_API}/downloads/point/last-day`,
+  allPackagesLastWeekDownloadsUrl: `${NPM_API}/downloads/point/last-week`,
+  allPackagesLastMonthDownloadsUrl: `${NPM_API}/downloads/point/last-month`,
+  getLastWeekPerVersionDownloadsUrl: function (packageName: string) {
+    return `${NPM_API}/versions/${encodeURIComponent(packageName)}/last-week`;
+  },
 };
 
-export const NPM_DOWNLOADS_POINT = `${npmApi.base}${npmApi.downloadsPoint}`;
-export const NPM_DOWNLOADS_POINT_LAST_DAY = `${npmApi.base}${npmApi.downloadsPoint}${npmApi.lastDay}`;
-export const NPM_DOWNLOADS_POINT_LAST_WEEK = `${npmApi.base}${npmApi.downloadsPoint}${npmApi.lastWeek}`;
-export const NPM_DOWNLOADS_POINT_LAST_MONTH = `${npmApi.base}${npmApi.downloadsPoint}${npmApi.lastMonth}`;
-
-export const NPM_DOWNLOADS_RANGE = `${npmApi.base}${npmApi.downloadsRange}`;
-
-export const NPM_PER_VERSION_DOWNLOADS = `${npmApi.base}${npmApi.versions}`;
-
-export const perPage = 20;
-export const SEARCH_PARAMS = {
-  text: 'text',
-  popularity: 'popularity',
-  quality: 'quality',
-  maintenance: 'maintenance',
-  from: 'from',
-  page: 'page',
-  activeTab: 'activeTab',
-};
+export const PER_PAGE_PACKAGES_COUNT = 20;
+export const PAGE = 'page';
+export const ACTIVE_TAB = 'activeTab';

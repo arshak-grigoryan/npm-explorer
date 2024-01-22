@@ -1,14 +1,14 @@
-import { StyledLink, StyledTab, StyledTabs } from './styles';
 import { Box, Typography } from '@mui/material';
-import { TabsConfig } from './configs';
 import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from '../../../../hooks/useGetSearchParams';
-import { SEARCH_PARAMS } from '../../../../api/configs';
+import { ACTIVE_TAB } from '../../../../api/configs';
 import Readme from '../Readme/Readme';
-import { TabProps, TabsEnum } from './types';
 import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';
 import GithubInfo from '../GithubInfo/GithubInfo';
+import { TabProps, TabsEnum } from './types';
+import { TabsConfig } from './configs';
+import { StyledLink, StyledTab, StyledTabs } from './styles';
 
 const TabComponent = {
   [TabsEnum.Readme]: <Readme />,
@@ -31,7 +31,7 @@ function Tab({ label, icon, colors, selected, onClick }: TabProps) {
 
 export default function Tabs() {
   const [, setSearchParams] = useSearchParams();
-  const activeTab: TabsEnum = useGetSearchParams(SEARCH_PARAMS.activeTab, TabsEnum.Readme);
+  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.Readme);
 
   return (
     <>

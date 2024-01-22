@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { PerVersionDownloads } from '../../../../api/hooks/downloads/useGetPackagePerVersionDownloads';
 import { SinglePackage } from '../../../../api/hooks/packages/useGetSinglePackage';
-import VersionList, { CurrentTagsStats, VersionHistoryStats } from './VersionList';
 import colors from '../../../../styles/colors';
+import VersionList, { CurrentTagsStats, VersionHistoryStats } from './VersionList';
 
 type VersionsProps = {
   data: { downloadsData: PerVersionDownloads['data']; packageData: SinglePackage['data'] };

@@ -1,20 +1,22 @@
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { Slider, SliderLabel, StyledSortButton } from './styled';
 import { useSearchParams } from 'react-router-dom';
-import colors from '../../../../styles/colors';
-import { SEARCH_PARAMS } from '../../../../api/configs';
+import { npmRegistry } from 'src/api/configs';
+import colors from 'src/styles/colors';
+import { Slider, SliderLabel, StyledSortButton } from './styled';
 
 export default function SortOptions() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [popularity, setPopularity] = useState(
-    Number(searchParams.get(SEARCH_PARAMS.popularity)) || 0,
+    Number(searchParams.get(npmRegistry.searchParams.popularity)) || 0,
   );
-  const [quality, setQuality] = useState(Number(searchParams.get(SEARCH_PARAMS.quality)) || 0);
+  const [quality, setQuality] = useState(
+    Number(searchParams.get(npmRegistry.searchParams.quality)) || 0,
+  );
   const [maintenance, setMaintenance] = useState(
-    Number(searchParams.get(SEARCH_PARAMS.maintenance)) || 0,
+    Number(searchParams.get(npmRegistry.searchParams.maintenance)) || 0,
   );
 
   const isSortOptionsAvailable = popularity || quality || maintenance;
@@ -34,15 +36,15 @@ export default function SortOptions() {
   const onSortClick = () => {
     if (isSortOptionsAvailable) {
       setSearchParams((params) => {
-        params.set(SEARCH_PARAMS.popularity, String(popularity));
+        params.set(npmRegistry.searchParams.popularity, String(popularity));
         return params;
       });
       setSearchParams((params) => {
-        params.set(SEARCH_PARAMS.quality, String(quality));
+        params.set(npmRegistry.searchParams.quality, String(quality));
         return params;
       });
       setSearchParams((params) => {
-        params.set(SEARCH_PARAMS.maintenance, String(maintenance));
+        params.set(npmRegistry.searchParams.maintenance, String(maintenance));
         return params;
       });
     }
