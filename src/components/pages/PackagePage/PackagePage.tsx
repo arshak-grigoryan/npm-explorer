@@ -1,28 +1,11 @@
 import Box from '@mui/material/Box';
-import SearchForm from '../../common/SearchForm/SearchForm';
-import Logo from '../../common/Logo/Logo';
-import Link from '../../common/Link/Link';
+import Header from 'src/components/common/Header/Header';
 import PackageInfo from './PackageInfo/PackageInfo';
 
 export default function PackagePage() {
   return (
     <Box>
-      <Box
-        component={'header'}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          gap: 4,
-          px: 4,
-          py: 2,
-        }}
-      >
-        <Link to="/">
-          <Logo />
-        </Link>
-        <SearchForm />
-      </Box>
+      <Header />
       <Box component="main">
         <PackageInfo />
       </Box>

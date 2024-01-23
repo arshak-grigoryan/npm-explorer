@@ -1,40 +1,12 @@
 import Box from '@mui/material/Box';
-import SearchForm from '../../common/SearchForm/SearchForm';
-import Link from '../../common/Link/Link';
-import Logo from '../../common/Logo/Logo';
-import colors from '../../../styles/colors';
+import Header from 'src/components/common/Header/Header';
 import Downloads from './Downloads/Downloads';
 import DiscoverPackages from './DiscoverPackages/DiscoverPackages';
 
 export default function HomePage() {
   return (
     <Box>
-      <Box
-        component={'header'}
-        sx={{
-          position: 'relative',
-          borderBottom: `1px solid ${colors.c1}`,
-          boxShadow: `0 4px 13px -3px ${colors.c1}`,
-        }}
-      >
-        <Box
-          sx={{
-            maxWidth: 1536,
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            margin: 'auto',
-            gap: 4,
-            px: 4,
-            py: 2,
-          }}
-        >
-          <Link to="/">
-            <Logo />
-          </Link>
-          <SearchForm />
-        </Box>
-      </Box>
+      <Header />
       <Box
         component="main"
         sx={{
