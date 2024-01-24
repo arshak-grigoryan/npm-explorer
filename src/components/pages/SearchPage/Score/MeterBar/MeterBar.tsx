@@ -1,4 +1,4 @@
-import colors from '../../../../../styles/colors';
+import colors from 'src/styles/colors';
 
 type Props = {
   max: number;
@@ -10,6 +10,7 @@ const width = 75;
 
 export default function MeterBar({ color, value, max }: Props) {
   const scorePercent = (value * 100) / max;
+
   return (
     <div
       style={{

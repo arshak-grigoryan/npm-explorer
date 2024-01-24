@@ -9,4 +9,10 @@ export const text = {
   downloadsLastDay: 'Downloads · Last Day',
   downloadsLastWeek: 'Downloads · Last Week',
   downloadsLastMonth: 'Downloads · Last Month',
+  countPackagesFound: (count: number) => `${count} packages found`,
+  sortPackages: 'Sort Packages',
+  sort: 'Sort',
+  popularity: 'Popularity',
+  quality: 'Quality',
+  maintenance: 'Maintenance',
 };

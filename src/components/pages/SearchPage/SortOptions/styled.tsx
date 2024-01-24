@@ -1,7 +1,7 @@
 import { Button } from '@mui/base';
 import { Typography, styled } from '@mui/material';
 import MuiSlider, { SliderProps } from '@mui/material/Slider';
-import colors from '../../../../styles/colors';
+import colors from 'src/styles/colors';
 
 export const StyledSortButton = styled(Button)`
   border: 1px solid ${colors.c16};

@@ -4,22 +4,24 @@ import Typography from '@mui/material/Typography';
 import { useSearchParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
 import colors from 'src/styles/colors';
+import useGetSearchParams from 'src/hooks/useGetSearchParams';
+import { text } from 'src/configs/configs';
 import { Slider, SliderLabel, StyledSortButton } from './styled';
 
 export default function SortOptions() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const [popularity, setPopularity] = useState(
-    Number(searchParams.get(npmRegistry.searchParams.popularity)) || 0,
+    Number(useGetSearchParams(npmRegistry.searchParams.popularity, 0)),
   );
   const [quality, setQuality] = useState(
-    Number(searchParams.get(npmRegistry.searchParams.quality)) || 0,
+    Number(useGetSearchParams(npmRegistry.searchParams.quality, 0)),
   );
   const [maintenance, setMaintenance] = useState(
-    Number(searchParams.get(npmRegistry.searchParams.maintenance)) || 0,
+    Number(useGetSearchParams(npmRegistry.searchParams.maintenance, 0)),
   );
 
-  const isSortOptionsAvailable = popularity || quality || maintenance;
+  const isSortAvailable = popularity || quality || maintenance;
 
   const onPopularityChange = (value: number) => {
     setPopularity(value);
@@ -34,7 +36,7 @@ export default function SortOptions() {
   };
 
   const onSortClick = () => {
-    if (isSortOptionsAvailable) {
+    if (isSortAvailable) {
       setSearchParams((params) => {
         params.set(npmRegistry.searchParams.popularity, String(popularity));
         return params;
@@ -51,13 +53,17 @@ export default function SortOptions() {
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        padding: '16px',
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          mb: 2,
+          marginBottom: '16px',
         }}
       >
         <Typography
@@ -65,7 +71,7 @@ export default function SortOptions() {
             fontSize: '1rem',
           }}
         >
-          Sort Packages
+          {text.sortPackages}
         </Typography>
         <StyledSortButton
           onClick={onSortClick}
@@ -73,30 +79,30 @@ export default function SortOptions() {
             fontSize: '0.875rem',
           }}
         >
-          Sort
+          {text.sort}
         </StyledSortButton>
       </Box>
-      <SliderLabel text="Popularity" />
+      <SliderLabel text={text.popularity} />
       <Slider
-        aria-label="Popularity"
+        aria-label={text.popularity}
         value={popularity}
         onChange={(_, value) => onPopularityChange(value as number)}
         sx={{
           color: colors.c7,
         }}
       />
-      <SliderLabel text="Quality" />
+      <SliderLabel text={text.quality} />
       <Slider
-        aria-label="Quality"
+        aria-label={text.quality}
         value={quality}
         onChange={(_, value) => onQualityChange(value as number)}
         sx={{
           color: colors.c8,
         }}
       />
-      <SliderLabel text="Maintenance" />
+      <SliderLabel text={text.maintenance} />
       <Slider
-        aria-label="Maintenance"
+        aria-label={text.maintenance}
         value={maintenance}
         onChange={(_, value) => onMaintenanceChange(value as number)}
         sx={{

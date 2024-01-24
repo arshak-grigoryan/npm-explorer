@@ -1,11 +1,15 @@
-import { Stack, Box, Typography, Chip } from '@mui/material';
+import { Box, Typography, Chip } from '@mui/material';
 import { format } from 'date-fns';
+import colors from 'src/styles/colors';
+import Link from 'src/components/common/Link/Link';
 import Score from '../Score/Score';
-import colors from '../../../../styles/colors';
-import Link from '../../../common/Link/Link';
-import { ListPackageProps } from './types';
+import { PackageListItemProps } from './types';
 
-export default function ListPackage({ obj, searchString, handleKeywordClick }: ListPackageProps) {
+export default function PackageListItem({
+  obj,
+  searchString,
+  handleKeywordClick,
+}: PackageListItemProps) {
   const { package: foundPackage, score } = obj;
   const { name, description, keywords, publisher, date, version } = foundPackage;
 
@@ -15,8 +19,8 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: L
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        px: 0.5,
-        pt: 2,
+        padding: '0 8px',
+        marginBottom: '16px',
         pb: 1,
         gap: 4,
         borderBottom: `1px solid ${colors.c1}`,
@@ -36,10 +40,11 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: L
           >
             <Typography
               component="h3"
-              fontWeight={600}
-              lineHeight={1}
-              fontSize={'1.25rem'}
-              display={'inline'}
+              sx={{
+                fontWeight: 600,
+                fontSize: '1.25rem',
+                display: 'inline',
+              }}
             >
               {name}
             </Typography>
@@ -50,23 +55,39 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: L
               sx={{
                 '&.MuiChip-root': {
                   backgroundColor: colors.c3,
-                  borderRadius: 1,
-                  px: 1,
-                  py: 0.5,
+                  borderRadius: '4px',
+                  padding: '4px 8px',
+                  height: 'auto',
                 },
                 '& .MuiChip-label': {
                   px: 0,
                   fontSize: '0.875rem',
                   color: colors.c2,
+                  lineHeight: '1rem',
                 },
               }}
             />
           )}
         </Box>
-        <Typography py={0.5} mt={0.5} fontSize={'1rem'}>
+        <Typography
+          sx={{
+            paddingTop: '4px',
+            paddingBottom: '4px',
+            marginTop: '4px',
+            fontSize: '1rem',
+          }}
+        >
           {description}
         </Typography>
-        <Box display={'flex'} flexWrap={'wrap'} gap={1} my={0.5}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '8px',
+            marginTop: '8px',
+            marginBottom: '8px',
+          }}
+        >
           {keywords?.map((key, i) => (
             <Chip
               key={key + i}
@@ -75,9 +96,9 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: L
               sx={{
                 '&.MuiChip-root': {
                   backgroundColor: colors.c5,
-                  borderRadius: 1,
-                  px: 1,
-                  py: 0.5,
+                  borderRadius: '4px',
+                  padding: '4px 8px',
+                  height: 'auto',
                   '&:hover': {
                     backgroundColor: colors.c1,
                     cursor: 'pointer',
@@ -87,21 +108,38 @@ export default function ListPackage({ obj, searchString, handleKeywordClick }: L
                   px: 0,
                   fontSize: '0.875rem',
                   color: colors.c2,
+                  lineHeight: '1rem',
                 },
               }}
             />
           ))}
         </Box>
-        <Stack gap={0.5} direction={'row'} alignItems={'center'} my={0.5}>
-          <Typography component={'span'} fontSize={'0.875rem'} fontWeight={600} lineHeight={1}>
+        <Box
+          sx={{
+            gap: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '4px',
+            marginBottom: '4px',
+          }}
+        >
+          <Typography
+            component={'span'}
+            sx={{
+              fontSize: '0.875rem',
+              fontWeight: 600,
+            }}
+          >
             {publisher.username}
           </Typography>
           <Typography
-            fontSize={'0.875rem'}
-            color={colors.c6}
+            sx={{
+              fontSize: '0.875rem',
+              color: colors.c6,
+            }}
             component={'span'}
           >{`published ${version} • ${format(new Date(date), 'MMMM dd yyyy')}`}</Typography>
-        </Stack>
+        </Box>
       </Box>
       <Score
         score={[

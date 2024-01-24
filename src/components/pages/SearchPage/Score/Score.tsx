@@ -8,18 +8,26 @@ type Props = { score: { name: string; value: number; color: string }[]; max: num
 
 export default function Score({ score, max }: Props) {
   return (
-    <Stack gap={0.5}>
+    <Stack>
       {score.map(({ name, value, color }) => {
         return (
           <Box
-            display={'flex'}
-            gap={1}
-            alignItems={'center'}
-            flexDirection={'row-reverse'}
             key={name}
+            sx={{
+              display: 'flex',
+              gap: '8px',
+              alignItems: 'center',
+              flexDirection: 'row-reverse',
+            }}
           >
             <MeterBar value={value} max={max} color={color} />
-            <Typography fontSize={'0.75rem'} fontWeight={600} color={colors.c2} lineHeight={1}>
+            <Typography
+              sx={{
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: colors.c2,
+              }}
+            >
               {name}
             </Typography>
           </Box>
