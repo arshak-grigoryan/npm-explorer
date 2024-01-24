@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import LogoIcon from '../../../assets/npm-logo-black.svg?react';
-import colors from '../../../styles/colors';
+import LogoIcon from 'src/assets/npm-logo-black.svg?react';
+import colors from 'src/styles/colors';
 
 export default function Logo() {
   return (
@@ -12,10 +12,10 @@ export default function Logo() {
         alignItems: 'center',
       }}
     >
-      <LogoIcon height={16} />
+      <LogoIcon height={18} />
       <Typography
         sx={{
-          fontSize: '.875rem',
+          fontSize: '1rem',
           fontWeight: 700,
           color: colors.c4,
         }}

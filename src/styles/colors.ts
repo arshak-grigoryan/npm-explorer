@@ -9,10 +9,10 @@ const colors = {
   c8: '#8956ff',
   c9: '#cb3837',
   c10: '#f2f2f2',
-  c11: '#231f20',
+  c11: '#fafafa',
   c12: '#231f20',
   c13: '#fff',
-  c14: '#f9f9f9',
+  c14: '#f9f9f9', // rgb(249, 249, 249)
   c15: '#999',
   c16: '#ccc',
   c17: '#fab231',
@@ -25,6 +25,8 @@ const colors = {
   c24: 'rgba(0,0,0,.8)',
   c25: '#757575',
   c26: '#cccccc',
+  c27: '#cfcfcf',
+  c28: '#f8f8f8',
 };
 
 export default colors;

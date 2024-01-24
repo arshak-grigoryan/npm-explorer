@@ -1,15 +1,17 @@
 import Box from '@mui/material/Box';
 import colors from 'src/styles/colors';
-import SearchForm from '../../common/SearchForm/SearchForm';
-import Link from '../../common/Link/Link';
-import Logo from '../../common/Logo/Logo';
+import { maxWidth } from 'src/styles/styles';
+import Link from '../Link/Link';
+import Logo from '../Logo/Logo';
+import SearchForm from '../SearchForm/SearchForm';
+
 export default function Header() {
   return (
     <Box
       component={'header'}
       sx={{
         position: 'relative',
-        borderBottom: `1px solid ${colors.c1}`,
+        borderBottom: `1px solid ${colors.c22}`,
         boxShadow: `0 4px 13px -3px ${colors.c1}`,
       }}
     >
@@ -22,14 +24,13 @@ export default function Header() {
       />
       <Box
         sx={{
-          maxWidth: 1536,
+          maxWidth: maxWidth,
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
           margin: 'auto',
-          gap: 4,
-          px: 4,
-          py: 2,
+          gap: '32px',
+          padding: '16px 32px',
         }}
       >
         <Link to="/">

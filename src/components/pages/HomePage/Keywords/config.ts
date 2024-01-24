@@ -1,15 +1,15 @@
-import FrontEnd from '../../../../assets/Front-End.svg?react';
-import BackEnd from '../../../../assets/Back-End.svg?react';
-import CLI from '../../../../assets/CLI.svg?react';
-import Documentation from '../../../../assets/Documentation.svg?react';
-import CSS from '../../../../assets/CSS.svg?react';
-import Testing from '../../../../assets/Testing.svg?react';
-import IoT from '../../../../assets/IoT.svg?react';
-import Coverage from '../../../../assets/Coverage.svg?react';
-import Mobile from '../../../../assets/Mobile.svg?react';
-import Frameworks from '../../../../assets/Frameworks.svg?react';
-import Robotics from '../../../../assets/Robotics.svg?react';
-import Math from '../../../../assets/Math.svg?react';
+import FrontEnd from 'src/assets/Front-End.svg?react';
+import BackEnd from 'src/assets/Back-End.svg?react';
+import CLI from 'src/assets/CLI.svg?react';
+import Documentation from 'src/assets/Documentation.svg?react';
+import CSS from 'src/assets/CSS.svg?react';
+import Testing from 'src/assets/Testing.svg?react';
+import IoT from 'src/assets/IoT.svg?react';
+import Coverage from 'src/assets/Coverage.svg?react';
+import Mobile from 'src/assets/Mobile.svg?react';
+import Frameworks from 'src/assets/Frameworks.svg?react';
+import Robotics from 'src/assets/Robotics.svg?react';
+import Math from 'src/assets/Math.svg?react';
 
 export enum KeywordsEnum {
   'Front-End' = 'Front-End',

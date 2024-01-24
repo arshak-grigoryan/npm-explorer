@@ -1,5 +1,5 @@
 import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
-import { isDev } from './configs';
+import { isDev } from './configs/configs';
 import HomePage from './components/pages/HomePage/HomePage';
 import SearchPage from './components/pages/SearchPage/SearchPage';
 import PackagePage from './components/pages/PackagePage/PackagePage';

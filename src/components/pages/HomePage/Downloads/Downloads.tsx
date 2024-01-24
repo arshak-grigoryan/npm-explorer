@@ -1,28 +1,29 @@
 import { Box, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import ChartIcon from '../../../../assets/Chart.svg?react';
-import appColors from '../../../../styles/colors';
-import { npmApi } from '../../../../api/configs';
-import DownloadsCount from './DownloadsCount';
+import ChartIcon from 'src/assets/Chart.svg?react';
+import appColors from 'src/styles/colors';
+import { npmApi } from 'src/api/configs';
+import { text } from 'src/configs/configs';
+import Count from './Count';
 
 export default function Downloads() {
   return (
     <Box
       sx={{
-        p: 2,
+        padding: '16px',
         flex: 1,
       }}
     >
       <Box
         sx={{
-          mb: 2,
+          marginBottom: '16px',
           display: 'flex',
-          gap: 1,
+          gap: '8px',
           alignItems: 'center',
         }}
       >
         <ChartIcon style={{ color: 'currentColor', height: 18 }} />
-        <Typography> By the numbers</Typography>
+        <Typography>{text.byTheNumbers}</Typography>
       </Box>
       <Divider
         sx={{
@@ -32,17 +33,14 @@ export default function Downloads() {
       <Box
         sx={{
           display: 'flex',
-          gap: 2,
+          gap: '16px',
           flexDirection: 'column',
-          mt: 2,
+          marginTop: '16px',
         }}
       >
-        <DownloadsCount url={npmApi.allPackagesLastDayDownloadsUrl} text="Downloads · Last Day" />
-        <DownloadsCount url={npmApi.allPackagesLastWeekDownloadsUrl} text="Downloads · Last Week" />
-        <DownloadsCount
-          url={npmApi.allPackagesLastMonthDownloadsUrl}
-          text="Downloads · Last Month"
-        />
+        <Count url={npmApi.allPackagesLastDayDownloadsUrl} text={text.downloadsLastDay} />
+        <Count url={npmApi.allPackagesLastWeekDownloadsUrl} text={text.downloadsLastWeek} />
+        <Count url={npmApi.allPackagesLastMonthDownloadsUrl} text={text.downloadsLastMonth} />
       </Box>
     </Box>
   );

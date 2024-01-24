@@ -4,8 +4,9 @@ import { createSearchParams, useNavigate } from 'react-router-dom';
 import { Button as BaseButton } from '@mui/base/Button';
 import { Input as BaseInput } from '@mui/base/Input';
 import SearchIcon from 'src/assets/SearchBig.svg?react';
-import { npmRegistry } from '../../../api/configs';
-import useGetSearchParams from '../../../hooks/useGetSearchParams';
+import { npmRegistry } from 'src/api/configs';
+import useGetSearchParams from 'src/hooks/useGetSearchParams';
+import { text } from 'src/configs/configs';
 import { ButtonElement, InputElement } from './styles';
 
 export default function SearchForm() {
@@ -28,7 +29,7 @@ export default function SearchForm() {
     <Box
       sx={{
         display: 'flex',
-        flexGrow: '1',
+        flexGrow: 1,
       }}
     >
       <Box sx={{ position: 'relative', width: '100%' }}>
@@ -55,12 +56,12 @@ export default function SearchForm() {
               serachWrap();
             }
           }}
-          placeholder="Search packages"
+          placeholder={text.searchPackages}
           type="search"
         />
       </Box>
       <BaseButton onClick={serachWrap} slots={{ root: ButtonElement }}>
-        Search
+        {text.search}
       </BaseButton>
     </Box>
   );

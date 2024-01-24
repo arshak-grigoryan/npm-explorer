@@ -1,18 +1,18 @@
 import { Box, Typography } from '@mui/material';
 import colors from 'src/styles/colors';
 import useGetPackageDownloads, { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
-import FetchLayout from '../../../common/FetchLayout/FetchLayout';
+import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 
-type CountProps = Downloads & {
+type CountLayoutProps = Downloads & {
   text: string;
 };
 
-function Count({ data, text }: CountProps) {
+function CountLayout({ data, text }: CountLayoutProps) {
   return (
     <Box
       sx={{
         borderBottom: `1px solid ${colors.c1}`,
-        mb: 2,
+        marginBottom: '16px',
       }}
     >
       <Typography
@@ -25,7 +25,7 @@ function Count({ data, text }: CountProps) {
       <Typography
         sx={{
           fontSize: '1.5rem',
-          mb: 1,
+          marginBottom: '16px',
         }}
       >
         {data.downloads.toLocaleString()}
@@ -34,14 +34,14 @@ function Count({ data, text }: CountProps) {
   );
 }
 
-export default function DownloadsCount({ url, text }: { url: string; text: string }) {
+export default function Count({ url, text }: { url: string; text: string }) {
   const res = useGetPackageDownloads(url);
 
   return (
     <FetchLayout
       state={res}
       slots={{
-        Content: Count,
+        Content: CountLayout,
       }}
       slotProps={{
         Content: { text },

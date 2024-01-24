@@ -7,6 +7,7 @@ export default function GlobalStyles() {
     <MuiGlobalStyles
       styles={{
         '#root': {
+          minWidth: '320px',
           width: '100vw',
           height: '100vh',
         },

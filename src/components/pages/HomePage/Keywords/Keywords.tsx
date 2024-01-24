@@ -1,28 +1,29 @@
 import { Box, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import SearchIcon from '../../../../assets/Search.svg?react';
-import Link from '../../../common/Link/Link';
-import appColors from '../../../../styles/colors';
+import SearchIcon from 'src/assets/Search.svg?react';
+import appColors from 'src/styles/colors';
+import Link from 'src/components/common/Link/Link';
+import { text } from 'src/configs/configs';
 import { KeywordConfig } from './config';
 
-export default function DiscoverPackages() {
+export default function Keywords() {
   return (
     <Box
       sx={{
-        p: 2,
+        padding: '16px',
         flex: 1,
       }}
     >
       <Box
         sx={{
-          mb: 2,
+          marginBottom: '16px',
           display: 'flex',
           gap: 1,
           alignItems: 'center',
         }}
       >
-        <SearchIcon />
-        <Typography>Discover packages</Typography>
+        <SearchIcon style={{ color: 'currentColor', height: 18 }} />
+        <Typography>{text.discoverPackages}</Typography>
       </Box>
       <Divider
         sx={{
@@ -32,9 +33,9 @@ export default function DiscoverPackages() {
       <Box
         sx={{
           display: 'flex',
-          gap: 2,
+          gap: '16px',
           flexWrap: 'wrap',
-          mt: 2,
+          marginTop: '16px',
         }}
       >
         {KeywordConfig.map(({ name, Icon, colors }) => {
@@ -48,8 +49,7 @@ export default function DiscoverPackages() {
               <Link
                 to={`/search?text=keywords:${name.toLowerCase()}`}
                 sx={{
-                  px: 4,
-                  py: 3,
+                  padding: '24px 32px',
                   '&:hover': {
                     color: colors.text,
                     backgroundColor: colors.hover,
@@ -57,7 +57,7 @@ export default function DiscoverPackages() {
                   },
                   color: appColors.c19,
                   display: 'flex',
-                  gap: 2,
+                  gap: '16px',
                   alignItems: 'center',
                   justifyContent: 'center',
                   border: `1px solid ${appColors.c18}`,

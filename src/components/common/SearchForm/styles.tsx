@@ -17,7 +17,7 @@ export const InputElement = styled('input')`
 export const ButtonElement = styled('button')(
   ({ theme }) => `
   padding: ${theme.spacing(1)} ${theme.spacing(4)};
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: 700;
   background-color: ${colors.c12};
   color: ${colors.c13};

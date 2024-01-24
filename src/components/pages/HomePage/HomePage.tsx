@@ -1,7 +1,9 @@
 import Box from '@mui/material/Box';
 import Header from 'src/components/common/Header/Header';
+import colors from 'src/styles/colors';
+import { maxWidth } from 'src/styles/styles';
 import Downloads from './Downloads/Downloads';
-import DiscoverPackages from './DiscoverPackages/DiscoverPackages';
+import Keywords from './Keywords/Keywords';
 
 export default function HomePage() {
   return (
@@ -10,29 +12,28 @@ export default function HomePage() {
       <Box
         component="main"
         sx={{
-          backgroundColor: '#fafafa',
+          backgroundColor: colors.c11,
+          padding: '16px',
         }}
       >
         <Box
           sx={{
-            maxWidth: 1536,
-
-            px: 4,
-            py: 2,
+            maxWidth: maxWidth,
+            padding: '0 16px',
             margin: 'auto',
           }}
         >
           <Box
             sx={{
-              backgroundColor: '#fff',
-              border: '1px solid rgba(0,0,0,.1)',
-              borderRadius: '0.25rem',
+              backgroundColor: colors.c13,
+              border: `1px solid ${colors.c1}`,
+              borderRadius: '4px',
               display: 'flex',
               flexWrap: 'wrap',
-              gap: 4,
+              gap: '16px',
             }}
           >
-            <DiscoverPackages />
+            <Keywords />
             <Downloads />
           </Box>
         </Box>
