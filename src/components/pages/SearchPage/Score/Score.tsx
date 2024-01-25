@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import colors from '../../../../styles/colors';
+import colors from 'src/styles/colors';
 import MeterBar from './MeterBar/MeterBar';
 
 type Props = { score: { name: string; value: number; color: string }[]; max: number };

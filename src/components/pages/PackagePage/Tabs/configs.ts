@@ -1,8 +1,8 @@
-import ReadmeIcon from '../../../../assets/Readme.svg?react';
-import CodeIcon from '../../../../assets/Code.svg?react';
-import DependencyIcon from '../../../../assets/Dependency.svg?react';
-import DependentsIcon from '../../../../assets/Dependents.svg?react';
-import VersionsIcon from '../../../../assets/Versions.svg?react';
+import ReadmeIcon from 'src/assets/Readme.svg?react';
+import CodeIcon from 'src/assets/Code.svg?react';
+import DependencyIcon from 'src/assets/Dependency.svg?react';
+import DependentsIcon from 'src/assets/Dependents.svg?react';
+import VersionsIcon from 'src/assets/Versions.svg?react';
 import { TabConfig, TabsEnum } from './types';
 
 export const TabsConfig: TabConfig[] = [

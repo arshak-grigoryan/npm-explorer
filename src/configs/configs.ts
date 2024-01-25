@@ -1,6 +1,6 @@
 export const isDev = import.meta.env.DEV;
 
-// TODO: keywords
+// TODO: keywords, tabs
 export const text = {
   searchPackages: 'Search packages',
   search: 'Search',
@@ -15,4 +15,14 @@ export const text = {
   popularity: 'Popularity',
   quality: 'Quality',
   maintenance: 'Maintenance',
+  install: 'Install',
+  weeklyDownloads: 'Weekly Downloads',
+  repository: 'Repository',
+  homepage: 'Homepage',
+  version: 'Version',
+  license: 'License',
+  issues: 'Issues',
+  pullRequests: 'Pull Requests',
+  lastPublish: 'Last Publish',
+  collaborators: 'Collaborators',
 };

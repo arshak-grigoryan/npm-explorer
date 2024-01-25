@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { FetchResponse } from '../../../api/hooks/useFetch';
+import { FetchResponse } from 'src/api/hooks/useFetch';
 
 type LayoutState = FetchResponse;
 

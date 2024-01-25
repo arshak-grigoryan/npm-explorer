@@ -1,6 +1,6 @@
-import FetchLayout from '../../../common/FetchLayout/FetchLayout';
-import useGetPackagePerVersionDownloads from '../../../../api/hooks/downloads/useGetPackagePerVersionDownloads';
-import useGetSinglePackage from '../../../../api/hooks/packages/useGetSinglePackage';
+import useGetPackagePerVersionDownloads from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
+import useGetSinglePackage from 'src/api/hooks/packages/useGetSinglePackage';
+import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import VersionsLayout from './VersionsLayout';
 
 export default function Versions() {

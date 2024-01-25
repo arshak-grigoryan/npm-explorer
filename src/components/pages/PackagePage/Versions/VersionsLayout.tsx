@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import { PerVersionDownloads } from '../../../../api/hooks/downloads/useGetPackagePerVersionDownloads';
-import { SinglePackage } from '../../../../api/hooks/packages/useGetSinglePackage';
-import colors from '../../../../styles/colors';
+import { PerVersionDownloads } from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
+import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
+import colors from 'src/styles/colors';
 import VersionList, { CurrentTagsStats, VersionHistoryStats } from './VersionList';
 
 type VersionsProps = {

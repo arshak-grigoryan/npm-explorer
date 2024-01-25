@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Link from '../../../common/Link/Link';
+import Link from 'src/components/common/Link/Link';
 
 export const StyledTabs = styled.div`
   display: flex;

@@ -18,7 +18,7 @@ export type SinglePackage = {
       }
     >;
     time: { [version: string]: Date; modified: Date; created: Date };
-    homepage?: string; // e.g. "dlx" package doesn't have "homepage" key
+    homepage?: string;
     repository: {
       url: string;
     };

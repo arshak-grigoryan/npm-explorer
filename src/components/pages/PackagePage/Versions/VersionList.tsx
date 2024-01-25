@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { format } from 'date-fns';
-import colors from '../../../../styles/colors';
-import Link from '../../../common/Link/Link';
+import Link from 'src/components/common/Link/Link';
+import colors from 'src/styles/colors';
 
 export type VersionHistoryStats = [string, number, Date][];
 export type CurrentTagsStats = [string, number, string][];
