@@ -7,7 +7,7 @@ import { TabConfig, TabsEnum } from './types';
 
 export const TabsConfig: TabConfig[] = [
   {
-    name: TabsEnum.Readme,
+    name: TabsEnum.readme,
     colors: {
       text: '#886701',
       background: 'rgba(255, 205, 58, 0.2)',
@@ -17,7 +17,7 @@ export const TabsConfig: TabConfig[] = [
     Icon: ReadmeIcon,
   },
   {
-    name: TabsEnum.Code,
+    name: TabsEnum.code,
     colors: {
       text: '#bc3433',
       background: 'rgba(203, 56, 55, 0.15)',
@@ -27,7 +27,7 @@ export const TabsConfig: TabConfig[] = [
     Icon: CodeIcon,
   },
   {
-    name: TabsEnum.Dependencies,
+    name: TabsEnum.dependencies,
     colors: {
       text: 'rgb(120, 33, 117)',
       background: 'rgba(200, 54, 195, 0.2)',
@@ -37,7 +37,7 @@ export const TabsConfig: TabConfig[] = [
     Icon: DependencyIcon,
   },
   {
-    name: TabsEnum.Dependents,
+    name: TabsEnum.dependents,
     colors: {
       text: 'rgb(41, 0, 138)',
       background: 'rgba(137, 86, 255, 0.2)',
@@ -47,7 +47,7 @@ export const TabsConfig: TabConfig[] = [
     Icon: DependentsIcon,
   },
   {
-    name: TabsEnum.Versions,
+    name: TabsEnum.versions,
     colors: {
       text: 'rgb(20, 106, 144)',
       background: 'rgba(41, 171, 226, 0.2)',

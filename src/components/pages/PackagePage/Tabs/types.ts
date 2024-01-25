@@ -5,15 +5,14 @@ export type TabProps = {
   label: string;
   colors: any;
   selected: boolean;
-  onClick: () => void;
 };
 
 export enum TabsEnum {
-  Readme = 'Readme',
-  Code = 'Code',
-  Dependencies = 'Dependencies',
-  Dependents = 'Dependents',
-  Versions = 'Versions',
+  readme = 'readme',
+  code = 'code',
+  dependencies = 'dependencies',
+  dependents = 'dependents',
+  versions = 'versions',
 }
 
 export type TabConfig = {

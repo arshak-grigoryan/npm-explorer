@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material';
-import { useSearchParams } from 'react-router-dom';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { ACTIVE_TAB } from 'src/api/configs';
 import Readme from '../Readme/Readme';
@@ -10,27 +9,26 @@ import { TabsConfig } from './configs';
 import { StyledLink, StyledTab, StyledTabs } from './styles';
 
 export const TabComponent = {
-  [TabsEnum.Readme]: <Readme />,
-  [TabsEnum.Code]: <></>,
-  [TabsEnum.Dependencies]: <Dependency />,
-  [TabsEnum.Dependents]: <></>,
-  [TabsEnum.Versions]: <Versions />,
+  [TabsEnum.readme]: <Readme />,
+  [TabsEnum.code]: <></>,
+  [TabsEnum.dependencies]: <Dependency />,
+  [TabsEnum.dependents]: <></>,
+  [TabsEnum.versions]: <Versions />,
 };
 
-function Tab({ label, icon, colors, selected, onClick }: TabProps) {
+function Tab({ label, icon, colors, selected }: TabProps) {
   return (
-    <StyledTab colors={colors} selected={selected} onClick={onClick}>
-      <StyledLink to={'?activeTab/readme'} colors={colors}>
+    <StyledTab colors={colors} selected={selected}>
+      <StyledLink to={`?activeTab=${label}`} colors={colors}>
         {icon}
-        <Typography>{label}</Typography>
+        <Typography sx={{ textTransform: 'capitalize' }}>{label}</Typography>
       </StyledLink>
     </StyledTab>
   );
 }
 
 export default function Tabs() {
-  const [, setSearchParams] = useSearchParams();
-  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.Readme);
+  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
 
   return (
     <StyledTabs>
@@ -41,9 +39,6 @@ export default function Tabs() {
           colors={colors}
           icon={<Icon style={{ color: colors.text, width: 19.195, height: 19.195 }} />}
           selected={activeTab === name}
-          onClick={() => {
-            setSearchParams({ activeTab: name });
-          }}
         />
       ))}
     </StyledTabs>

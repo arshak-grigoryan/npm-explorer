@@ -14,7 +14,7 @@ type SinglePackageResponse = FetchResponse & SinglePackageversion;
 
 export default function useGetSinglePackageVersion() {
   const { name, version } = useParams();
-  const url = name && version ? npmRegistry.getSinglePackageVersionUrl(name, version) : '';
+  const url = name ? npmRegistry.getSinglePackageVersionUrl(name, version) : '';
 
   const res = useFetch(url) as SinglePackageResponse;
 

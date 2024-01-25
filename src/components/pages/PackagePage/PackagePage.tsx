@@ -8,7 +8,7 @@ import PackageDetails from './PackageDetails/PackageDetails';
 import { TabsEnum } from './Tabs/types';
 
 export default function PackagePage() {
-  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.Readme);
+  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
 
   return (
     <Box>
