@@ -27,6 +27,7 @@ export default function SearchForm() {
 
   return (
     <Box
+      component={'form'}
       sx={{
         display: 'flex',
         flexGrow: 1,
@@ -60,7 +61,7 @@ export default function SearchForm() {
           type="search"
         />
       </Box>
-      <BaseButton onClick={serachWrap} slots={{ root: ButtonElement }}>
+      <BaseButton type="button" onClick={serachWrap} slots={{ root: ButtonElement }}>
         {text.search}
       </BaseButton>
     </Box>

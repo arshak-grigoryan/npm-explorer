@@ -12,10 +12,11 @@ function CountLayout({ data, text }: CountLayoutProps) {
     <Box
       sx={{
         borderBottom: `1px solid ${colors.c1}`,
-        marginBottom: '16px',
+        paddingBottom: '16px',
       }}
     >
       <Typography
+        component={'h3'}
         sx={{
           fontSize: '.875rem',
         }}
@@ -23,9 +24,9 @@ function CountLayout({ data, text }: CountLayoutProps) {
         {text}
       </Typography>
       <Typography
+        component={'strong'}
         sx={{
           fontSize: '1.5rem',
-          marginBottom: '16px',
         }}
       >
         {data.downloads.toLocaleString()}

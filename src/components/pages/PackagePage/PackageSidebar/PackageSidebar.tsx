@@ -7,11 +7,12 @@ import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import Link from 'src/components/common/Link/Link';
 import colors from 'src/styles/colors';
 import { text } from 'src/configs/configs';
+import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
 import { Title, TitleContent } from './styles';
 import WeeklyDownloads from './WeeklyDownloads';
-import Installation from './Installation';
+import Installation from './Installation/Installation';
 
-function PackageDetailsLayout(props: SinglePackage) {
+function PackageSidebarLayout(props: SinglePackage) {
   const { 'dist-tags': distTags, repository, homepage, license, name } = props.data;
   const { version } = useParams();
   const isLatestVersion = !version || (version && version === distTags.latest);
@@ -21,7 +22,8 @@ function PackageDetailsLayout(props: SinglePackage) {
   const HomepageUrl = homepage && new URL(homepage);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <HiddenHeading as={'h2'}>{text.packageSidebar}</HiddenHeading>
       <Installation version={installVersion} />
       <Box
         sx={{
@@ -143,14 +145,14 @@ function PackageDetailsLayout(props: SinglePackage) {
   );
 }
 
-export default function PackageDetails() {
+export default function PackageSidebar() {
   const res = useGetSinglePackage();
 
   return (
     <FetchLayout
       state={res}
       slots={{
-        Content: PackageDetailsLayout,
+        Content: PackageSidebarLayout,
       }}
     />
   );

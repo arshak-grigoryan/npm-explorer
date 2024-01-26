@@ -9,12 +9,14 @@ import Count from './Count';
 export default function Downloads() {
   return (
     <Box
+      component={'section'}
       sx={{
         padding: '16px',
         flex: 1,
       }}
     >
-      <Box
+      <Typography
+        component={'h2'}
         sx={{
           marginBottom: '16px',
           display: 'flex',
@@ -24,7 +26,7 @@ export default function Downloads() {
       >
         <ChartIcon style={{ color: 'currentColor', height: 18 }} />
         <Typography>{text.byTheNumbers}</Typography>
-      </Box>
+      </Typography>
       <Divider
         sx={{
           borderColor: appColors.c20,

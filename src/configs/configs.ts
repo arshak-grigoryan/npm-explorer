@@ -2,6 +2,9 @@ export const isDev = import.meta.env.DEV;
 
 // TODO: keywords, tabs
 export const text = {
+  dashboard: 'Dashboard',
+  searchResults: 'Search results',
+  packageSidebar: 'Package Sidebar',
   searchPackages: 'Search packages',
   search: 'Search',
   discoverPackages: 'Discover packages',
@@ -25,4 +28,13 @@ export const text = {
   pullRequests: 'Pull Requests',
   lastPublish: 'Last Publish',
   collaborators: 'Collaborators',
+  dependencies: (count: number) => `Dependencies (${count})`,
+  peerDependencies: (count: number) => `Peer dependencies (${count})`,
+  devDependencies: (count: number) => `Dev dependencies (${count})`,
+  currentTags: 'Current Tags',
+  downloadsLast7Days: 'Downloads (Last 7 Days)',
+  tag: 'Tag',
+  versionHistory: 'Version History',
+  published: 'Published',
+  versions: 'Versions',
 };

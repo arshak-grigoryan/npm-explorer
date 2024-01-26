@@ -1,9 +1,9 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ArrowRightIcon from 'src/assets/Arrow-Right.svg?react';
 import CopyIcon from 'src/assets/Copy.svg?react';
 import colors from 'src/styles/colors';
 import { text } from 'src/configs/configs';
-import { Title } from './styles';
+import { CopyIconButton } from './styles';
 
 export default function Installation({ version }: { version: string }) {
   return (
@@ -12,7 +12,17 @@ export default function Installation({ version }: { version: string }) {
         marginBottom: '16px',
       }}
     >
-      <Title>{text.install}</Title>
+      <Typography
+        component={'h3'}
+        sx={{
+          color: colors.c25,
+          fontSize: '1rem',
+          fontWeight: 700,
+          lineHeight: 1,
+        }}
+      >
+        {text.install}
+      </Typography>
       <Box
         sx={{
           border: `1px ${colors.c26} solid`,
@@ -22,21 +32,18 @@ export default function Installation({ version }: { version: string }) {
           alignItems: 'center',
           gap: 1,
           fontSize: '0.875rem',
-          marginTop: '8px',
+          marginTop: '16px',
         }}
       >
         <Box>
           <ArrowRightIcon style={{ width: 12.59, height: 12.59 }} />
         </Box>
         <Box sx={{ flexGrow: 1 }}>
-          <code>{`npm i ${version}`}</code>
+          <Box component={'code'}>{`npm i ${version}`}</Box>
         </Box>
-        <Box>
-          <CopyIcon
-            style={{ width: 12.59, height: 12.59, cursor: 'pointer' }}
-            onClick={() => navigator.clipboard.writeText(`npm i ${version}` ?? '')}
-          />
-        </Box>
+        <CopyIconButton onClick={() => navigator.clipboard.writeText(`npm i ${version}` ?? '')}>
+          <CopyIcon style={{ width: 12.59, height: 12.59, cursor: 'pointer' }} />
+        </CopyIconButton>
       </Box>
     </Box>
   );

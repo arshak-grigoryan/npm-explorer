@@ -1,20 +1,17 @@
-import { Box, Typography, Chip } from '@mui/material';
+import { Box, Typography, Chip, ListItem, List } from '@mui/material';
 import { format } from 'date-fns';
 import colors from 'src/styles/colors';
 import Link from 'src/components/common/Link/Link';
 import Score from '../Score/Score';
 import { PackageListItemProps } from './types';
 
-export default function PackageListItem({
-  obj,
-  searchString,
-  handleKeywordClick,
-}: PackageListItemProps) {
+export default function PackageListItem({ obj, searchString }: PackageListItemProps) {
   const { package: foundPackage, score } = obj;
   const { name, description, keywords, publisher, date, version } = foundPackage;
 
   return (
     <Box
+      component={'section'}
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -79,41 +76,52 @@ export default function PackageListItem({
         >
           {description}
         </Typography>
-        <Box
+        <List
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: '8px',
             marginTop: '8px',
             marginBottom: '8px',
+            listStyle: 'none',
+            padding: 0,
           }}
         >
-          {keywords?.map((key, i) => (
-            <Chip
-              key={key + i}
-              label={key}
-              onClick={() => handleKeywordClick(key)}
+          {keywords?.map((keyword, i) => (
+            <ListItem
               sx={{
-                '&.MuiChip-root': {
-                  backgroundColor: colors.c5,
-                  borderRadius: '4px',
-                  padding: '4px 8px',
-                  height: 'auto',
-                  '&:hover': {
-                    backgroundColor: colors.c1,
-                    cursor: 'pointer',
-                  },
-                },
-                '& .MuiChip-label': {
-                  px: 0,
-                  fontSize: '0.875rem',
-                  color: colors.c2,
-                  lineHeight: '1rem',
-                },
+                display: 'initial',
+                width: 'auto',
+                padding: 0,
               }}
-            />
+            >
+              <Link to={`?text=keywords:${keyword}`}>
+                <Chip
+                  key={keyword + i}
+                  label={keyword}
+                  sx={{
+                    '&.MuiChip-root': {
+                      backgroundColor: colors.c5,
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      height: 'auto',
+                      '&:hover': {
+                        backgroundColor: colors.c1,
+                        cursor: 'pointer',
+                      },
+                    },
+                    '& .MuiChip-label': {
+                      px: 0,
+                      fontSize: '0.875rem',
+                      color: colors.c2,
+                      lineHeight: '1rem',
+                    },
+                  }}
+                />
+              </Link>
+            </ListItem>
           ))}
-        </Box>
+        </List>
         <Box
           sx={{
             gap: '4px',

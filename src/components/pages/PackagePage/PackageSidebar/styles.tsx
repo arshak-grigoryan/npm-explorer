@@ -1,12 +1,20 @@
 import { Typography, styled } from '@mui/material';
+import { ReactNode } from 'react';
 import colors from 'src/styles/colors';
 
-export const Title = styled(Typography)`
-  color: ${colors.c25};
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-`;
+export const Title = ({ children }: { children: ReactNode }) => (
+  <Typography
+    component={'h3'}
+    sx={{
+      color: colors.c25,
+      fontSize: '1rem',
+      fontWeight: 700,
+      lineHeight: 1,
+    }}
+  >
+    {children}
+  </Typography>
+);
 
 export const TitleContent = styled(Typography)`
   color: ${colors.c24};

@@ -1,7 +1,9 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { PerVersionDownloads } from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
 import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
 import colors from 'src/styles/colors';
+import { text } from 'src/configs/configs';
+import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
 import VersionList, { CurrentTagsStats, VersionHistoryStats } from './VersionList';
 
 type VersionsProps = {
@@ -56,25 +58,30 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
         color: colors.c24,
       }}
     >
-      <Box sx={{ fontSize: '1.125rem', fontWeight: 600, mt: 2 }}>Current Tags</Box>
+      <HiddenHeading as="h2">{text.version}</HiddenHeading>
+      <Typography component={'h3'} sx={{ fontSize: '1.125rem', fontWeight: 600 }}>
+        {text.currentTags}
+      </Typography>
       <Box sx={{ display: 'flex' }}>
-        <Box sx={{ fontWeight: 600 }}>Version</Box>
+        <Box sx={{ fontWeight: 600 }}>{text.version}</Box>
         <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-        <Box sx={{ fontWeight: 600 }}>Downloads (Last 7 Days)</Box>
+        <Box sx={{ fontWeight: 600 }}>{text.downloadsLast7Days}</Box>
         <Box sx={{ display: 'flex', width: '33%' }}>
           <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-          <Box sx={{ fontWeight: 600 }}>Tag</Box>
+          <Box sx={{ fontWeight: 600 }}>{text.tag}</Box>
         </Box>
       </Box>
       <VersionList data={currentTagsDownloadStats} packageName={downloadsData.package} />
-      <Box sx={{ fontSize: '1.125rem', fontWeight: 600 }}>Version History</Box>
+      <Typography component={'h3'} sx={{ fontSize: '1.125rem', fontWeight: 600 }}>
+        {text.versionHistory}
+      </Typography>
       <Box sx={{ display: 'flex' }}>
-        <Box sx={{ fontWeight: 600 }}>Version</Box>
+        <Box sx={{ fontWeight: 600 }}>{text.version}</Box>
         <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-        <Box sx={{ fontWeight: 600 }}>Downloads (Last 7 Days)</Box>
+        <Box sx={{ fontWeight: 600 }}>{text.downloadsLast7Days}</Box>
         <Box sx={{ display: 'flex', width: '33%' }}>
           <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-          <Box sx={{ fontWeight: 600 }}>Published</Box>
+          <Box sx={{ fontWeight: 600 }}>{text.published}</Box>
         </Box>
       </Box>
       <VersionList data={versionHostoryDownloadStats} packageName={downloadsData.package} />

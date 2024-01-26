@@ -54,6 +54,7 @@ export default function SortOptions() {
 
   return (
     <Box
+      component={'aside'}
       sx={{
         padding: '16px',
       }}
@@ -69,6 +70,7 @@ export default function SortOptions() {
         <Typography
           sx={{
             fontSize: '1rem',
+            fontWeight: 600,
           }}
         >
           {text.sortPackages}
@@ -77,12 +79,13 @@ export default function SortOptions() {
           onClick={onSortClick}
           sx={{
             fontSize: '0.875rem',
+            fontWeight: 700,
           }}
         >
           {text.sort}
         </StyledSortButton>
       </Box>
-      <SliderLabel text={text.popularity} />
+      <SliderLabel htmlFor={text.popularity}>{text.popularity}</SliderLabel>
       <Slider
         aria-label={text.popularity}
         value={popularity}
@@ -90,8 +93,13 @@ export default function SortOptions() {
         sx={{
           color: colors.c7,
         }}
+        slotProps={{
+          input: {
+            id: text.popularity,
+          },
+        }}
       />
-      <SliderLabel text={text.quality} />
+      <SliderLabel htmlFor={text.quality}>{text.quality}</SliderLabel>
       <Slider
         aria-label={text.quality}
         value={quality}
@@ -99,14 +107,24 @@ export default function SortOptions() {
         sx={{
           color: colors.c8,
         }}
+        slotProps={{
+          input: {
+            id: text.quality,
+          },
+        }}
       />
-      <SliderLabel text={text.maintenance} />
+      <SliderLabel htmlFor={text.maintenance}>{text.maintenance}</SliderLabel>
       <Slider
         aria-label={text.maintenance}
         value={maintenance}
         onChange={(_, value) => onMaintenanceChange(value as number)}
         sx={{
           color: colors.c9,
+        }}
+        slotProps={{
+          input: {
+            id: text.maintenance,
+          },
         }}
       />
     </Box>

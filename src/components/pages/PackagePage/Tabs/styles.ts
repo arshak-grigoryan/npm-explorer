@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import Link from 'src/components/common/Link/Link';
 
-export const StyledTabs = styled.div`
+export const StyledTabs = styled.ul`
   display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 `;
 
-export const StyledTab = styled.div<{ colors: any; selected: boolean }>`
+export const StyledTab = styled.li<{ colors: any; selected: boolean }>`
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;

@@ -5,7 +5,7 @@ import colors from 'src/styles/colors';
 export default function DependenciesListItem({ deps, label }: { deps: string[]; label: string }) {
   return (
     <Box sx={{ mt: 3 }}>
-      <Typography sx={{ color: colors.c21, fontSize: '1.25rem', fontWeight: 500 }}>
+      <Typography component={'h2'} sx={{ color: colors.c21, fontSize: '1.25rem', fontWeight: 500 }}>
         {label}
       </Typography>
       <Divider sx={{ my: 1 }} />

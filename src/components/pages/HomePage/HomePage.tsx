@@ -2,6 +2,8 @@ import Box from '@mui/material/Box';
 import Header from 'src/components/common/Header/Header';
 import colors from 'src/styles/colors';
 import { maxWidth } from 'src/styles/styles';
+import { text } from 'src/configs/configs';
+import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
 import Downloads from './Downloads/Downloads';
 import Keywords from './Keywords/Keywords';
 
@@ -16,6 +18,7 @@ export default function HomePage() {
           padding: '16px',
         }}
       >
+        <HiddenHeading as={'h1'}>{text.dashboard}</HiddenHeading>
         <Box
           sx={{
             maxWidth: maxWidth,

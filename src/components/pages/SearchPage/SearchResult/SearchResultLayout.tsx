@@ -43,7 +43,7 @@ export default function SearchResultLayout({ data }: SearchPackage) {
             justifyContent: 'space-between',
           }}
         >
-          <Typography sx={{ fontWeight: 600, fontSize: '1.125rem' }}>
+          <Typography component={'h2'} sx={{ fontWeight: 600, fontSize: '1.125rem' }}>
             {text.countPackagesFound(data.total)}
           </Typography>
           {showPagination && (

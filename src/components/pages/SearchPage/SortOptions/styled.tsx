@@ -1,5 +1,5 @@
 import { Button } from '@mui/base';
-import { Typography, styled } from '@mui/material';
+import { styled } from '@mui/material';
 import MuiSlider, { SliderProps } from '@mui/material/Slider';
 import colors from 'src/styles/colors';
 
@@ -34,10 +34,7 @@ export function Slider(props: SliderProps) {
   );
 }
 
-export function SliderLabel({ text }: { text: string }) {
-  return (
-    <Typography gutterBottom fontSize={'0.875rem'}>
-      {text}
-    </Typography>
-  );
-}
+export const SliderLabel = styled('label')`
+  font-size: 0.875rem;
+  font-weight: 600;
+`;
