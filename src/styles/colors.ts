@@ -27,6 +27,7 @@ const colors = {
   c26: '#cccccc',
   c27: '#cfcfcf',
   c28: '#f8f8f8',
+  c29: '#d2d2d2',
 };
 
 export default colors;

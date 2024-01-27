@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
 import LogoIcon from 'src/assets/npm-logo-black.svg?react';
 import colors from 'src/styles/colors';
+import Typography from '../Typography/Typography';
 
 export default function Logo() {
   return (

@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from 'react';
+import { KeyboardEvent, SyntheticEvent, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { Button as BaseButton } from '@mui/base/Button';
@@ -25,6 +25,11 @@ export default function SearchForm() {
     });
   };
 
+  const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    serachWrap();
+  };
+
   return (
     <Box
       component={'form'}
@@ -32,6 +37,7 @@ export default function SearchForm() {
         display: 'flex',
         flexGrow: 1,
       }}
+      onSubmit={onSubmit}
     >
       <Box sx={{ position: 'relative', width: '100%' }}>
         <Box
@@ -61,7 +67,7 @@ export default function SearchForm() {
           type="search"
         />
       </Box>
-      <BaseButton type="button" onClick={serachWrap} slots={{ root: ButtonElement }}>
+      <BaseButton type="submit" slots={{ root: ButtonElement }}>
         {text.search}
       </BaseButton>
     </Box>

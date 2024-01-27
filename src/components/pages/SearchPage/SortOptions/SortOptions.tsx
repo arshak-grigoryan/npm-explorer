@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import { useState } from 'react';
-import Typography from '@mui/material/Typography';
 import { useSearchParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
 import colors from 'src/styles/colors';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { text } from 'src/configs/configs';
+import Typography from 'src/components/common/Typography/Typography';
 import { Slider, SliderLabel, StyledSortButton } from './styled';
 
 export default function SortOptions() {
@@ -57,6 +57,7 @@ export default function SortOptions() {
       component={'aside'}
       sx={{
         padding: '16px',
+        // gap: '8px'
       }}
     >
       <Box

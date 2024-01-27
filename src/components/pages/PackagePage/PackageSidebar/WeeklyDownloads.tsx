@@ -15,9 +15,9 @@ function WeeklyDownloadsLayout(props: Downloads) {
         borderBottom: `1px solid ${colors.c1}`,
       }}
     >
-      <Box sx={{ display: 'flex', gap: 1 }}>
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Box>
-          <DownloadIcon style={{ height: 12 }} />
+          <DownloadIcon style={{ height: 12, fill: 'rgba(0, 0, 0, .45)' }} />
         </Box>
         <Title>{text.weeklyDownloads}</Title>
       </Box>

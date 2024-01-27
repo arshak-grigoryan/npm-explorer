@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { ACTIVE_TAB } from 'src/api/configs';
+import Typography from 'src/components/common/Typography/Typography';
 import Readme from '../Readme/Readme';
 import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';

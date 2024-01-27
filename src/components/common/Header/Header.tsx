@@ -11,7 +11,7 @@ export default function Header() {
       component={'header'}
       sx={{
         position: 'relative',
-        borderBottom: `1px solid ${colors.c22}`,
+        borderBottom: `1px solid ${colors.c29}`,
         boxShadow: `0 4px 13px -3px ${colors.c1}`,
       }}
     >

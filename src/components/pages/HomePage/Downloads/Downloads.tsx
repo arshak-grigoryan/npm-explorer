@@ -1,9 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import ChartIcon from 'src/assets/Chart.svg?react';
 import appColors from 'src/styles/colors';
 import { npmApi } from 'src/api/configs';
 import { text } from 'src/configs/configs';
+import Typography from 'src/components/common/Typography/Typography';
 import Count from './Count';
 
 export default function Downloads() {
@@ -12,7 +13,7 @@ export default function Downloads() {
       component={'section'}
       sx={{
         padding: '16px',
-        flex: 1,
+        flex: 7,
       }}
     >
       <Typography
@@ -25,7 +26,7 @@ export default function Downloads() {
         }}
       >
         <ChartIcon style={{ color: 'currentColor', height: 18 }} />
-        <Typography>{text.byTheNumbers}</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: '1.25rem' }}>{text.byTheNumbers}</Typography>
       </Typography>
       <Divider
         sx={{
@@ -35,7 +36,7 @@ export default function Downloads() {
       <Box
         sx={{
           display: 'flex',
-          gap: '16px',
+          gap: '24px',
           flexDirection: 'column',
           marginTop: '16px',
         }}

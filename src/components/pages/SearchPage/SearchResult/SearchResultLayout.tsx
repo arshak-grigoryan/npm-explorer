@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { useSearchParams } from 'react-router-dom';
 import { SearchPackage } from 'src/api/hooks/packages/useSearchPackages';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
@@ -7,6 +6,7 @@ import { PAGE, PER_PAGE_PACKAGES_COUNT } from 'src/api/configs';
 import colors from 'src/styles/colors';
 import { maxWidth } from 'src/styles/styles';
 import { text } from 'src/configs/configs';
+import Typography from 'src/components/common/Typography/Typography';
 import SortOptions from '../SortOptions/SortOptions';
 import Pagination from '../Pagination/Pagination';
 import PackageList from '../PackageList/PackageList';
@@ -29,7 +29,6 @@ export default function SearchResultLayout({ data }: SearchPackage) {
       <Box
         sx={{
           backgroundColor: colors.c14,
-          borderTop: `1px solid ${colors.c1}`,
           borderBottom: `1px solid ${colors.c1}`,
         }}
       >

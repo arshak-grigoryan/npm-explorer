@@ -1,7 +1,8 @@
-import { Box, Typography, Chip, ListItem, List } from '@mui/material';
+import { Box, Chip, ListItem, List } from '@mui/material';
 import { format } from 'date-fns';
 import colors from 'src/styles/colors';
 import Link from 'src/components/common/Link/Link';
+import Typography from 'src/components/common/Typography/Typography';
 import Score from '../Score/Score';
 import { PackageListItemProps } from './types';
 
@@ -89,6 +90,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
         >
           {keywords?.map((keyword, i) => (
             <ListItem
+              key={keyword + i}
               sx={{
                 display: 'initial',
                 width: 'auto',
@@ -97,7 +99,6 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
             >
               <Link to={`?text=keywords:${keyword}`}>
                 <Chip
-                  key={keyword + i}
                   label={keyword}
                   sx={{
                     '&.MuiChip-root': {
@@ -105,6 +106,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
                       borderRadius: '4px',
                       padding: '4px 8px',
                       height: 'auto',
+                      fontSize: '0.875rem',
                       '&:hover': {
                         backgroundColor: colors.c1,
                         cursor: 'pointer',
@@ -124,7 +126,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
         </List>
         <Box
           sx={{
-            gap: '4px',
+            gap: '8px',
             display: 'flex',
             alignItems: 'center',
             marginTop: '4px',
@@ -136,6 +138,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
             sx={{
               fontSize: '0.875rem',
               fontWeight: 600,
+              fontFamily: `'Fira Mono', 'Andale Mono', 'Consolas', monospace`,
             }}
           >
             {publisher.username}
@@ -144,6 +147,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
             sx={{
               fontSize: '0.875rem',
               color: colors.c6,
+              fontFamily: `'Fira Mono', 'Andale Mono', 'Consolas', monospace`,
             }}
             component={'span'}
           >{`published ${version} • ${format(new Date(date), 'MMMM dd yyyy')}`}</Typography>

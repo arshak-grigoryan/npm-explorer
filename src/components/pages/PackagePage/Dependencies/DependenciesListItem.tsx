@@ -1,5 +1,6 @@
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import Link from 'src/components/common/Link/Link';
+import Typography from 'src/components/common/Typography/Typography';
 import colors from 'src/styles/colors';
 
 export default function DependenciesListItem({ deps, label }: { deps: string[]; label: string }) {

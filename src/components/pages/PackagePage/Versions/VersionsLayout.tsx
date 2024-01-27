@@ -1,9 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { PerVersionDownloads } from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
 import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
 import colors from 'src/styles/colors';
 import { text } from 'src/configs/configs';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
+import Typography from 'src/components/common/Typography/Typography';
 import VersionList, { CurrentTagsStats, VersionHistoryStats } from './VersionList';
 
 type VersionsProps = {

@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Header from 'src/components/common/Header/Header';
-import { maxWidth } from 'src/styles/styles';
+import { maxWidth2 } from 'src/styles/styles';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { ACTIVE_TAB } from 'src/api/configs';
 import colors from 'src/styles/colors';
+import Typography from 'src/components/common/Typography/Typography';
 import Tabs, { TabComponent } from './Tabs/Tabs';
 import PackageSidebar from './PackageSidebar/PackageSidebar';
 import { TabsEnum } from './Tabs/types';
@@ -19,9 +19,9 @@ export default function PackagePage() {
       <Box component="main">
         <Box
           sx={{
-            maxWidth: maxWidth,
+            maxWidth: maxWidth2,
             margin: 'auto',
-            padding: '32px',
+            padding: '16px',
           }}
         >
           <Box

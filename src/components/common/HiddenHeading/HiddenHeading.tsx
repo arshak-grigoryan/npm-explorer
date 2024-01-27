@@ -1,4 +1,5 @@
-import { Typography, styled } from '@mui/material';
+import { styled } from '@mui/material';
+import Typography from '../Typography/Typography';
 
 export const HiddenHeading = styled(Typography)`
   width: 1px;

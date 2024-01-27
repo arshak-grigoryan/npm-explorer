@@ -12,6 +12,8 @@ export const StyledSortButton = styled(Button)`
 `;
 
 export function Slider(props: SliderProps) {
+  const { sx, ...restProps } = props;
+
   return (
     <MuiSlider
       min={0}
@@ -19,17 +21,28 @@ export function Slider(props: SliderProps) {
       step={0.1}
       valueLabelDisplay="auto"
       sx={{
+        marginTop: '8px',
+        '&.MuiSlider-root': {
+          height: '2px',
+        },
+        '& .MuiSlider-track': {
+          border: 'none',
+        },
         '& .MuiSlider-valueLabel': {
-          background: colors.c15,
+          background: 'rgb(239, 239, 239)',
+          color: colors.c2,
         },
         '& .MuiSlider-valueLabelCircle': {
-          background: colors.c15,
+          background: 'rgb(239, 239, 239)',
         },
+        '& .MuiSlider-thumb': {
+          boxShadow: 'none',
+          width: '14px',
+          height: '14px',
+        },
+        ...sx,
       }}
-      slotProps={{
-        thumb: { style: { boxShadow: 'none' } },
-      }}
-      {...props}
+      {...restProps}
     />
   );
 }

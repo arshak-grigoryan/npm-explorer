@@ -1,7 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import colors from 'src/styles/colors';
 import useGetPackageDownloads, { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
+import Typography from 'src/components/common/Typography/Typography';
 
 type CountLayoutProps = Downloads & {
   text: string;
@@ -19,6 +20,7 @@ function CountLayout({ data, text }: CountLayoutProps) {
         component={'h3'}
         sx={{
           fontSize: '.875rem',
+          fontWeight: 700,
         }}
       >
         {text}
@@ -27,6 +29,9 @@ function CountLayout({ data, text }: CountLayoutProps) {
         component={'strong'}
         sx={{
           fontSize: '1.5rem',
+          fontWeight: 600,
+          fontFamily:
+            '-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif',
         }}
       >
         {data.downloads.toLocaleString()}

@@ -1,9 +1,10 @@
-import { Box, List, ListItem, Typography } from '@mui/material';
+import { Box, List, ListItem } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import SearchIcon from 'src/assets/Search.svg?react';
 import appColors from 'src/styles/colors';
 import Link from 'src/components/common/Link/Link';
 import { text } from 'src/configs/configs';
+import Typography from 'src/components/common/Typography/Typography';
 import { KeywordConfig } from './config';
 
 export default function Keywords() {
@@ -12,7 +13,7 @@ export default function Keywords() {
       component={'section'}
       sx={{
         padding: '16px',
-        flex: 1,
+        flex: 8,
       }}
     >
       <Typography
@@ -25,7 +26,9 @@ export default function Keywords() {
         }}
       >
         <SearchIcon style={{ color: 'currentColor', height: 18 }} />
-        <Typography>{text.discoverPackages}</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: '1.25rem' }}>
+          {text.discoverPackages}
+        </Typography>
       </Typography>
       <Divider
         sx={{
@@ -73,6 +76,7 @@ export default function Keywords() {
                 <Typography
                   sx={{
                     whiteSpace: 'nowrap',
+                    fontWeight: 800,
                   }}
                 >
                   {name}
