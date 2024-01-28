@@ -1,7 +1,6 @@
-import { styled } from '@mui/material';
-import Typography from '../Typography/Typography';
+import styled from '@emotion/styled';
 
-export const HiddenHeading = styled(Typography)`
+export const HiddenHeading = styled('p')`
   width: 1px;
   height: 1px;
   overflow: hidden;

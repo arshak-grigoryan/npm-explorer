@@ -1,8 +1,6 @@
-import { Box } from '@mui/material';
 import colors from 'src/styles/colors';
 import useGetPackageDownloads, { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
-import Typography from 'src/components/common/Typography/Typography';
 
 type CountLayoutProps = Downloads & {
   text: string;
@@ -10,24 +8,22 @@ type CountLayoutProps = Downloads & {
 
 function CountLayout({ data, text }: CountLayoutProps) {
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         borderBottom: `1px solid ${colors.c1}`,
         paddingBottom: '16px',
       }}
     >
-      <Typography
-        component={'h3'}
-        sx={{
+      <h3
+        style={{
           fontSize: '.875rem',
           fontWeight: 700,
         }}
       >
         {text}
-      </Typography>
-      <Typography
-        component={'strong'}
-        sx={{
+      </h3>
+      <strong
+        style={{
           fontSize: '1.5rem',
           fontWeight: 600,
           fontFamily:
@@ -35,8 +31,8 @@ function CountLayout({ data, text }: CountLayoutProps) {
         }}
       >
         {data.downloads.toLocaleString()}
-      </Typography>
-    </Box>
+      </strong>
+    </div>
   );
 }
 

@@ -21,7 +21,7 @@ function Tab({ label, icon, colors, selected }: TabProps) {
     <StyledTab colors={colors} selected={selected}>
       <StyledLink to={`?activeTab=${label}`} colors={colors}>
         {icon}
-        <Typography sx={{ textTransform: 'capitalize' }}>{label}</Typography>
+        <Typography style={{ textTransform: 'capitalize' }}>{label}</Typography>
       </StyledLink>
     </StyledTab>
   );

@@ -1,22 +1,20 @@
-import { styled } from '@mui/material';
 import { ReactNode } from 'react';
-import Typography from 'src/components/common/Typography/Typography';
+import styled from '@emotion/styled';
 import colors from 'src/styles/colors';
 
 export const Title = ({ children }: { children: ReactNode }) => (
-  <Typography
-    component={'h3'}
-    sx={{
+  <h3
+    style={{
       color: colors.c25,
       fontSize: '1rem',
       fontWeight: 700,
     }}
   >
     {children}
-  </Typography>
+  </h3>
 );
 
-export const TitleContent = styled(Typography)`
+export const TitleContent = styled('p')`
   color: ${colors.c24};
   font-size: 1.125rem;
   font-weight: 600;

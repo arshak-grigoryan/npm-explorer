@@ -1,6 +1,5 @@
-import { Box } from '@mui/material';
 import { format } from 'date-fns';
-import Link from 'src/components/common/Link/Link';
+import { Link } from 'react-router-dom';
 import colors from 'src/styles/colors';
 
 export type VersionHistoryStats = [string, number, Date][];
@@ -13,74 +12,66 @@ type VersionListProps = {
 
 export default function VersionList({ data, packageName }: VersionListProps) {
   return (
-    <Box
-      component={'ul'}
-      sx={{ margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}
-    >
+    <ul style={{ margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
       {data.map((value) => {
         const version = value[0];
         const downloads = value[1];
         const releaseDateOrTag = value[2];
         return (
-          <Box
-            component={'li'}
+          <li
             key={version}
-            sx={{
+            style={{
               display: 'flex',
               color: colors.c23,
             }}
           >
-            <Box
-              sx={{
+            <div
+              style={{
                 fontSize: '1rem',
               }}
             >
-              <Link
-                to={`/package/${encodeURIComponent(packageName)}/${version}`}
-                color={'inherit'}
-                underline="always"
-              >
+              <Link to={`/package/${encodeURIComponent(packageName)}/${version}`} color={'inherit'}>
                 {version}
               </Link>
-            </Box>
-            <Box
-              sx={{
+            </div>
+            <div
+              style={{
                 borderBottom: `1px dotted ${colors.c22}`,
                 display: 'flex',
                 alignSelf: 'end',
                 flexGrow: 1,
-                m: 1,
+                margin: '8px',
               }}
-            ></Box>
-            <Box>{downloads ? downloads.toLocaleString() : '*'}</Box>
-            <Box
-              sx={{
+            ></div>
+            <div>{downloads ? downloads.toLocaleString() : '*'}</div>
+            <div
+              style={{
                 display: 'flex',
                 width: '33%',
               }}
             >
-              <Box
-                sx={{
+              <div
+                style={{
                   borderBottom: `1px dotted ${colors.c22}`,
                   display: 'flex',
                   alignSelf: 'end',
                   flexGrow: 1,
-                  m: 1,
+                  margin: '8px',
                 }}
-              ></Box>
-              <Box
-                sx={{
+              ></div>
+              <div
+                style={{
                   textAlign: 'end',
                 }}
               >
                 {releaseDateOrTag instanceof Date
                   ? format(releaseDateOrTag, 'MMMM dd yyyy')
                   : releaseDateOrTag}
-              </Box>
-            </Box>
-          </Box>
+              </div>
+            </div>
+          </li>
         );
       })}
-    </Box>
+    </ul>
   );
 }

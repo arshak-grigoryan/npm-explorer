@@ -9,3 +9,22 @@ select,
 textarea {
   font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
 }
+
+:root {
+  min-width: 320px;
+  width: 100vw;
+  height: 100vh;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+}
+
+body {
+  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+  line-height: 1;
+  letter-spacing: normal;
+}

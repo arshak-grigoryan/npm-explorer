@@ -1,29 +1,27 @@
-import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 import colors from 'src/styles/colors';
-import { maxWidth } from 'src/styles/styles';
-import Link from '../Link/Link';
+import { maxWidth } from 'src/styles/configs';
 import Logo from '../Logo/Logo';
 import SearchForm from '../SearchForm/SearchForm';
 
 export default function Header() {
   return (
-    <Box
-      component={'header'}
-      sx={{
+    <header
+      style={{
         position: 'relative',
         borderBottom: `1px solid ${colors.c29}`,
         boxShadow: `0 4px 13px -3px ${colors.c1}`,
       }}
     >
-      <Box
-        sx={{
+      <div
+        style={{
           borderWidth: '10px',
           borderTopStyle: 'solid',
           borderImage: 'linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3',
         }}
       />
-      <Box
-        sx={{
+      <div
+        style={{
           maxWidth: maxWidth,
           display: 'flex',
           flexWrap: 'wrap',
@@ -37,7 +35,7 @@ export default function Header() {
           <Logo />
         </Link>
         <SearchForm />
-      </Box>
-    </Box>
+      </div>
+    </header>
   );
 }

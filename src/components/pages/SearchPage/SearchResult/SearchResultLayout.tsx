@@ -1,12 +1,10 @@
-import Box from '@mui/material/Box';
 import { useSearchParams } from 'react-router-dom';
 import { SearchPackage } from 'src/api/hooks/packages/useSearchPackages';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { PAGE, PER_PAGE_PACKAGES_COUNT } from 'src/api/configs';
 import colors from 'src/styles/colors';
-import { maxWidth } from 'src/styles/styles';
+import { maxWidth } from 'src/styles/configs';
 import { text } from 'src/configs/configs';
-import Typography from 'src/components/common/Typography/Typography';
 import SortOptions from '../SortOptions/SortOptions';
 import Pagination from '../Pagination/Pagination';
 import PackageList from '../PackageList/PackageList';
@@ -25,15 +23,15 @@ export default function SearchResultLayout({ data }: SearchPackage) {
   }
 
   return (
-    <Box>
-      <Box
-        sx={{
+    <div>
+      <div
+        style={{
           backgroundColor: colors.c14,
           borderBottom: `1px solid ${colors.c1}`,
         }}
       >
-        <Box
-          sx={{
+        <div
+          style={{
             maxWidth: maxWidth,
             margin: 'auto',
             padding: '16px 32px',
@@ -42,28 +40,28 @@ export default function SearchResultLayout({ data }: SearchPackage) {
             justifyContent: 'space-between',
           }}
         >
-          <Typography component={'h2'} sx={{ fontWeight: 600, fontSize: '1.125rem' }}>
+          <h2 style={{ fontWeight: 600, fontSize: '1.125rem' }}>
             {text.countPackagesFound(data.total)}
-          </Typography>
+          </h2>
           {showPagination && (
             <Pagination page={page} pageCount={pageCount} handlePageChange={handlePageChange} />
           )}
-        </Box>
-      </Box>
+        </div>
+      </div>
       {Boolean(data.objects.length) && (
-        <Box
-          sx={{
+        <div
+          style={{
             maxWidth: maxWidth,
             margin: 'auto',
             display: 'flex',
             padding: '16px',
           }}
         >
-          <Box sx={{ width: 250 }}>
+          <div style={{ width: 250 }}>
             <SortOptions />
-          </Box>
-          <Box
-            sx={{
+          </div>
+          <div
+            style={{
               width: 'calc(100% - 250px)',
               padding: '16px',
             }}
@@ -72,9 +70,9 @@ export default function SearchResultLayout({ data }: SearchPackage) {
             {showPagination && (
               <Pagination page={page} pageCount={pageCount} handlePageChange={handlePageChange} />
             )}
-          </Box>
-        </Box>
+          </div>
+        </div>
       )}
-    </Box>
+    </div>
   );
 }

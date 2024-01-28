@@ -1,20 +1,22 @@
-import { Typography as MuiTypography, TypographyProps } from '@mui/material';
 import { ReactNode } from 'react';
 
 export default function Typography({
   children,
-  sx,
+  style,
   ...restProps
-}: { children?: ReactNode } & TypographyProps) {
+}: {
+  children?: ReactNode;
+  style: any;
+}) {
   return (
-    <MuiTypography
-      sx={{
+    <p
+      style={{
         lineHeight: 1.15,
-        ...sx,
+        ...style,
       }}
       {...restProps}
     >
       {children}
-    </MuiTypography>
+    </p>
   );
 }

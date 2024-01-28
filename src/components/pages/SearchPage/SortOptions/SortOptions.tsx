@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
@@ -23,16 +22,16 @@ export default function SortOptions() {
 
   const isSortAvailable = popularity || quality || maintenance;
 
-  const onPopularityChange = (value: number) => {
-    setPopularity(value);
+  const onPopularityChange = (value: string) => {
+    setPopularity(Number(value));
   };
 
-  const onQualityChange = (value: number) => {
-    setQuality(value);
+  const onQualityChange = (value: string) => {
+    setQuality(Number(value));
   };
 
-  const onMaintenanceChange = (value: number) => {
-    setMaintenance(value);
+  const onMaintenanceChange = (value: string) => {
+    setMaintenance(Number(value));
   };
 
   const onSortClick = () => {
@@ -53,15 +52,14 @@ export default function SortOptions() {
   };
 
   return (
-    <Box
-      component={'aside'}
-      sx={{
+    <aside
+      style={{
         padding: '16px',
-        // gap: '8px'
+        gap: '8px',
       }}
     >
-      <Box
-        sx={{
+      <div
+        style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -69,7 +67,7 @@ export default function SortOptions() {
         }}
       >
         <Typography
-          sx={{
+          style={{
             fontSize: '1rem',
             fontWeight: 600,
           }}
@@ -78,56 +76,41 @@ export default function SortOptions() {
         </Typography>
         <StyledSortButton
           onClick={onSortClick}
-          sx={{
+          style={{
             fontSize: '0.875rem',
             fontWeight: 700,
           }}
         >
           {text.sort}
         </StyledSortButton>
-      </Box>
+      </div>
       <SliderLabel htmlFor={text.popularity}>{text.popularity}</SliderLabel>
       <Slider
-        aria-label={text.popularity}
+        id={text.popularity}
         value={popularity}
-        onChange={(_, value) => onPopularityChange(value as number)}
-        sx={{
+        onChange={(e) => onPopularityChange(e.target.value)}
+        style={{
           color: colors.c7,
-        }}
-        slotProps={{
-          input: {
-            id: text.popularity,
-          },
         }}
       />
       <SliderLabel htmlFor={text.quality}>{text.quality}</SliderLabel>
       <Slider
-        aria-label={text.quality}
+        id={text.quality}
         value={quality}
-        onChange={(_, value) => onQualityChange(value as number)}
-        sx={{
+        onChange={(e) => onQualityChange(e.target.value)}
+        style={{
           color: colors.c8,
-        }}
-        slotProps={{
-          input: {
-            id: text.quality,
-          },
         }}
       />
       <SliderLabel htmlFor={text.maintenance}>{text.maintenance}</SliderLabel>
       <Slider
-        aria-label={text.maintenance}
+        id={text.maintenance}
         value={maintenance}
-        onChange={(_, value) => onMaintenanceChange(value as number)}
-        sx={{
+        onChange={(e) => onMaintenanceChange(e.target.value)}
+        style={{
           color: colors.c9,
         }}
-        slotProps={{
-          input: {
-            id: text.maintenance,
-          },
-        }}
       />
-    </Box>
+    </aside>
   );
 }

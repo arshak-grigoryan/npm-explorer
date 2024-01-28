@@ -1,24 +1,20 @@
-import { Box, List, ListItem } from '@mui/material';
-import Divider from '@mui/material/Divider';
+import { Link } from 'react-router-dom';
 import SearchIcon from 'src/assets/Search.svg?react';
 import appColors from 'src/styles/colors';
-import Link from 'src/components/common/Link/Link';
 import { text } from 'src/configs/configs';
 import Typography from 'src/components/common/Typography/Typography';
 import { KeywordConfig } from './config';
 
 export default function Keywords() {
   return (
-    <Box
-      component={'section'}
-      sx={{
+    <section
+      style={{
         padding: '16px',
         flex: 8,
       }}
     >
-      <Typography
-        component={'h2'}
-        sx={{
+      <h2
+        style={{
           marginBottom: '16px',
           display: 'flex',
           gap: 1,
@@ -26,28 +22,28 @@ export default function Keywords() {
         }}
       >
         <SearchIcon style={{ color: 'currentColor', height: 18 }} />
-        <Typography sx={{ fontWeight: 600, fontSize: '1.25rem' }}>
+        <Typography style={{ fontWeight: 600, fontSize: '1.25rem' }}>
           {text.discoverPackages}
         </Typography>
-      </Typography>
-      <Divider
-        sx={{
+      </h2>
+      <hr
+        style={{
           borderColor: appColors.c17,
         }}
       />
-      <List
-        sx={{
+      <ul
+        style={{
           display: 'flex',
           gap: '16px',
           flexWrap: 'wrap',
           marginTop: '16px',
         }}
       >
-        {KeywordConfig.map(({ name, Icon, colors }) => {
+        {KeywordConfig.map(({ name, Icon }) => {
           return (
-            <ListItem
+            <li
               key={name}
-              sx={{
+              style={{
                 display: 'initial',
                 flex: 1,
                 padding: 0,
@@ -55,13 +51,13 @@ export default function Keywords() {
             >
               <Link
                 to={`/search?text=keywords:${name.toLowerCase()}`}
-                sx={{
+                style={{
                   padding: '24px 32px',
-                  '&:hover': {
-                    color: colors.text,
-                    backgroundColor: colors.hover,
-                    borderBottomColor: colors.text,
-                  },
+                  // '&:hover': {
+                  //   color: colors.text,
+                  //   backgroundColor: colors.hover,
+                  //   borderBottomColor: colors.text,
+                  // },
                   color: appColors.c19,
                   display: 'flex',
                   gap: '16px',
@@ -74,7 +70,7 @@ export default function Keywords() {
               >
                 <Icon style={{ color: 'currentColor', height: 18 }} />
                 <Typography
-                  sx={{
+                  style={{
                     whiteSpace: 'nowrap',
                     fontWeight: 800,
                   }}
@@ -82,10 +78,10 @@ export default function Keywords() {
                   {name}
                 </Typography>
               </Link>
-            </ListItem>
+            </li>
           );
         })}
-      </List>
-    </Box>
+      </ul>
+    </section>
   );
 }

@@ -1,8 +1,5 @@
 import { KeyboardEvent, SyntheticEvent, useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import { Button as BaseButton } from '@mui/base/Button';
-import { Input as BaseInput } from '@mui/base/Input';
 import SearchIcon from 'src/assets/SearchBig.svg?react';
 import { npmRegistry } from 'src/api/configs';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
@@ -31,17 +28,16 @@ export default function SearchForm() {
   };
 
   return (
-    <Box
-      component={'form'}
-      sx={{
+    <form
+      style={{
         display: 'flex',
         flexGrow: 1,
       }}
       onSubmit={onSubmit}
     >
-      <Box sx={{ position: 'relative', width: '100%' }}>
-        <Box
-          sx={{
+      <div style={{ position: 'relative', width: '100%' }}>
+        <div
+          style={{
             position: 'absolute',
             display: 'flex',
             alignItems: 'center',
@@ -50,9 +46,8 @@ export default function SearchForm() {
           }}
         >
           <SearchIcon style={{ width: 18, height: 18 }} />
-        </Box>
-        <BaseInput
-          slots={{ input: InputElement }}
+        </div>
+        <InputElement
           id="npm-search"
           name="npm-search"
           autoComplete="npm-search"
@@ -66,10 +61,8 @@ export default function SearchForm() {
           placeholder={text.searchPackages}
           type="search"
         />
-      </Box>
-      <BaseButton type="submit" slots={{ root: ButtonElement }}>
-        {text.search}
-      </BaseButton>
-    </Box>
+      </div>
+      <ButtonElement type="submit">{text.search}</ButtonElement>
+    </form>
   );
 }

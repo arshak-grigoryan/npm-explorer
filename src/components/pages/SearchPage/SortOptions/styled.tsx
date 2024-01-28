@@ -1,9 +1,8 @@
-import { Button } from '@mui/base';
-import { styled } from '@mui/material';
-import MuiSlider, { SliderProps } from '@mui/material/Slider';
+import styled from '@emotion/styled';
+import { InputHTMLAttributes } from 'react';
 import colors from 'src/styles/colors';
 
-export const StyledSortButton = styled(Button)`
+export const StyledSortButton = styled('button')`
   border: 1px solid ${colors.c16};
   padding: 6px 12px;
   &:hover {
@@ -11,40 +10,8 @@ export const StyledSortButton = styled(Button)`
   }
 `;
 
-export function Slider(props: SliderProps) {
-  const { sx, ...restProps } = props;
-
-  return (
-    <MuiSlider
-      min={0}
-      max={1}
-      step={0.1}
-      valueLabelDisplay="auto"
-      sx={{
-        marginTop: '8px',
-        '&.MuiSlider-root': {
-          height: '2px',
-        },
-        '& .MuiSlider-track': {
-          border: 'none',
-        },
-        '& .MuiSlider-valueLabel': {
-          background: 'rgb(239, 239, 239)',
-          color: colors.c2,
-        },
-        '& .MuiSlider-valueLabelCircle': {
-          background: 'rgb(239, 239, 239)',
-        },
-        '& .MuiSlider-thumb': {
-          boxShadow: 'none',
-          width: '14px',
-          height: '14px',
-        },
-        ...sx,
-      }}
-      {...restProps}
-    />
-  );
+export function Slider(props: InputHTMLAttributes<HTMLInputElement>) {
+  return <input type="range" min={0} max={1} step={0.1} {...props} />;
 }
 
 export const SliderLabel = styled('label')`

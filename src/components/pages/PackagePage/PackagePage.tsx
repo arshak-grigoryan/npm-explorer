@@ -1,11 +1,9 @@
-import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
 import Header from 'src/components/common/Header/Header';
-import { maxWidth2 } from 'src/styles/styles';
+import { maxWidth2 } from 'src/styles/configs';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { ACTIVE_TAB } from 'src/api/configs';
 import colors from 'src/styles/colors';
-import Typography from 'src/components/common/Typography/Typography';
 import Tabs, { TabComponent } from './Tabs/Tabs';
 import PackageSidebar from './PackageSidebar/PackageSidebar';
 import { TabsEnum } from './Tabs/types';
@@ -14,43 +12,44 @@ export default function PackagePage() {
   const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
   const { name } = useParams();
   return (
-    <Box>
+    <div>
       <Header />
-      <Box component="main">
-        <Box
-          sx={{
+      <main>
+        <div
+          style={{
             maxWidth: maxWidth2,
             margin: 'auto',
             padding: '16px',
           }}
         >
-          <Box
-            sx={{
+          <div
+            style={{
               marginTop: '16px',
               marginBottom: '16px',
             }}
           >
-            <Typography
-              component={'h1'}
-              sx={{
+            <h1
+              style={{
                 fontSize: '1.5rem',
                 fontWeight: 600,
                 color: colors.c4,
               }}
             >
               {name}
-            </Typography>
-          </Box>
+            </h1>
+          </div>
 
           <Tabs />
-          <Box sx={{ display: 'flex' }}>
-            <Box sx={{ width: 'calc(100% / 3 * 2)', mr: 2, mt: 2 }}>{TabComponent[activeTab]}</Box>
-            <Box sx={{ width: 'calc(100% / 3)', mx: 2, mt: 2 }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: 'calc(100% / 3 * 2)', marginRight: '16px', marginTop: '16px' }}>
+              {TabComponent[activeTab]}
+            </div>
+            <div style={{ width: 'calc(100% / 3)', margin: '16px 16px 0 16px' }}>
               <PackageSidebar />
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

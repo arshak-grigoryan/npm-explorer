@@ -1,21 +1,18 @@
-import { Box } from '@mui/material';
 import ArrowRightIcon from 'src/assets/Arrow-Right.svg?react';
 import CopyIcon from 'src/assets/Copy.svg?react';
 import colors from 'src/styles/colors';
 import { text } from 'src/configs/configs';
-import Typography from 'src/components/common/Typography/Typography';
 import { CopyIconButton } from './styles';
 
 export default function Installation({ version }: { version: string }) {
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         marginBottom: '16px',
       }}
     >
-      <Typography
-        component={'h3'}
-        sx={{
+      <h3
+        style={{
           color: colors.c25,
           fontSize: '1rem',
           fontWeight: 700,
@@ -23,9 +20,9 @@ export default function Installation({ version }: { version: string }) {
         }}
       >
         {text.install}
-      </Typography>
-      <Box
-        sx={{
+      </h3>
+      <div
+        style={{
           border: `1px ${colors.c26} solid`,
           padding: '0.75rem',
           borderRadius: '4px',
@@ -36,21 +33,20 @@ export default function Installation({ version }: { version: string }) {
           marginTop: '16px',
         }}
       >
-        <Box>
+        <div>
           <ArrowRightIcon style={{ width: 12.59, height: 12.59 }} />
-        </Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Box
-            component={'code'}
-            sx={{
+        </div>
+        <div style={{ flexGrow: 1 }}>
+          <code
+            style={{
               fontFamily: 'Consolas,monaco,monospace',
             }}
-          >{`npm i ${version}`}</Box>
-        </Box>
+          >{`npm i ${version}`}</code>
+        </div>
         <CopyIconButton onClick={() => navigator.clipboard.writeText(`npm i ${version}` ?? '')}>
           <CopyIcon style={{ width: 12.59, height: 12.59, cursor: 'pointer' }} />
         </CopyIconButton>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
-import { Box, Chip, ListItem, List } from '@mui/material';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 import colors from 'src/styles/colors';
-import Link from 'src/components/common/Link/Link';
 import Typography from 'src/components/common/Typography/Typography';
+import Chip from 'src/components/common/Chip/Chip';
 import Score from '../Score/Score';
 import { PackageListItemProps } from './types';
 
@@ -11,64 +11,35 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
   const { name, description, keywords, publisher, date, version } = foundPackage;
 
   return (
-    <Box
-      component={'section'}
-      sx={{
+    <section
+      style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '0 8px',
         marginBottom: '16px',
-        pb: 1,
-        gap: 4,
+        paddingBottom: '8px',
+        gap: '32px',
         borderBottom: `1px solid ${colors.c1}`,
       }}
     >
-      <Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-          <Link
-            underline="hover"
-            to={`/package/${encodeURIComponent(name)}`}
-            color={colors.c4}
-            sx={{
-              '&.MuiLink-underlineHover': {
-                cursor: 'pointer',
-              },
-            }}
-          >
-            <Typography
-              component="h3"
-              sx={{
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+          <Link target="_blank" to={`/package/${encodeURIComponent(name)}`} color={colors.c4}>
+            <h3
+              style={{
                 fontWeight: 600,
                 fontSize: '1.25rem',
                 display: 'inline',
               }}
             >
               {name}
-            </Typography>
+            </h3>
           </Link>
-          {name === searchString && (
-            <Chip
-              label="exact match"
-              sx={{
-                '&.MuiChip-root': {
-                  backgroundColor: colors.c3,
-                  borderRadius: '4px',
-                  padding: '4px 8px',
-                  height: 'auto',
-                },
-                '& .MuiChip-label': {
-                  px: 0,
-                  fontSize: '0.875rem',
-                  color: colors.c2,
-                  lineHeight: '1rem',
-                },
-              }}
-            />
-          )}
-        </Box>
+          {name === searchString && <Chip keyword={'exact match'} backgroundColor={colors.c3} />}
+        </div>
         <Typography
-          sx={{
+          style={{
             paddingTop: '4px',
             paddingBottom: '4px',
             marginTop: '4px',
@@ -77,8 +48,8 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
         >
           {description}
         </Typography>
-        <List
-          sx={{
+        <ul
+          style={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: '8px',
@@ -89,43 +60,22 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
           }}
         >
           {keywords?.map((keyword, i) => (
-            <ListItem
+            <li
               key={keyword + i}
-              sx={{
+              style={{
                 display: 'initial',
                 width: 'auto',
                 padding: 0,
               }}
             >
               <Link to={`?text=keywords:${keyword}`}>
-                <Chip
-                  label={keyword}
-                  sx={{
-                    '&.MuiChip-root': {
-                      backgroundColor: colors.c5,
-                      borderRadius: '4px',
-                      padding: '4px 8px',
-                      height: 'auto',
-                      fontSize: '0.875rem',
-                      '&:hover': {
-                        backgroundColor: colors.c1,
-                        cursor: 'pointer',
-                      },
-                    },
-                    '& .MuiChip-label': {
-                      px: 0,
-                      fontSize: '0.875rem',
-                      color: colors.c2,
-                      lineHeight: '1rem',
-                    },
-                  }}
-                />
+                <Chip keyword={keyword} backgroundColor={colors.c5} />
               </Link>
-            </ListItem>
+            </li>
           ))}
-        </List>
-        <Box
-          sx={{
+        </ul>
+        <div
+          style={{
             gap: '8px',
             display: 'flex',
             alignItems: 'center',
@@ -133,26 +83,24 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
             marginBottom: '4px',
           }}
         >
-          <Typography
-            component={'span'}
-            sx={{
+          <span
+            style={{
               fontSize: '0.875rem',
               fontWeight: 600,
               fontFamily: `'Fira Mono', 'Andale Mono', 'Consolas', monospace`,
             }}
           >
             {publisher.username}
-          </Typography>
-          <Typography
-            sx={{
+          </span>
+          <span
+            style={{
               fontSize: '0.875rem',
               color: colors.c6,
               fontFamily: `'Fira Mono', 'Andale Mono', 'Consolas', monospace`,
             }}
-            component={'span'}
-          >{`published ${version} • ${format(new Date(date), 'MMMM dd yyyy')}`}</Typography>
-        </Box>
-      </Box>
+          >{`published ${version} • ${format(new Date(date), 'MMMM dd yyyy')}`}</span>
+        </div>
+      </div>
       <Score
         score={[
           {
@@ -173,6 +121,6 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
         ]}
         max={1}
       />
-    </Box>
+    </section>
   );
 }

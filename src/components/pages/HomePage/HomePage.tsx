@@ -1,7 +1,6 @@
-import Box from '@mui/material/Box';
 import Header from 'src/components/common/Header/Header';
 import colors from 'src/styles/colors';
-import { maxWidth } from 'src/styles/styles';
+import { maxWidth } from 'src/styles/configs';
 import { text } from 'src/configs/configs';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
 import Downloads from './Downloads/Downloads';
@@ -9,25 +8,24 @@ import Keywords from './Keywords/Keywords';
 
 export default function HomePage() {
   return (
-    <Box>
+    <div>
       <Header />
-      <Box
-        component="main"
-        sx={{
+      <main
+        style={{
           backgroundColor: colors.c11,
           padding: '16px',
         }}
       >
         <HiddenHeading as={'h1'}>{text.dashboard}</HiddenHeading>
-        <Box
-          sx={{
+        <div
+          style={{
             maxWidth: maxWidth,
             padding: '0 16px',
             margin: 'auto',
           }}
         >
-          <Box
-            sx={{
+          <div
+            style={{
               backgroundColor: colors.c13,
               border: `1px solid ${colors.c1}`,
               borderRadius: '4px',
@@ -38,9 +36,9 @@ export default function HomePage() {
           >
             <Keywords />
             <Downloads />
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

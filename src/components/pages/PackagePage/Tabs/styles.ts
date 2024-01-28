@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Link from 'src/components/common/Link/Link';
+import { Link } from 'react-router-dom';
 
 export const StyledTabs = styled.ul`
   display: flex;

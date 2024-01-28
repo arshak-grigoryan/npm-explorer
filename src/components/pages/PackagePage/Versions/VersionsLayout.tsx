@@ -1,10 +1,8 @@
-import { Box } from '@mui/material';
 import { PerVersionDownloads } from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
 import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
 import colors from 'src/styles/colors';
 import { text } from 'src/configs/configs';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
-import Typography from 'src/components/common/Typography/Typography';
 import VersionList, { CurrentTagsStats, VersionHistoryStats } from './VersionList';
 
 type VersionsProps = {
@@ -51,8 +49,8 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
   });
 
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
@@ -60,32 +58,28 @@ export default function VersionsLayout({ data: { downloadsData, packageData } }:
       }}
     >
       <HiddenHeading as="h2">{text.version}</HiddenHeading>
-      <Typography component={'h3'} sx={{ fontSize: '1.125rem', fontWeight: 600 }}>
-        {text.currentTags}
-      </Typography>
-      <Box sx={{ display: 'flex' }}>
-        <Box sx={{ fontWeight: 600 }}>{text.version}</Box>
-        <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-        <Box sx={{ fontWeight: 600 }}>{text.downloadsLast7Days}</Box>
-        <Box sx={{ display: 'flex', width: '33%' }}>
-          <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-          <Box sx={{ fontWeight: 600 }}>{text.tag}</Box>
-        </Box>
-      </Box>
+      <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>{text.currentTags}</h3>
+      <div style={{ display: 'flex' }}>
+        <div style={{ fontWeight: 600 }}>{text.version}</div>
+        <div style={{ display: 'flex', flexGrow: 1 }}></div>
+        <div style={{ fontWeight: 600 }}>{text.downloadsLast7Days}</div>
+        <div style={{ display: 'flex', width: '33%' }}>
+          <div style={{ display: 'flex', flexGrow: 1 }}></div>
+          <div style={{ fontWeight: 600 }}>{text.tag}</div>
+        </div>
+      </div>
       <VersionList data={currentTagsDownloadStats} packageName={downloadsData.package} />
-      <Typography component={'h3'} sx={{ fontSize: '1.125rem', fontWeight: 600 }}>
-        {text.versionHistory}
-      </Typography>
-      <Box sx={{ display: 'flex' }}>
-        <Box sx={{ fontWeight: 600 }}>{text.version}</Box>
-        <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-        <Box sx={{ fontWeight: 600 }}>{text.downloadsLast7Days}</Box>
-        <Box sx={{ display: 'flex', width: '33%' }}>
-          <Box sx={{ display: 'flex', flexGrow: 1 }}></Box>
-          <Box sx={{ fontWeight: 600 }}>{text.published}</Box>
-        </Box>
-      </Box>
+      <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>{text.versionHistory}</h3>
+      <div style={{ display: 'flex' }}>
+        <div style={{ fontWeight: 600 }}>{text.version}</div>
+        <div style={{ display: 'flex', flexGrow: 1 }}></div>
+        <div style={{ fontWeight: 600 }}>{text.downloadsLast7Days}</div>
+        <div style={{ display: 'flex', width: '33%' }}>
+          <div style={{ display: 'flex', flexGrow: 1 }}></div>
+          <div style={{ fontWeight: 600 }}>{text.published}</div>
+        </div>
+      </div>
       <VersionList data={versionHostoryDownloadStats} packageName={downloadsData.package} />
-    </Box>
+    </div>
   );
 }

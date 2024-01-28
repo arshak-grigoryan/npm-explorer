@@ -1,7 +1,5 @@
-import MuiPagination from '@mui/material/Pagination';
-import { ChangeEvent } from 'react';
-import { PaginationItem } from '@mui/material';
-import colors from 'src/styles/colors';
+import ReactPaginate from 'react-paginate';
+import './styles.css';
 
 export default function Pagination({
   page,
@@ -12,38 +10,32 @@ export default function Pagination({
   pageCount: number;
   handlePageChange: (page: number) => void;
 }) {
-  const onPageChange = (_: ChangeEvent<unknown>, page: number) => handlePageChange(page);
+  const handlePageClick = (event: { selected: number }) => {
+    console.log(event);
+    handlePageChange(event.selected + 1);
+  };
 
   return (
-    <MuiPagination
-      count={pageCount}
-      page={page}
-      onChange={onPageChange}
-      variant="outlined"
-      shape="rounded"
-      defaultPage={3}
-      siblingCount={page === 1 || page === pageCount ? 0 : 2}
-      boundaryCount={1}
-      hidePrevButton={page === 1}
-      hideNextButton={page === pageCount}
-      renderItem={(item) => (
-        <PaginationItem
-          slots={{ previous: () => <>«</>, next: () => <>»</> }}
-          {...item}
-          sx={{
-            backgroundColor: colors.c13,
-            border: `1px solid ${colors.c27}`,
-            colors: colors.c4,
-            '&:hover': {
-              backgroundColor: colors.c28,
-            },
-            '&.Mui-selected': {
-              fontWeight: 700,
-              backgroundColor: colors.c28,
-            },
-          }}
-        />
-      )}
+    <ReactPaginate
+      forcePage={page - 1}
+      previousLabel="«"
+      nextLabel="»"
+      onPageChange={handlePageClick}
+      pageRangeDisplayed={3}
+      marginPagesDisplayed={1}
+      pageCount={pageCount}
+      pageClassName="page-item"
+      pageLinkClassName="page-link"
+      previousClassName="page-item"
+      previousLinkClassName="page-link"
+      nextClassName="page-item"
+      nextLinkClassName="page-link"
+      breakLabel="..."
+      breakClassName="page-item"
+      breakLinkClassName="page-link"
+      containerClassName="pagination"
+      activeClassName="active"
+      renderOnZeroPageCount={null}
     />
   );
 }
