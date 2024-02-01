@@ -7,7 +7,7 @@ export default function SearchResult() {
 
   return (
     <FetchLayout
-      state={res}
+      res={res}
       slots={{
         Content: SearchResultLayout,
       }}

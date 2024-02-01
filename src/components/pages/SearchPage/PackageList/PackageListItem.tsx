@@ -1,126 +1,89 @@
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
-import colors from 'src/styles/colors';
-import Typography from 'src/components/common/Typography/Typography';
 import Chip from 'src/components/common/Chip/Chip';
+import theme from 'src/configs/theme';
+import { text } from 'src/configs/text';
 import Score from '../Score/Score';
 import { PackageListItemProps } from './types';
+import * as SC from './styles';
 
 export default function PackageListItem({ obj, searchString }: PackageListItemProps) {
   const { package: foundPackage, score } = obj;
   const { name, description, keywords, publisher, date, version } = foundPackage;
+  const isTextMatch = name === searchString;
 
   return (
-    <section
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '0 8px',
-        marginBottom: '16px',
-        paddingBottom: '8px',
-        gap: '32px',
-        borderBottom: `1px solid ${colors.c1}`,
-      }}
-    >
-      <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-          <Link target="_blank" to={`/package/${encodeURIComponent(name)}`} color={colors.c4}>
-            <h3
-              style={{
-                fontWeight: 600,
-                fontSize: '1.25rem',
-                display: 'inline',
-              }}
+    <SC.PackageSection>
+      <SC.Package>
+        <SC.MatchedPackage>
+          <SC.PackageLink target="_blank" to={`/package/${encodeURIComponent(name)}`}>
+            <SC.PackageHeading>{name}</SC.PackageHeading>
+          </SC.PackageLink>
+          {isTextMatch && (
+            <Chip
+              css={(theme) => ({
+                letterSpacing: '0.4px',
+                backgroundColor: theme.colors.c3,
+                '&:hover': { backgroundColor: theme.colors.c31 },
+              })}
             >
-              {name}
-            </h3>
-          </Link>
-          {name === searchString && <Chip keyword={'exact match'} backgroundColor={colors.c3} />}
-        </div>
-        <Typography
-          style={{
-            paddingTop: '4px',
-            paddingBottom: '4px',
-            marginTop: '4px',
-            fontSize: '1rem',
-          }}
-        >
-          {description}
-        </Typography>
-        <ul
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '8px',
-            marginTop: '8px',
-            marginBottom: '8px',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
+              {text.exactMatch}
+            </Chip>
+          )}
+        </SC.MatchedPackage>
+        <SC.Description>{description}</SC.Description>
+        <SC.KeywordsList>
           {keywords?.map((keyword, i) => (
-            <li
-              key={keyword + i}
-              style={{
-                display: 'initial',
-                width: 'auto',
-                padding: 0,
-              }}
-            >
-              <Link to={`?text=keywords:${keyword}`}>
-                <Chip keyword={keyword} backgroundColor={colors.c5} />
+            <li key={keyword + i}>
+              <Link
+                to={`?text=keywords:${keyword}`}
+                css={{
+                  '&:focus': {
+                    outline: '1px dotted rgba(0,0,0,.9)',
+                    display: 'inline-block',
+                    borderRadius: '4px',
+                  },
+                }}
+              >
+                <Chip
+                  css={{
+                    letterSpacing: '0.4px',
+                  }}
+                >
+                  {keyword}
+                </Chip>
               </Link>
             </li>
           ))}
-        </ul>
-        <div
-          style={{
-            gap: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: '4px',
-            marginBottom: '4px',
-          }}
-        >
-          <span
-            style={{
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              fontFamily: `'Fira Mono', 'Andale Mono', 'Consolas', monospace`,
-            }}
-          >
-            {publisher.username}
-          </span>
-          <span
-            style={{
-              fontSize: '0.875rem',
-              color: colors.c6,
-              fontFamily: `'Fira Mono', 'Andale Mono', 'Consolas', monospace`,
-            }}
-          >{`published ${version} • ${format(new Date(date), 'MMMM dd yyyy')}`}</span>
-        </div>
-      </div>
+        </SC.KeywordsList>
+        <SC.PublishInfo>
+          <SC.Username>{publisher.username}</SC.Username>
+          <SC.PublishDetails>{`published ${version} • ${format(
+            new Date(date),
+            'MMMM dd yyyy',
+          )}`}</SC.PublishDetails>
+        </SC.PublishInfo>
+      </SC.Package>
       <Score
         score={[
           {
             name: 'p',
             value: score.detail.popularity,
-            color: colors.c7,
+            color: theme.colors.c7,
           },
           {
             name: 'q',
             value: score.detail.quality,
-            color: colors.c8,
+            color: theme.colors.c8,
           },
           {
             name: 'm',
             value: score.detail.maintenance,
-            color: colors.c9,
+            color: theme.colors.c9,
           },
         ]}
         max={1}
       />
-    </section>
+    </SC.PackageSection>
   );
 }

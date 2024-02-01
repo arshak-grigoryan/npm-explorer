@@ -1,27 +1,18 @@
-import colors from 'src/styles/colors';
+import styled from '@emotion/styled';
 
-export default function Chip({
-  keyword,
-  backgroundColor,
-}: {
-  keyword: string;
-  backgroundColor: string;
-}) {
-  return (
-    <div
-      onMouseOver={(e) => (e.currentTarget.style.backgroundColor = colors.c1)}
-      onMouseOut={(e) => (e.currentTarget.style.backgroundColor = colors.c5)}
-      style={{
-        backgroundColor,
-        borderRadius: '4px',
-        padding: '4px 8px',
-        height: 'auto',
-        fontSize: '0.875rem',
-        color: colors.c2,
-        lineHeight: '1rem',
-      }}
-    >
-      {keyword}
-    </div>
-  );
-}
+const Chip = styled.div<{ bgColor?: string }>(
+  ({ theme, bgColor }) => `
+    border-radius: 4px;
+    padding: 4px 8px;
+    height: auto;
+    font-size: 0.875rem;
+    color: ${theme.colors.c2};
+    line-height: 1rem;
+    background-color: ${theme.colors.c5 ?? bgColor};
+    &:hover {
+      background-color: ${theme.colors.c1};
+    };
+`,
+);
+
+export default Chip;

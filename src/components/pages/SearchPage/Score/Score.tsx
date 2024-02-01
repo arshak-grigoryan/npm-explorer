@@ -1,36 +1,18 @@
-import colors from 'src/styles/colors';
-import Typography from 'src/components/common/Typography/Typography';
 import MeterBar from './MeterBar/MeterBar';
+import { ScoreProps } from './types';
+import * as SC from './styles';
 
-type Props = { score: { name: string; value: number; color: string }[]; max: number };
-
-export default function Score({ score, max }: Props) {
+export default function Score({ score, max }: ScoreProps) {
   return (
-    <div>
+    <SC.Scores>
       {score.map(({ name, value, color }) => {
         return (
-          <div
-            key={name}
-            style={{
-              display: 'flex',
-              gap: '8px',
-              alignItems: 'center',
-              flexDirection: 'row-reverse',
-            }}
-          >
+          <SC.Score key={name}>
             <MeterBar value={value} max={max} color={color} />
-            <Typography
-              style={{
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                color: colors.c2,
-              }}
-            >
-              {name}
-            </Typography>
-          </div>
+            <SC.Option>{name}</SC.Option>
+          </SC.Score>
         );
       })}
-    </div>
+    </SC.Scores>
   );
 }

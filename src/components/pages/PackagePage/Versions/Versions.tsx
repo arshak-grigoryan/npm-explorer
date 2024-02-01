@@ -1,7 +1,7 @@
 import useGetPackagePerVersionDownloads from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
 import useGetSinglePackage from 'src/api/hooks/packages/useGetSinglePackage';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
-import VersionsLayout from './VersionsLayout';
+import VersionsContainer from './VersionsContainer';
 
 export default function Versions() {
   const res1 = useGetPackagePerVersionDownloads();
@@ -9,14 +9,14 @@ export default function Versions() {
 
   return (
     <FetchLayout
-      state={{
+      res={{
         isFetching: res1.isFetching || res2.isFetching,
         isFetched: res1.isFetched || res2.isFetched,
         error: res1.error || res2.error,
         data: { downloadsData: res1.data, packageData: res2.data },
       }}
       slots={{
-        Content: VersionsLayout,
+        Content: VersionsContainer,
       }}
     />
   );

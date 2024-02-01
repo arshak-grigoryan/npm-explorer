@@ -6,7 +6,11 @@ import { PackageListProps } from './types';
 export default function PackageList({ data }: PackageListProps) {
   const searchString = useGetSearchParams(npmRegistry.searchParams.text, '');
 
-  return data.map((obj) => (
-    <PackageListItem key={obj.package.name} obj={obj} searchString={searchString} />
-  ));
+  return (
+    <div>
+      {data.map((obj) => (
+        <PackageListItem key={obj.package.name} obj={obj} searchString={searchString} />
+      ))}
+    </div>
+  );
 }

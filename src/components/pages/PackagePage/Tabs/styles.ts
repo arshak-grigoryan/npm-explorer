@@ -1,22 +1,30 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const StyledTabs = styled.ul`
+export const Tabs = styled.ul`
   display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  flex-wrap: wrap;
+  @media (max-width: ${({ theme }) => theme.medias.tablet}) {
+    flex-direction: column;
+  }
 `;
 
-export const StyledTab = styled.li<{ colors: any; selected: boolean }>`
+export const Tab = styled.li<{ colors: any; selected: boolean }>`
   width: 100%;
+  flex: 1;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom: ${({ colors }) => `2px solid ${colors.border}`};
-  background-color: ${({ colors, selected }) => `${selected && colors.background}`};
+  ${({ colors, selected }) => selected && `background-color: ${colors.background}`};
   &:hover {
     background: ${({ colors }) => `${colors.hover}`};
     cursor: pointer;
+  }
+  @media (max-width: ${({ theme }) => theme.medias.tablet}) {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom: none;
+    border-left: ${({ colors }) => `2px solid ${colors.border}`};
   }
 `;
 
@@ -30,6 +38,7 @@ export const StyledLink = styled(Link)<{ colors: any }>`
   padding: 12px 15px;
   font-weight: 700;
   color: ${({ colors }) => `${colors.text}`};
+  text-transform: capitalize;
   &:focus {
     outline: 1px dotted currentColor;
   }

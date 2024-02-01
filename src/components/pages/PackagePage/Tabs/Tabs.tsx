@@ -1,12 +1,11 @@
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { ACTIVE_TAB } from 'src/api/configs';
-import Typography from 'src/components/common/Typography/Typography';
 import Readme from '../Readme/Readme';
 import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';
 import { TabProps, TabsEnum } from './types';
 import { TabsConfig } from './configs';
-import { StyledLink, StyledTab, StyledTabs } from './styles';
+import * as SC from './styles';
 
 export const TabComponent = {
   [TabsEnum.readme]: <Readme />,
@@ -18,12 +17,12 @@ export const TabComponent = {
 
 function Tab({ label, icon, colors, selected }: TabProps) {
   return (
-    <StyledTab colors={colors} selected={selected}>
-      <StyledLink to={`?activeTab=${label}`} colors={colors}>
+    <SC.Tab colors={colors} selected={selected}>
+      <SC.StyledLink to={`?activeTab=${label}`} colors={colors}>
         {icon}
-        <Typography style={{ textTransform: 'capitalize' }}>{label}</Typography>
-      </StyledLink>
-    </StyledTab>
+        {label}
+      </SC.StyledLink>
+    </SC.Tab>
   );
 }
 
@@ -31,7 +30,7 @@ export default function Tabs() {
   const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
 
   return (
-    <StyledTabs>
+    <SC.Tabs>
       {TabsConfig.map(({ name, colors, Icon }) => (
         <Tab
           key={name}
@@ -41,6 +40,6 @@ export default function Tabs() {
           selected={activeTab === name}
         />
       ))}
-    </StyledTabs>
+    </SC.Tabs>
   );
 }

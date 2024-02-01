@@ -1,5 +1,3 @@
-export const isDev = import.meta.env.DEV;
-
 // TODO: keywords, tabs
 export const text = {
   dashboard: 'Dashboard',
@@ -37,4 +35,5 @@ export const text = {
   versionHistory: 'Version History',
   published: 'Published',
   versions: 'Versions',
+  exactMatch: 'exact match',
 };

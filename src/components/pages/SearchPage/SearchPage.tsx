@@ -1,5 +1,5 @@
 import Header from 'src/components/common/Header/Header';
-import { text } from 'src/configs/configs';
+import { text } from 'src/configs/text';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
 import SearchResult from './SearchResult/SearchResult';
 

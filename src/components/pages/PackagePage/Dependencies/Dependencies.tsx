@@ -7,7 +7,7 @@ export default function Dependencies() {
 
   return (
     <FetchLayout
-      state={res}
+      res={res}
       slots={{
         Content: DependenciesList,
       }}

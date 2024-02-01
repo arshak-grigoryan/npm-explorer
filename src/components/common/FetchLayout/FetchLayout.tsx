@@ -1,26 +1,7 @@
-import { ReactNode } from 'react';
-import { FetchResponse } from 'src/api/hooks/useFetch';
+import { FetchLayoutProps } from './types';
 
-type LayoutState = FetchResponse;
-
-type LayoutSlots = {
-  Loader?: ReactNode;
-  ErrorComp?: ReactNode;
-  Content: (props: { data: any } & any) => JSX.Element;
-};
-
-type LayoutSlotProps = {
-  Content?: Record<string, any>;
-};
-
-type FetchLayoutProps = {
-  slots: LayoutSlots;
-  state: LayoutState;
-  slotProps?: LayoutSlotProps;
-};
-
-export default function FetchLayout({ state, slots, slotProps }: FetchLayoutProps) {
-  const { isFetching, isFetched, error, data } = state;
+export default function FetchLayout({ res, slots, slotProps }: FetchLayoutProps) {
+  const { isFetching, isFetched, error, data } = res;
   const { Loader = null, ErrorComp = null, Content } = slots;
 
   if (!isFetched || isFetching) {

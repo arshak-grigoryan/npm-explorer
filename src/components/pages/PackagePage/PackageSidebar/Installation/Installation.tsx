@@ -1,52 +1,36 @@
 import ArrowRightIcon from 'src/assets/Arrow-Right.svg?react';
 import CopyIcon from 'src/assets/Copy.svg?react';
-import colors from 'src/styles/colors';
-import { text } from 'src/configs/configs';
+import { text } from 'src/configs/text';
 import { CopyIconButton } from './styles';
+import * as SC from './styles';
 
 export default function Installation({ version }: { version: string }) {
   return (
-    <div
-      style={{
-        marginBottom: '16px',
-      }}
-    >
-      <h3
-        style={{
-          color: colors.c25,
-          fontSize: '1rem',
-          fontWeight: 700,
-          lineHeight: 1,
-        }}
-      >
-        {text.install}
-      </h3>
-      <div
-        style={{
-          border: `1px ${colors.c26} solid`,
-          padding: '0.75rem',
-          borderRadius: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-          fontSize: '0.875rem',
-          marginTop: '16px',
-        }}
-      >
+    <SC.Installation>
+      <SC.Heading>{text.install}</SC.Heading>
+      <SC.InstallCmdContainer>
         <div>
-          <ArrowRightIcon style={{ width: 12.59, height: 12.59 }} />
+          <ArrowRightIcon
+            css={(theme) => ({ width: 12.59, height: 12.59, fill: theme.colors.c33 })}
+          />
         </div>
-        <div style={{ flexGrow: 1 }}>
-          <code
-            style={{
-              fontFamily: 'Consolas,monaco,monospace',
-            }}
-          >{`npm i ${version}`}</code>
-        </div>
+        <SC.CodeContainer>
+          <SC.Code>{`npm i ${version}`}</SC.Code>
+        </SC.CodeContainer>
         <CopyIconButton onClick={() => navigator.clipboard.writeText(`npm i ${version}` ?? '')}>
-          <CopyIcon style={{ width: 12.59, height: 12.59, cursor: 'pointer' }} />
+          <CopyIcon
+            css={(theme) => ({
+              width: 12.59,
+              height: 12.59,
+              fill: theme.colors.c33,
+              cursor: 'pointer',
+              '&:hover': {
+                fill: theme.colors.c24,
+              },
+            })}
+          />
         </CopyIconButton>
-      </div>
-    </div>
+      </SC.InstallCmdContainer>
+    </SC.Installation>
   );
 }

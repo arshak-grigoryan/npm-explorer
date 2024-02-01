@@ -10,30 +10,7 @@ import Mobile from 'src/assets/Mobile.svg?react';
 import Frameworks from 'src/assets/Frameworks.svg?react';
 import Robotics from 'src/assets/Robotics.svg?react';
 import Math from 'src/assets/Math.svg?react';
-
-export enum KeywordsEnum {
-  'Front-End' = 'Front-End',
-  'Back-End' = 'Back-End',
-  CLI = 'CLI',
-  Documentation = 'Documentation',
-  CSS = 'CSS',
-  Testing = 'Testing',
-  IoT = 'IoT',
-  Coverage = 'Coverage',
-  Mobile = 'Mobile',
-  Frameworks = 'Frameworks',
-  Robotics = 'Robotics',
-  Math = 'Math',
-}
-
-export type Keyword = {
-  name: string;
-  colors: {
-    text: string;
-    hover: string;
-  };
-  Icon: any;
-};
+import { Keyword, KeywordsEnum } from './types';
 
 export const KeywordConfig: Keyword[] = [
   {

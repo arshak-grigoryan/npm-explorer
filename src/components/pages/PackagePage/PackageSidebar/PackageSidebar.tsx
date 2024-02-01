@@ -1,16 +1,15 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useGetSinglePackage, { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
 import GitIcon from 'src/assets/Git.svg?react';
 import LinkIcon from 'src/assets/Link.svg?react';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
-import colors from 'src/styles/colors';
-import { text } from 'src/configs/configs';
+import { text } from 'src/configs/text';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
-import { Title, TitleContent } from './styles';
-import WeeklyDownloads from './WeeklyDownloads';
+import * as SC from './styles';
 import Installation from './Installation/Installation';
+import WeeklyDownloads from './WeeklyDownloads/WeeklyDownloads';
 
-function PackageSidebarLayout(props: SinglePackage) {
+function PackageSidebarContainer(props: SinglePackage) {
   const { 'dist-tags': distTags, repository, homepage, license, name } = props.data;
   const { version } = useParams();
   const isLatestVersion = !version || (version && version === distTags.latest);
@@ -20,138 +19,61 @@ function PackageSidebarLayout(props: SinglePackage) {
   const HomepageUrl = homepage && new URL(homepage);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <SC.PackageSidebar>
       <HiddenHeading as={'h2'}>{text.packageSidebar}</HiddenHeading>
       <Installation version={installVersion} />
       {GithubUrl && (
-        <div
-          style={{
-            borderBottom: `1px solid ${colors.c1}`,
-          }}
-        >
-          <Title>{text.repository}</Title>
-          <Link
-            to={GithubUrl.href}
-            target="_blank"
-            style={{
-              display: 'inline-block',
-              marginTop: '8px',
-              marginBottom: '16px',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                gap: 1,
-                alignItems: 'center',
-                color: colors.c24,
-              }}
-            >
-              <div style={{ display: 'flex' }}>
-                <GitIcon style={{ width: 16, height: 16 }} />
-              </div>
-              <TitleContent>{GithubUrl.host + GithubUrl.pathname}</TitleContent>
-            </div>
-          </Link>
-        </div>
+        <SC.InfoBlock>
+          <SC.Title>{text.repository}</SC.Title>
+          <SC.ProjectLink to={GithubUrl.href} target="_blank">
+            <SC.IconContainer>
+              <GitIcon />
+            </SC.IconContainer>
+            <SC.TitleContent>{GithubUrl.host + GithubUrl.pathname}</SC.TitleContent>
+          </SC.ProjectLink>
+        </SC.InfoBlock>
       )}
       {HomepageUrl && (
-        <div
-          style={{
-            borderBottom: `1px solid ${colors.c1}`,
-          }}
-        >
-          <Title>{text.homepage}</Title>
-          <Link
-            to={HomepageUrl.href}
-            target="_blank"
-            style={{
-              display: 'inline-block',
-              marginTop: '8px',
-              marginBottom: '16px',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                gap: 1,
-                alignItems: 'center',
-                color: colors.c24,
-                fontSize: '1.25rem',
-              }}
-            >
-              <div style={{ display: 'flex' }}>
-                <LinkIcon style={{ width: 16, height: 16 }} />
-              </div>
-              <TitleContent>{HomepageUrl.host + HomepageUrl.pathname}</TitleContent>
-            </div>
-          </Link>
-        </div>
+        <SC.InfoBlock>
+          <SC.Title>{text.homepage}</SC.Title>
+          <SC.ProjectLink to={HomepageUrl.href} target="_blank">
+            <SC.IconContainer>
+              <LinkIcon />
+            </SC.IconContainer>
+            <SC.TitleContent>{HomepageUrl.host + HomepageUrl.pathname}</SC.TitleContent>
+          </SC.ProjectLink>
+        </SC.InfoBlock>
       )}
       {isLatestVersion && <WeeklyDownloads />}
-      <div style={{ display: 'flex', borderBottom: `1px solid ${colors.c1}` }}>
-        <div style={{ width: '50%' }}>
-          <Title>{text.version}</Title>
-          <TitleContent
-            style={{
-              marginTop: '8px',
-              marginBottom: '16px',
-              fontSize: '1.25rem',
-            }}
-          >
-            {version ?? distTags.latest}
-          </TitleContent>
-        </div>
-        <div style={{ width: '50%' }}>
-          <Title>{text.license}</Title>
-          <TitleContent
-            style={{
-              marginTop: '8px',
-              marginBottom: '16px',
-              fontSize: '1.25rem',
-            }}
-          >
-            {license}
-          </TitleContent>
-        </div>
-      </div>
-      <div style={{ display: 'flex', borderBottom: `1px solid ${colors.c1}` }}>
-        <div style={{ width: '50%' }}>
-          <Title>{text.issues}</Title>
-          <TitleContent
-            style={{
-              color: colors.c24,
-              fontSize: '1.25rem',
-              marginTop: '8px',
-              marginBottom: '16px',
-            }}
-          ></TitleContent>
-        </div>
-        <div style={{ width: '50%' }}>
-          <Title>{text.pullRequests}</Title>
-          <TitleContent
-            style={{
-              color: colors.c24,
-              fontSize: '1.25rem',
-              marginTop: '8px',
-              marginBottom: '16px',
-            }}
-          ></TitleContent>
-        </div>
-      </div>
-      <div style={{ display: 'flex', borderBottom: `1px solid ${colors.c1}` }}>
-        <Title>{text.lastPublish}</Title>
-        <TitleContent
-          style={{ color: colors.c24, fontSize: '1.25rem', marginTop: '8px', marginBottom: '16px' }}
-        ></TitleContent>
-      </div>
-      <div style={{ display: 'flex', borderBottom: `1px solid ${colors.c1}` }}>
-        <Title>{text.collaborators}</Title>
-        <TitleContent
-          style={{ color: colors.c24, fontSize: '1.25rem', marginTop: '8px', marginBottom: '16px' }}
-        ></TitleContent>
-      </div>
-    </div>
+      <SC.InfoBlock>
+        <SC.SplitInfoBlock>
+          <SC.Title>{text.version}</SC.Title>
+          <SC.TitleContentOverride>{version ?? distTags.latest}</SC.TitleContentOverride>
+        </SC.SplitInfoBlock>
+        <SC.SplitInfoBlock>
+          <SC.Title>{text.license}</SC.Title>
+          <SC.TitleContentOverride>{license}</SC.TitleContentOverride>
+        </SC.SplitInfoBlock>
+      </SC.InfoBlock>
+      <SC.InfoBlock>
+        <SC.SplitInfoBlock>
+          <SC.Title>{text.issues}</SC.Title>
+          <SC.TitleContentOverride></SC.TitleContentOverride>
+        </SC.SplitInfoBlock>
+        <SC.SplitInfoBlock>
+          <SC.Title>{text.pullRequests}</SC.Title>
+          <SC.TitleContentOverride></SC.TitleContentOverride>
+        </SC.SplitInfoBlock>
+      </SC.InfoBlock>
+      <SC.InfoBlock>
+        <SC.Title>{text.lastPublish}</SC.Title>
+        <SC.TitleContentOverride></SC.TitleContentOverride>
+      </SC.InfoBlock>
+      <SC.InfoBlock>
+        <SC.Title>{text.collaborators}</SC.Title>
+        <SC.TitleContentOverride></SC.TitleContentOverride>
+      </SC.InfoBlock>
+    </SC.PackageSidebar>
   );
 }
 
@@ -160,9 +82,9 @@ export default function PackageSidebar() {
 
   return (
     <FetchLayout
-      state={res}
+      res={res}
       slots={{
-        Content: PackageSidebarLayout,
+        Content: PackageSidebarContainer,
       }}
     />
   );

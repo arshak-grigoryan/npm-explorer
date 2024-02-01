@@ -1,33 +1,14 @@
-import colors from 'src/styles/colors';
-
-type Props = {
-  max: number;
-  value: number;
-  color: string;
-};
+import * as SC from './styles';
+import { MeterBarProps } from './types';
 
 const width = 75;
 
-export default function MeterBar({ color, value, max }: Props) {
+export default function MeterBar({ color, value, max }: MeterBarProps) {
   const scorePercent = (value * 100) / max;
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: width,
-        background: colors.c1,
-        height: 2,
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          height: 2,
-          background: color,
-          width: `${Math.round((scorePercent * width) / 100)}px`,
-        }}
-      ></div>
-    </div>
+    <SC.MeterBar width={`${width}px`}>
+      <SC.Bar width={`${Math.round((scorePercent * width) / 100)}px`} color={color}></SC.Bar>
+    </SC.MeterBar>
   );
 }

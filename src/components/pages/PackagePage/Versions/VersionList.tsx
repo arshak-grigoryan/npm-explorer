@@ -1,77 +1,34 @@
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
-import colors from 'src/styles/colors';
-
-export type VersionHistoryStats = [string, number, Date][];
-export type CurrentTagsStats = [string, number, string][];
-
-type VersionListProps = {
-  data: VersionHistoryStats | CurrentTagsStats;
-  packageName: string;
-};
+import * as SC from './styles';
+import { VersionListProps } from './types';
 
 export default function VersionList({ data, packageName }: VersionListProps) {
   return (
-    <ul style={{ margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <SC.ListVersion>
       {data.map((value) => {
         const version = value[0];
         const downloads = value[1];
         const releaseDateOrTag = value[2];
         return (
-          <li
-            key={version}
-            style={{
-              display: 'flex',
-              color: colors.c23,
-            }}
-          >
-            <div
-              style={{
-                fontSize: '1rem',
-              }}
-            >
-              <Link to={`/package/${encodeURIComponent(packageName)}/${version}`} color={'inherit'}>
-                {version}
-              </Link>
-            </div>
-            <div
-              style={{
-                borderBottom: `1px dotted ${colors.c22}`,
-                display: 'flex',
-                alignSelf: 'end',
-                flexGrow: 1,
-                margin: '8px',
-              }}
-            ></div>
-            <div>{downloads ? downloads.toLocaleString() : '*'}</div>
-            <div
-              style={{
-                display: 'flex',
-                width: '33%',
-              }}
-            >
-              <div
-                style={{
-                  borderBottom: `1px dotted ${colors.c22}`,
-                  display: 'flex',
-                  alignSelf: 'end',
-                  flexGrow: 1,
-                  margin: '8px',
-                }}
-              ></div>
-              <div
-                style={{
-                  textAlign: 'end',
-                }}
-              >
+          <SC.ListVersionItem key={version}>
+            <SC.VersionLink to={`/package/${encodeURIComponent(packageName)}/${version}`}>
+              {version}
+            </SC.VersionLink>
+            <SC.TextDivider />
+            <SC.VersionDownloads>
+              {downloads ? downloads.toLocaleString() : '*'}
+            </SC.VersionDownloads>
+            <SC.Coulmn3Container>
+              <SC.TextDivider />
+              <SC.Coulmn3>
                 {releaseDateOrTag instanceof Date
                   ? format(releaseDateOrTag, 'MMMM dd yyyy')
                   : releaseDateOrTag}
-              </div>
-            </div>
-          </li>
+              </SC.Coulmn3>
+            </SC.Coulmn3Container>
+          </SC.ListVersionItem>
         );
       })}
-    </ul>
+    </SC.ListVersion>
   );
 }

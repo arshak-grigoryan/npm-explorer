@@ -1,5 +1,5 @@
 import { SinglePackageversion } from 'src/api/hooks/packages/useGetSinglePackageVersion';
-import { text } from 'src/configs/configs';
+import { text } from 'src/configs/text';
 import DependenciesListItem from './DependenciesListItem';
 
 export default function DependenciesList({ data }: SinglePackageversion) {

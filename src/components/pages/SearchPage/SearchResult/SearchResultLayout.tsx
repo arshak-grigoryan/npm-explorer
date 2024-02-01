@@ -2,12 +2,11 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchPackage } from 'src/api/hooks/packages/useSearchPackages';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { PAGE, PER_PAGE_PACKAGES_COUNT } from 'src/api/configs';
-import colors from 'src/styles/colors';
-import { maxWidth } from 'src/styles/configs';
-import { text } from 'src/configs/configs';
+import { text } from 'src/configs/text';
 import SortOptions from '../SortOptions/SortOptions';
 import Pagination from '../Pagination/Pagination';
 import PackageList from '../PackageList/PackageList';
+import * as SC from './styles';
 
 export default function SearchResultLayout({ data }: SearchPackage) {
   const [, setSearchParams] = useSearchParams();
@@ -24,54 +23,26 @@ export default function SearchResultLayout({ data }: SearchPackage) {
 
   return (
     <div>
-      <div
-        style={{
-          backgroundColor: colors.c14,
-          borderBottom: `1px solid ${colors.c1}`,
-        }}
-      >
-        <div
-          style={{
-            maxWidth: maxWidth,
-            margin: 'auto',
-            padding: '16px 32px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <h2 style={{ fontWeight: 600, fontSize: '1.125rem' }}>
-            {text.countPackagesFound(data.total)}
-          </h2>
+      <SC.PackagesCountContainer>
+        <SC.PackagesCountNestedContainer>
+          <SC.PackagesCount>{text.countPackagesFound(data.total)}</SC.PackagesCount>
           {showPagination && (
             <Pagination page={page} pageCount={pageCount} handlePageChange={handlePageChange} />
           )}
-        </div>
-      </div>
+        </SC.PackagesCountNestedContainer>
+      </SC.PackagesCountContainer>
       {Boolean(data.objects.length) && (
-        <div
-          style={{
-            maxWidth: maxWidth,
-            margin: 'auto',
-            display: 'flex',
-            padding: '16px',
-          }}
-        >
-          <div style={{ width: 250 }}>
+        <SC.ContentContainer>
+          <SC.SortOptionsContainer>
             <SortOptions />
-          </div>
-          <div
-            style={{
-              width: 'calc(100% - 250px)',
-              padding: '16px',
-            }}
-          >
+          </SC.SortOptionsContainer>
+          <SC.PackageListContainer>
             <PackageList data={data.objects} />
             {showPagination && (
               <Pagination page={page} pageCount={pageCount} handlePageChange={handlePageChange} />
             )}
-          </div>
-        </div>
+          </SC.PackageListContainer>
+        </SC.ContentContainer>
       )}
     </div>
   );

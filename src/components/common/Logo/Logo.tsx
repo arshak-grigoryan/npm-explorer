@@ -1,26 +1,11 @@
 import LogoIcon from 'src/assets/npm-logo-black.svg?react';
-import colors from 'src/styles/colors';
-import Typography from '../Typography/Typography';
+import * as SC from './styles';
 
 export default function Logo() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <SC.Logo>
       <LogoIcon height={18} />
-      <Typography
-        style={{
-          fontSize: '1rem',
-          fontWeight: 700,
-          color: colors.c4,
-        }}
-      >
-        Explorer
-      </Typography>
-    </div>
+      <SC.LogoText>Explorer</SC.LogoText>
+    </SC.Logo>
   );
 }

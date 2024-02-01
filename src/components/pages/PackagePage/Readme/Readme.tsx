@@ -2,6 +2,7 @@ import markdownit from 'markdown-it';
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetSinglePackage from 'src/api/hooks/packages/useGetSinglePackage';
+import * as SC from './styles';
 
 export const markdown = markdownit({
   html: true,
@@ -28,5 +29,5 @@ export default function Readme() {
     }
   }, [data, version]);
 
-  return <div ref={ref}></div>;
+  return <SC.ReadmeContent ref={ref}></SC.ReadmeContent>;
 }

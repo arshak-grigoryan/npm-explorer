@@ -2,18 +2,24 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono);
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600);
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 :root {
   min-width: 320px;
   width: 100vw;
   height: 100vh;
+}
+
+body {
+  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+  line-height: 1.15;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 input:-webkit-autofill,
@@ -23,8 +29,31 @@ input:-webkit-autofill:active {
   -webkit-background-clip: text;
 }
 
-body {
-  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
-  line-height: 1;
-  letter-spacing: normal;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  margin: 0;
+  padding: 0;
 }
