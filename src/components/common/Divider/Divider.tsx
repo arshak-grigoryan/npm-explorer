@@ -5,7 +5,7 @@ const Divider = styled.hr<{ height?: string; gap?: string }>(
   border: none;
   width: 100%;
   height: ${height ?? '2px'};
-  background-color: ${theme.colors.c4};
+  background-color: ${theme.colors.divider.primary};
   margin-top: ${gap ?? '0px'};
   margin-bottom: ${gap ?? '0px'};
 `,

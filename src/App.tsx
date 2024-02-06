@@ -1,11 +1,10 @@
-import { ThemeProvider } from '@emotion/react';
-import theme from 'src/configs/theme';
 import AppRouter from './Router';
+import { ThemeModeProvider } from './ThemeModeProvider/ThemeMode';
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeModeProvider>
       <AppRouter />
-    </ThemeProvider>
+    </ThemeModeProvider>
   );
 }

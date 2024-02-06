@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Main = styled.main(
   ({ theme }) => `
-  background-color: ${theme.colors.c11};
+  background-color: ${theme.colors.background.homepageMain};
   padding: 16px;
 `,
 );
@@ -23,8 +23,8 @@ export const SectionsContainer = styled.div(
 
 export const Sections = styled.div(
   ({ theme }) => `
-  background-color: ${theme.colors.c13};
-  border: 1px solid ${theme.colors.c1};
+  background-color: ${theme.colors.background.paginationItem};
+  border: 1px solid ${theme.colors.border.primary};
   border-radius: 4px;
   display: flex;
   flex-wrap: wrap;

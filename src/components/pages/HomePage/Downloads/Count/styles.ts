@@ -4,7 +4,7 @@ export const Heading = styled.h3(
   ({ theme }) => `
   font-weight: 700;
   font-size: .875rem;
-  color: ${theme.colors.c23};
+  color: ${theme.colors.typography.quaternary};
   margin-bottom: 12px;
   line-height: 1.25;
 `,
@@ -14,7 +14,7 @@ export const DownloadCount = styled.strong(
   ({ theme }) => `
   font-size: 1.5rem;
   font-weight: 600;
-  color: ${theme.colors.c24};
+  color: ${theme.colors.typography.primary};
   font-family:
     -apple-system,
     BlinkMacSystemFont,

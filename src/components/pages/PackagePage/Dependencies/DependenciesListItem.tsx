@@ -5,7 +5,11 @@ export default function DependenciesListItem({ deps, label }: { deps: string[]; 
   return (
     <SC.DependenciesListItem>
       <SC.DependencyHeading>{label}</SC.DependencyHeading>
-      <Divider gap="16px" height="1px" css={(theme) => ({ backgroundColor: theme.colors.c26 })} />
+      <Divider
+        gap="16px"
+        height="1px"
+        css={(theme) => ({ backgroundColor: theme.colors.divider.dependency })}
+      />
       <SC.DependencyLinkContainer>
         {deps.map((dep) => {
           return (

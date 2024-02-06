@@ -4,7 +4,7 @@ export const Option = styled.p(
   ({ theme }) => `
   font-size: 0.75rem;
   font-weight: 600;
-  color: ${theme.colors.c2};
+  color: ${theme.colors.typography.tertiary};
 `,
 );
 

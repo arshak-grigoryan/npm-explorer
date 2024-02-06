@@ -11,8 +11,10 @@ function WeeklyDownloadsLayout(props: Downloads) {
   return (
     <SC.InfoBlock>
       <Flex gap="8px" alignItems="center">
-        <DownloadIcon css={(theme) => ({ height: 12, fill: theme.colors.c25 })} />
-        <SC.Title>{text.weeklyDownloads}</SC.Title>
+        <SC.Title>
+          <DownloadIcon css={{ height: 12, marginRight: '8px', fill: 'currentcolor' }} />
+          {text.weeklyDownloads}
+        </SC.Title>
       </Flex>
       <SC.TitleContentOverride>{props.data.downloads.toLocaleString()}</SC.TitleContentOverride>
     </SC.InfoBlock>

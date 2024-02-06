@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Title } from '../styles';
 
 export const CopyIconButton = styled('button')`
   background: transparent;
@@ -9,19 +10,14 @@ export const CopyIconButton = styled('button')`
 export const Code = styled.code(
   ({ theme }) => `
   font-family: Consolas,monaco,monospace;
-  color: ${theme.colors.c24};
+  color: ${theme.colors.typography.primary};
   font-size: .875rem;
   white-space: nowrap;
   line-height: 1.5;
 `,
 );
 
-export const Heading = styled.h3(
-  ({ theme }) => `
-  color: ${theme.colors.c25};
-  font-size: 1rem;
-`,
-);
+export const Heading = styled(Title)``;
 
 export const Installation = styled.div`
   margin-bottom: 16px;
@@ -29,7 +25,7 @@ export const Installation = styled.div`
 
 export const InstallCmdContainer = styled.div(
   ({ theme }) => `
-  border: 1px ${theme.colors.c26} solid;
+  border: 1px ${theme.colors.border.installCmd} solid;
   padding: 0.75rem;
   border-radius: 4px;
   display: flex;

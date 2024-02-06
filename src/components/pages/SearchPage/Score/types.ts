@@ -1,1 +1,1 @@
-export type ScoreProps = { score: { name: string; value: number; color: string }[]; max: number };
+export type ScoreProps = { score: { name: 'p' | 'q' | 'm'; value: number }[]; max: number };

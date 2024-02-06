@@ -10,7 +10,7 @@ export const Heading = styled.h2(
   margin-bottom: 16px;
   font-weight: 600;
   font-size: 1.25rem;
-  color: ${theme.colors.c24}
+  color: ${theme.colors.typography.primary}
 `,
 );
 

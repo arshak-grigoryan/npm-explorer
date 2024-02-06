@@ -60,27 +60,18 @@ export default function SortOptions() {
         id={text.popularity}
         value={popularity}
         onChange={(e) => onPopularityChange(e.target.value)}
-        css={(theme) => ({
-          color: theme.colors.c7,
-        })}
       />
       <SC.SliderLabel htmlFor={text.quality}>{text.quality}</SC.SliderLabel>
       <SC.Slider
         id={text.quality}
         value={quality}
         onChange={(e) => onQualityChange(e.target.value)}
-        css={(theme) => ({
-          color: theme.colors.c8,
-        })}
       />
       <SC.SliderLabel htmlFor={text.maintenance}>{text.maintenance}</SC.SliderLabel>
       <SC.Slider
         id={text.maintenance}
         value={maintenance}
         onChange={(e) => onMaintenanceChange(e.target.value)}
-        css={(theme) => ({
-          color: theme.colors.c9,
-        })}
       />
     </SC.SortOptionsAside>
   );

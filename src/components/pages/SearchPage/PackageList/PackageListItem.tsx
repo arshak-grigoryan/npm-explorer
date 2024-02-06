@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import Chip from 'src/components/common/Chip/Chip';
-import theme from 'src/configs/theme';
 import { text } from 'src/configs/text';
 import Score from '../Score/Score';
 import { PackageListItemProps } from './types';
@@ -19,17 +18,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
           <SC.PackageLink target="_blank" to={`/package/${encodeURIComponent(name)}`}>
             <SC.PackageHeading>{name}</SC.PackageHeading>
           </SC.PackageLink>
-          {isTextMatch && (
-            <Chip
-              css={(theme) => ({
-                letterSpacing: '0.4px',
-                backgroundColor: theme.colors.c3,
-                '&:hover': { backgroundColor: theme.colors.c31 },
-              })}
-            >
-              {text.exactMatch}
-            </Chip>
-          )}
+          {isTextMatch && <SC.ChipExactMatch>{text.exactMatch}</SC.ChipExactMatch>}
         </SC.MatchedPackage>
         <SC.Description>{description}</SC.Description>
         <SC.KeywordsList>
@@ -45,13 +34,7 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
                   },
                 }}
               >
-                <Chip
-                  css={{
-                    letterSpacing: '0.4px',
-                  }}
-                >
-                  {keyword}
-                </Chip>
+                <Chip>{keyword}</Chip>
               </Link>
             </li>
           ))}
@@ -69,17 +52,14 @@ export default function PackageListItem({ obj, searchString }: PackageListItemPr
           {
             name: 'p',
             value: score.detail.popularity,
-            color: theme.colors.c7,
           },
           {
             name: 'q',
             value: score.detail.quality,
-            color: theme.colors.c8,
           },
           {
             name: 'm',
             value: score.detail.maintenance,
-            color: theme.colors.c9,
           },
         ]}
         max={1}

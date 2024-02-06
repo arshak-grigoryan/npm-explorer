@@ -11,7 +11,11 @@ export default function Installation({ version }: { version: string }) {
       <SC.InstallCmdContainer>
         <div>
           <ArrowRightIcon
-            css={(theme) => ({ width: 12.59, height: 12.59, fill: theme.colors.c33 })}
+            css={(theme) => ({
+              width: 12.59,
+              height: 12.59,
+              fill: theme.colors.border.installIcon,
+            })}
           />
         </div>
         <SC.CodeContainer>
@@ -22,10 +26,10 @@ export default function Installation({ version }: { version: string }) {
             css={(theme) => ({
               width: 12.59,
               height: 12.59,
-              fill: theme.colors.c33,
+              fill: theme.colors.border.installIcon,
               cursor: 'pointer',
               '&:hover': {
-                fill: theme.colors.c24,
+                fill: 'currentcolor',
               },
             })}
           />

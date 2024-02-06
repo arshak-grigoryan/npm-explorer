@@ -12,12 +12,18 @@ export default function Downloads() {
         <ChartIcon style={{ color: 'currentColor', height: 14, marginRight: '8px' }} />
         {text.byTheNumbers}
       </SC.Heading>
-      <Divider css={(theme) => ({ backgroundColor: theme.colors.c20 })} />
+      <Divider css={(theme) => ({ backgroundColor: theme.strictColors.divider.c2 })} />
       <SC.CountsContainer>
         <Count url={npmApi.allPackagesLastDayDownloadsUrl} title={text.downloadsLastDay} />
-        <Divider css={(theme) => ({ backgroundColor: theme.colors.c1 })} height="1px" />
+        <Divider
+          css={(theme) => ({ backgroundColor: theme.colors.divider.tertiary })}
+          height="1px"
+        />
         <Count url={npmApi.allPackagesLastWeekDownloadsUrl} title={text.downloadsLastWeek} />
-        <Divider css={(theme) => ({ backgroundColor: theme.colors.c1 })} height="1px" />
+        <Divider
+          css={(theme) => ({ backgroundColor: theme.colors.divider.tertiary })}
+          height="1px"
+        />
         <Count url={npmApi.allPackagesLastMonthDownloadsUrl} title={text.downloadsLastMonth} />
       </SC.CountsContainer>
     </SC.DownloadsSection>

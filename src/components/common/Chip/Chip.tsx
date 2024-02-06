@@ -1,16 +1,17 @@
 import styled from '@emotion/styled';
 
-const Chip = styled.div<{ bgColor?: string }>(
-  ({ theme, bgColor }) => `
+const Chip = styled.div(
+  ({ theme }) => `
     border-radius: 4px;
     padding: 4px 8px;
     height: auto;
     font-size: 0.875rem;
-    color: ${theme.colors.c2};
+    letter-spacing: 0.4px;
+    color: ${theme.colors.typography.tertiary};
     line-height: 1rem;
-    background-color: ${theme.colors.c5 ?? bgColor};
+    background-color: ${theme.colors.chip.common.def};
     &:hover {
-      background-color: ${theme.colors.c1};
+      background-color: ${theme.colors.chip.common.hover};
     };
 `,
 );

@@ -1,5 +1,5 @@
 export type MeterBarProps = {
   max: number;
   value: number;
-  color: string;
+  option: 'p' | 'q' | 'm';
 };

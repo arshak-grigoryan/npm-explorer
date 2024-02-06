@@ -27,7 +27,13 @@ function PackageSidebarContainer(props: SinglePackage) {
           <SC.Title>{text.repository}</SC.Title>
           <SC.ProjectLink to={GithubUrl.href} target="_blank">
             <SC.IconContainer>
-              <GitIcon />
+              <GitIcon
+                css={{
+                  '& g': {
+                    fill: 'currentcolor',
+                  },
+                }}
+              />
             </SC.IconContainer>
             <SC.TitleContent>{GithubUrl.host + GithubUrl.pathname}</SC.TitleContent>
           </SC.ProjectLink>

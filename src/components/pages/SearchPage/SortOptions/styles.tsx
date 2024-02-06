@@ -3,10 +3,12 @@ import { InputHTMLAttributes } from 'react';
 
 export const StyledSortButton = styled.button(
   ({ theme }) => `
-  border: 1px solid ${theme.colors.c16};
+  border: 1px solid ${theme.colors.border.button};
   padding: 6px 12px;
   font-size: 0.875rem;
   font-weight: 700;
+  background-color: ${theme.colors.background.searchButton};
+  color: ${theme.colors.typography.searchButton};
   &:hover {
     cursor: pointer;
   }
@@ -22,10 +24,10 @@ export const SliderLabel = styled.label(
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
-  color: ${theme.colors.c30};
+  color: ${theme.colors.typography.quinary};
   cursor: pointer;
   &:hover {
-    color: ${theme.colors.c4};
+    color: ${theme.colors.typography.secondary};
   }
 `,
 );
@@ -34,7 +36,7 @@ export const Title = styled.p(
   ({ theme }) => `
   font-size: 1rem;
   font-weight: 600;
-  color: ${theme.colors.c2};
+  color: ${theme.colors.typography.tertiary};
   white-space: nowrap;
   margin-right: 16px;
 `,

@@ -8,10 +8,10 @@ export default function Keywords() {
   return (
     <SC.KeyowrdsSection>
       <SC.Heading>
-        <SearchIcon style={{ color: 'currentColor', height: 14, marginRight: '8px' }} />
+        <SearchIcon css={{ height: 14, marginRight: '8px', '& g': { stroke: 'currentColor' } }} />
         {text.discoverPackages}
       </SC.Heading>
-      <Divider css={(theme) => ({ backgroundColor: theme.colors.c17 })} />
+      <Divider css={(theme) => ({ backgroundColor: theme.strictColors.divider.c1 })} />
       <SC.KeywordsList>
         {KeywordConfig.map(({ name, Icon, colors }) => {
           return (

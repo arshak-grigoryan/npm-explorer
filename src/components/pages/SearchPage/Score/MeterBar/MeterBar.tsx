@@ -3,12 +3,15 @@ import { MeterBarProps } from './types';
 
 const width = 75;
 
-export default function MeterBar({ color, value, max }: MeterBarProps) {
+export default function MeterBar({ value, max, option }: MeterBarProps) {
   const scorePercent = (value * 100) / max;
 
   return (
     <SC.MeterBar width={`${width}px`}>
-      <SC.Bar width={`${Math.round((scorePercent * width) / 100)}px`} color={color}></SC.Bar>
+      <SC.Bar
+        width={`${Math.round((scorePercent * width) / 100)}px`}
+        css={(theme) => ({ background: theme.strictColors.sortOptions[option] })}
+      />
     </SC.MeterBar>
   );
 }

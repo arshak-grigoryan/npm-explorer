@@ -4,14 +4,14 @@ export const PackagesCount = styled.h2(
   ({ theme }) => `
   font-weight: 600;
   font-size: 1.125rem;
-  color: ${theme.colors.c4}
+  color: ${theme.colors.typography.secondary}
 `,
 );
 
 export const PackagesCountContainer = styled.div(
   ({ theme }) => `
-  background-color: ${theme.colors.c14};
-  border-bottom: 1px solid ${theme.colors.c1};
+  background-color: ${theme.colors.background.packagesCount};
+  border-bottom: 1px solid ${theme.colors.border.primary};
 `,
 );
 

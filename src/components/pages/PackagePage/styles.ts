@@ -22,11 +22,12 @@ export const ContentContainer = styled.div`
     flex-direction: column;
   }
 `;
+
 export const PageHeading = styled.h1(
   ({ theme }) => `
   font-size: 1.5rem;
   font-weight: 600;
-  color: ${theme.colors.c4};
+  color: ${theme.colors.typography.secondary};
   letter-spacing: -0.8px;
 `,
 );

@@ -11,7 +11,7 @@ export const ListVersion = styled.ul`
 export const VersionLink = styled(Link)(
   ({ theme }) => `
   font-size: 1rem;
-  color: ${theme.colors.c23};
+  color: ${theme.colors.typography.quaternary};
   text-decoration: underline;
   font-family: Consolas,monaco,monospace;
   line-height: 1.5;
@@ -23,7 +23,7 @@ export const VersionsContainer = styled.div(
   display: flex;
   flex-direction: column;
   gap: 16px;
-  color: ${theme.colors.c24};
+  color: ${theme.colors.typography.primary};
 `,
 );
 
@@ -31,20 +31,20 @@ export const TagsHeading = styled.h3(
   ({ theme }) => `
   font-size: 1.25rem;
   font-weight: 600;
-  color: ${theme.colors.c24};
+  color: ${theme.colors.typography.primary};
   margin-bottom: 16px;
 `,
 );
 
 export const VersionDownloads = styled.div(
   ({ theme }) => `
-  color: ${theme.colors.c24}
+  color: ${theme.colors.typography.primary}
 `,
 );
 
 export const TextDivider = styled.div(
   ({ theme }) => `
-  border-bottom: 1px dotted ${theme.colors.c22};
+  border-bottom: 1px dotted ${theme.colors.divider.secondary};
   display: flex;
   align-self: end;
   flex-grow: 1;
@@ -56,7 +56,7 @@ export const TextDivider = styled.div(
 export const ListVersionItem = styled.li(
   ({ theme }) => `
   display: flex;
-  color: ${theme.colors.c23};
+  color: ${theme.colors.typography.quaternary};
   gap: 4px;
   font-size: 1rem;
 `,

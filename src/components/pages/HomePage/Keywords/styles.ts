@@ -12,7 +12,7 @@ export const Heading = styled.h2(
   margin-bottom: 16px;
   font-weight: 600;
   font-size: 1.25rem;
-  color: ${theme.colors.c24}
+  color: ${theme.colors.typography.primary}
 `,
 );
 
@@ -34,21 +34,21 @@ export const Link = styled(RouterLink, { shouldForwardProp: isPropValid })<{
 }>(
   ({ theme, color, backgroundColor }) => `
   padding: 24px 32px;
-  color: ${theme.colors.c19};
+  color: ${theme.colors.typography.keywordItem};
   display: flex;
   gap: 16px;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${theme.colors.c18};
-  border-bottom: 2px solid ${theme.colors.c18};
-  transition: 0.2s linear;
+  border: 1px solid ${theme.colors.border.keywordItem};
+  border-bottom: 2px solid ${theme.colors.border.keywordItem};
   white-space: nowrap;
   font-weight: 800;
   font-size: 1rem;
   &:hover {
+    transition: 0.2s linear;
     color: ${color};
     background-color: ${backgroundColor};
-    border-bottom-color: ${color};
+    border-color: ${color};
   };
 `,
 );
