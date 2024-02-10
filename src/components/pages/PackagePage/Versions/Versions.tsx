@@ -10,8 +10,7 @@ export default function Versions() {
   return (
     <FetchLayout
       res={{
-        isFetching: res1.isFetching || res2.isFetching,
-        isFetched: res1.isFetched || res2.isFetched,
+        loading: res1.loading || res2.loading,
         error: res1.error || res2.error,
         data: { downloadsData: res1.data, packageData: res2.data },
       }}

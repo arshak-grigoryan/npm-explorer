@@ -3,58 +3,49 @@ import { useEffect, useState } from 'react';
 export type FetchResponse = {
   data: unknown | null;
   error: Error | null;
-  isFetching: boolean;
-  isFetched: boolean;
+  loading: boolean;
 };
 
-// TODO: Memoize response
+const cache = new Map();
+
 export default function useFetch(url: string): FetchResponse {
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(() => cache.get(url) ?? null);
 
   useEffect(() => {
     const controller = new AbortController();
     async function getPackages() {
-      if (url) {
-        setIsFetching(true);
-        setIsFetched(false);
-        try {
-          const response = await fetch(url, { signal: controller.signal });
-          if (controller.signal.aborted) {
-            return;
-          }
-          if (response.status >= 500) {
-            setError(new Error(response.statusText));
-          }
-          const result = await response.json();
-          if (result.error) {
-            setError(new Error(result.error));
-          } else {
-            setData(result);
-          }
-          setIsFetching(false);
-          setIsFetched(true);
-        } catch (error) {
-          if (error instanceof Error && error.name !== 'AbortError') {
-            setError(error);
-          }
-        }
+      if (!url || data) {
+        setLoading(false);
+        return;
       }
+      setLoading(true);
+      try {
+        const response = await fetch(url, { signal: controller.signal });
+        if (controller.signal.aborted) {
+          throw new Error('Signal was aborted');
+        }
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const result = await response.json();
+        if (result.error) {
+          throw new Error(result.error);
+        } else {
+          cache.set(url, result);
+          setData(result);
+        }
+      } catch (error) {
+        setError(error as Error);
+      }
+      setLoading(false);
     }
 
     getPackages();
 
-    return () => {
-      controller.abort();
-    };
-  }, [url]);
+    return () => controller.abort();
+  }, [url, data]);
 
-  return {
-    data,
-    error,
-    isFetching,
-    isFetched,
-  };
+  return { data, error, loading };
 }
