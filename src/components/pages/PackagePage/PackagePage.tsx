@@ -6,28 +6,31 @@ import Tabs, { TabComponent } from './Tabs/Tabs';
 import PackageSidebar from './PackageSidebar/PackageSidebar';
 import { TabsEnum } from './Tabs/types';
 import * as SC from './styles';
+import { PackagePageContextProvider } from './PackagePageProvider/PackagePageProvider';
 
 export default function PackagePage() {
   const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
   const { name } = useParams();
 
   return (
-    <div>
-      <Header />
-      <main>
-        <SC.WidthContainer>
-          <SC.PackageShortInfo>
-            <SC.PageHeading>{name}</SC.PageHeading>
-          </SC.PackageShortInfo>
-          <Tabs />
-          <SC.ContentContainer>
-            <SC.TabContentContainer>{TabComponent[activeTab]}</SC.TabContentContainer>
-            <SC.PackageSidebarContainer>
-              <PackageSidebar />
-            </SC.PackageSidebarContainer>
-          </SC.ContentContainer>
-        </SC.WidthContainer>
-      </main>
-    </div>
+    <PackagePageContextProvider>
+      <div>
+        <Header />
+        <main>
+          <SC.WidthContainer>
+            <SC.PackageShortInfo>
+              <SC.PageHeading>{name}</SC.PageHeading>
+            </SC.PackageShortInfo>
+            <Tabs />
+            <SC.ContentContainer>
+              <SC.TabContentContainer>{TabComponent[activeTab]}</SC.TabContentContainer>
+              <SC.PackageSidebarContainer>
+                <PackageSidebar />
+              </SC.PackageSidebarContainer>
+            </SC.ContentContainer>
+          </SC.WidthContainer>
+        </main>
+      </div>
+    </PackagePageContextProvider>
   );
 }

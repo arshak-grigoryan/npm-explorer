@@ -26,7 +26,7 @@ export type SinglePackage = {
   };
 };
 
-type SinglePackageResponse = FetchResponse & SinglePackage;
+export type SinglePackageResponse = FetchResponse & SinglePackage;
 
 export default function useGetSinglePackage() {
   const { name } = useParams();

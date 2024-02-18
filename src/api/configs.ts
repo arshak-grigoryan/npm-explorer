@@ -1,5 +1,6 @@
 const NPM_REGISTRY = 'https://registry.npmjs.org';
 const NPM_API = 'https://api.npmjs.org';
+const NPM_JS = 'https://www.npmjs.com';
 
 export const npmRegistry = {
   searchUrl: `${NPM_REGISTRY}/-/v1/search`,
@@ -30,3 +31,12 @@ export const npmApi = {
 export const PER_PAGE_PACKAGES_COUNT = 20;
 export const PAGE = 'page';
 export const ACTIVE_TAB = 'activeTab';
+
+export const npmjs = {
+  getpPackageVersionCodeFilesUrl: function (name: string, version: string) {
+    return `${NPM_JS}/package/${name}/v/${version}/index`;
+  },
+  getPackageVersionFileCodeUrl: function (name: string, hex: string) {
+    return `${NPM_JS}/package/${name}/file/${hex}`;
+  },
+};

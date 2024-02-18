@@ -11,6 +11,7 @@ const lightColors: Theme['colors'] = {
     installIcon: 'rgba(0,0,0,.5)',
     searchInput: '#f2f2f2',
     searchInputFocus: '#231f20',
+    code: '#ececec',
   },
   typography: {
     primary: 'rgba(0,0,0,.8)',
@@ -25,6 +26,7 @@ const lightColors: Theme['colors'] = {
     paginationItem: '#666666',
     publishDetails: '#666666',
     searchButton: '#ffffff',
+    code: '#343434',
   },
   background: {
     body: '#ffffff',
@@ -36,6 +38,7 @@ const lightColors: Theme['colors'] = {
     paginationItemHover: '#f8f8f8',
     dropdownItem: '#efefef',
     dropdownItemActive: 'rgba(0,0,0,.1)',
+    code: '#f5f2f0',
   },
   divider: {
     primary: '#000000',
@@ -72,6 +75,7 @@ const darkColors: Theme['colors'] = {
     installIcon: 'rgba(255, 255, 255, 0.5)',
     searchInput: '#2E2E2E',
     searchInputFocus: '#f1f1f1',
+    code: 'rgba(255,255,255,0.2)',
   },
   typography: {
     primary: 'rgba(255, 255, 255, 0.8)',
@@ -86,6 +90,7 @@ const darkColors: Theme['colors'] = {
     paginationItem: '#999999',
     publishDetails: '#999999',
     searchButton: '#000000',
+    code: '#343434',
   },
   background: {
     body: '#141414',
@@ -97,6 +102,7 @@ const darkColors: Theme['colors'] = {
     paginationItemHover: '#070707',
     dropdownItem: '#101010',
     dropdownItemActive: 'rgba(255,255,255,0.2)',
+    code: '#272822',
   },
   divider: {
     primary: '#f1f1f1',

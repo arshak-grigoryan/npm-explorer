@@ -3,13 +3,14 @@ import { ACTIVE_TAB } from 'src/api/configs';
 import Readme from '../Readme/Readme';
 import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';
+import Code from '../Code/Code';
 import { TabProps, TabsEnum } from './types';
 import { TabsConfig } from './configs';
 import * as SC from './styles';
 
 export const TabComponent = {
   [TabsEnum.readme]: <Readme />,
-  [TabsEnum.code]: <></>,
+  [TabsEnum.code]: <Code />,
   [TabsEnum.dependencies]: <Dependency />,
   [TabsEnum.dependents]: <></>,
   [TabsEnum.versions]: <Versions />,

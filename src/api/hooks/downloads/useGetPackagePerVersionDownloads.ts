@@ -9,7 +9,7 @@ export type PerVersionDownloads = {
   };
 };
 
-type PerVersionDownloadsResponse = FetchResponse & PerVersionDownloads;
+export type PerVersionDownloadsResponse = FetchResponse & PerVersionDownloads;
 
 export default function useGetPackagePerVersionDownloads() {
   const { name } = useParams();

@@ -1,11 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { npmApi } from 'src/api/configs';
-import useGetPackageDownloads, { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
+import { useContext } from 'react';
+import { Downloads } from 'src/api/hooks/downloads/useGetPackageDownloads';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import DownloadIcon from 'src/assets/Download.svg?react';
 import { text } from 'src/configs/text';
 import Flex from 'src/components/common/Flex/Flex';
 import * as SC from '../styles';
+import { PackagePageContext } from '../../PackagePageProvider/PackagePageProvider';
 
 function WeeklyDownloadsLayout(props: Downloads) {
   return (
@@ -22,13 +22,11 @@ function WeeklyDownloadsLayout(props: Downloads) {
 }
 
 export default function WeeklyDownloads() {
-  const { name } = useParams();
-  const url = name ? `${npmApi.allPackagesLastWeekDownloadsUrl}/${name}` : '';
-  const res = useGetPackageDownloads(url);
+  const { weeklyDownloadsRes } = useContext(PackagePageContext);
 
   return (
     <FetchLayout
-      res={res}
+      res={weeklyDownloadsRes}
       slots={{
         Content: WeeklyDownloadsLayout,
       }}

@@ -6,9 +6,17 @@ export type FetchResponse = {
   loading: boolean;
 };
 
+export enum ContentType {
+  json = 'application/json',
+  binary = 'application/octet-stream',
+}
+
 const cache = new Map();
 
-export default function useFetch(url: string): FetchResponse {
+export default function useFetch(
+  url: string,
+  contentType: string = ContentType.json,
+): FetchResponse {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState(() => cache.get(url) ?? null);
@@ -16,7 +24,7 @@ export default function useFetch(url: string): FetchResponse {
   useEffect(() => {
     const controller = new AbortController();
     async function getPackages() {
-      if (!url || data) {
+      if (!url) {
         setLoading(false);
         return;
       }
@@ -29,7 +37,14 @@ export default function useFetch(url: string): FetchResponse {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        const result = await response.json();
+        let result;
+        if (contentType === ContentType.binary) {
+          const buffer = await response.arrayBuffer();
+          const decoder = new TextDecoder('utf-8');
+          result = decoder.decode(buffer);
+        } else {
+          result = await response.json();
+        }
         if (result.error) {
           throw new Error(result.error);
         } else {
@@ -45,7 +60,7 @@ export default function useFetch(url: string): FetchResponse {
     getPackages();
 
     return () => controller.abort();
-  }, [url, data]);
+  }, [url, contentType]);
 
   return { data, error, loading };
 }

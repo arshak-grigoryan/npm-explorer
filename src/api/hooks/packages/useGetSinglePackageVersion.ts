@@ -10,13 +10,13 @@ export type SinglePackageversion = {
   };
 };
 
-type SinglePackageResponse = FetchResponse & SinglePackageversion;
+export type SinglePackageVersionResponse = FetchResponse & SinglePackageversion;
 
 export default function useGetSinglePackageVersion() {
   const { name, version } = useParams();
   const url = name ? npmRegistry.getSinglePackageVersionUrl(name, version) : '';
 
-  const res = useFetch(url) as SinglePackageResponse;
+  const res = useFetch(url) as SinglePackageVersionResponse;
 
   return res;
 }

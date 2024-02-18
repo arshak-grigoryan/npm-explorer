@@ -13,6 +13,7 @@ declare module '@emotion/react' {
         installIcon: string;
         searchInput: string;
         searchInputFocus: string;
+        code: string;
       };
       typography: {
         primary: string;
@@ -27,6 +28,7 @@ declare module '@emotion/react' {
         paginationItem: string;
         publishDetails: string;
         searchButton: string;
+        code: string;
       };
       background: {
         body: string;
@@ -38,6 +40,7 @@ declare module '@emotion/react' {
         paginationItemHover: string;
         dropdownItem: string;
         dropdownItemActive: string;
+        code: string;
       };
       divider: { primary: string; secondary: string; tertiary: string; dependency: string };
       chip: {

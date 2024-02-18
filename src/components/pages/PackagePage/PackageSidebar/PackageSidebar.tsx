@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
-import useGetSinglePackage, { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
+import { useContext } from 'react';
+import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
 import GitIcon from 'src/assets/Git.svg?react';
 import LinkIcon from 'src/assets/Link.svg?react';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import { text } from 'src/configs/text';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
+import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
 import * as SC from './styles';
 import Installation from './Installation/Installation';
 import WeeklyDownloads from './WeeklyDownloads/WeeklyDownloads';
@@ -84,11 +86,11 @@ function PackageSidebarContainer(props: SinglePackage) {
 }
 
 export default function PackageSidebar() {
-  const res = useGetSinglePackage();
+  const { singlePackagesRes } = useContext(PackagePageContext);
 
   return (
     <FetchLayout
-      res={res}
+      res={singlePackagesRes}
       slots={{
         Content: PackageSidebarContainer,
       }}

@@ -1,18 +1,20 @@
-import useGetPackagePerVersionDownloads from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
-import useGetSinglePackage from 'src/api/hooks/packages/useGetSinglePackage';
+import { useContext } from 'react';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
+import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
 import VersionsContainer from './VersionsContainer';
 
 export default function Versions() {
-  const res1 = useGetPackagePerVersionDownloads();
-  const res2 = useGetSinglePackage();
+  const { singlePackagesRes, packagePerVersionDownloadsRes } = useContext(PackagePageContext);
 
   return (
     <FetchLayout
       res={{
-        loading: res1.loading || res2.loading,
-        error: res1.error || res2.error,
-        data: { downloadsData: res1.data, packageData: res2.data },
+        loading: packagePerVersionDownloadsRes.loading || singlePackagesRes.loading,
+        error: packagePerVersionDownloadsRes.error || singlePackagesRes.error,
+        data: {
+          downloadsData: packagePerVersionDownloadsRes.data,
+          packageData: singlePackagesRes.data,
+        },
       }}
       slots={{
         Content: VersionsContainer,
