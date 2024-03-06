@@ -29,7 +29,7 @@ export default function Installation({ version }: { version: string }) {
               fill: theme.colors.border.installIcon,
               cursor: 'pointer',
               '&:hover': {
-                fill: 'currentcolor',
+                fill: theme.colors.typography.primary,
               },
             })}
           />

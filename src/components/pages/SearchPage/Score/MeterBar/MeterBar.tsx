@@ -10,7 +10,7 @@ export default function MeterBar({ value, max, option }: MeterBarProps) {
     <SC.MeterBar width={`${width}px`}>
       <SC.Bar
         width={`${Math.round((scorePercent * width) / 100)}px`}
-        css={(theme) => ({ background: theme.strictColors.sortOptions[option] })}
+        css={(theme) => ({ background: theme.staticColors.sortOptions[option] })}
       />
     </SC.MeterBar>
   );

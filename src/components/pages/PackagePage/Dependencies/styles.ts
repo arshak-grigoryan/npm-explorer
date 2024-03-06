@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const DependencyLink = styled(Link)(
   ({ theme }) => `
-  color: ${theme.strictColors.sortOptions.m};
+  color: ${theme.staticColors.sortOptions.m};
   font-size: 1.25rem;
   &:hover {
     transition: color .15s ease-in;

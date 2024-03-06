@@ -19,7 +19,7 @@ export default function Logo() {
       ) : (
         <>
           <LogoIconDark height={18} />
-          <SC.LogoText css={(theme) => ({ color: theme.strictColors.logo.dark })}>
+          <SC.LogoText css={(theme) => ({ color: theme.staticColors.logo.dark })}>
             Explorer
           </SC.LogoText>
         </>

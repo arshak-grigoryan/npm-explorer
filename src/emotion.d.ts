@@ -59,8 +59,26 @@ declare module '@emotion/react' {
       shadow: {
         header: string;
       };
+      markdown: {
+        heading: string;
+        anchor: string;
+        strong: string;
+        li: string;
+        pre: {
+          background: string;
+        };
+        code: {
+          background: string;
+        };
+        blockquote: {
+          background: string;
+          border: string;
+          paragraph: string;
+          anchor: string;
+        };
+      };
     };
-    strictColors: {
+    staticColors: {
       lineGradient: string;
       sortOptions: {
         p: string;

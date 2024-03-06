@@ -12,7 +12,7 @@ export const GradientLine = styled.div(
   ({ theme }) => `
   border-width: 10px;
   border-top-style: solid;
-  border-image: ${theme.strictColors.lineGradient}
+  border-image: ${theme.staticColors.lineGradient}
 `,
 );
 

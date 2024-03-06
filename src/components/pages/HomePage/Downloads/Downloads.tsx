@@ -12,7 +12,7 @@ export default function Downloads() {
         <ChartIcon style={{ color: 'currentColor', height: 14, marginRight: '8px' }} />
         {text.byTheNumbers}
       </SC.Heading>
-      <Divider css={(theme) => ({ backgroundColor: theme.strictColors.divider.c2 })} />
+      <Divider css={(theme) => ({ backgroundColor: theme.staticColors.divider.c2 })} />
       <SC.CountsContainer>
         <Count url={npmApi.allPackagesLastDayDownloadsUrl} title={text.downloadsLastDay} />
         <Divider

@@ -62,6 +62,24 @@ const lightColors: Theme['colors'] = {
   shadow: {
     header: 'rgba(0,0,0,.1)',
   },
+  markdown: {
+    heading: '#111111',
+    anchor: '#cb3837',
+    strong: '#000000',
+    li: '#333333',
+    pre: {
+      background: '#f7f7f7',
+    },
+    code: {
+      background: '#f7f7f7',
+    },
+    blockquote: {
+      background: '#efefef',
+      border: '#cecece',
+      paragraph: 'rgba(0, 0, 0, .85)',
+      anchor: '#c40b0a',
+    },
+  },
 };
 
 const darkColors: Theme['colors'] = {
@@ -126,9 +144,27 @@ const darkColors: Theme['colors'] = {
   shadow: {
     header: 'rgba(255,255,255,0.2)',
   },
+  markdown: {
+    heading: '#eeeeee',
+    anchor: '#cb3837',
+    strong: '#ffffff',
+    li: '#cccccc',
+    pre: {
+      background: '#282828',
+    },
+    code: {
+      background: '#282828',
+    },
+    blockquote: {
+      background: '#212121',
+      border: '#313131',
+      paragraph: 'rgba(255, 255, 255, .85)',
+      anchor: '#c40b0a',
+    },
+  },
 };
 
-const strictColors = {
+const staticColors = {
   lineGradient: 'linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3',
   sortOptions: {
     p: '#29abe2',
@@ -146,7 +182,7 @@ const strictColors = {
 };
 
 const theme = {
-  strictColors,
+  staticColors,
   width: {
     w1: '1536px',
     w2: '1200px',
