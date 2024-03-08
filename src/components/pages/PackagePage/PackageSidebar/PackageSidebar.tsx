@@ -1,18 +1,34 @@
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
+import { format } from 'date-fns';
 import GitIcon from 'src/assets/Git.svg?react';
 import LinkIcon from 'src/assets/Link.svg?react';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import { text } from 'src/configs/text';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
 import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
+import { humanFileSize } from '../Code/utils';
 import * as SC from './styles';
 import Installation from './Installation/Installation';
 import WeeklyDownloads from './WeeklyDownloads/WeeklyDownloads';
+import { PackageSidebarContainerProps } from './types';
 
-function PackageSidebarContainer(props: SinglePackage) {
-  const { 'dist-tags': distTags, repository, homepage, license, name } = props.data;
+function PackageSidebarContainer(props: PackageSidebarContainerProps) {
+  const {
+    'dist-tags': distTags,
+    repository,
+    homepage,
+    license,
+    name,
+    maintainers,
+    time,
+  } = props.data.singlePackages;
+  const {
+    dist: { fileCount, unpackedSize },
+  } = props.data.singlePackageVersion;
+  const { open_issues_count } = props.data.repository;
+  const pulls = props.data.repositoryPulls;
+
   const { version } = useParams();
   const isLatestVersion = !version || (version && version === distTags.latest);
   const installVersion = version ? (isLatestVersion ? name : `${name}@${version}`) : name;
@@ -65,32 +81,66 @@ function PackageSidebarContainer(props: SinglePackage) {
       </SC.InfoBlock>
       <SC.InfoBlock>
         <SC.SplitInfoBlock>
+          <SC.Title>{text.unpackedSize}</SC.Title>
+          <SC.TitleContentOverride>{humanFileSize(unpackedSize)}</SC.TitleContentOverride>
+        </SC.SplitInfoBlock>
+        <SC.SplitInfoBlock>
+          <SC.Title>{text.totalFiles}</SC.Title>
+          <SC.TitleContentOverride>{fileCount}</SC.TitleContentOverride>
+        </SC.SplitInfoBlock>
+      </SC.InfoBlock>
+      <SC.InfoBlock>
+        <SC.SplitInfoBlock>
           <SC.Title>{text.issues}</SC.Title>
-          <SC.TitleContentOverride></SC.TitleContentOverride>
+          <SC.TitleContentOverride>{open_issues_count}</SC.TitleContentOverride>
         </SC.SplitInfoBlock>
         <SC.SplitInfoBlock>
           <SC.Title>{text.pullRequests}</SC.Title>
-          <SC.TitleContentOverride></SC.TitleContentOverride>
+          <SC.TitleContentOverride>{pulls.length}</SC.TitleContentOverride>
         </SC.SplitInfoBlock>
       </SC.InfoBlock>
       <SC.InfoBlock>
         <SC.Title>{text.lastPublish}</SC.Title>
-        <SC.TitleContentOverride></SC.TitleContentOverride>
+        <SC.TitleContentOverride>
+          {format(new Date(time.modified), 'MMMM dd yyyy HH:mm:ss')}
+        </SC.TitleContentOverride>
       </SC.InfoBlock>
       <SC.InfoBlock>
         <SC.Title>{text.collaborators}</SC.Title>
-        <SC.TitleContentOverride></SC.TitleContentOverride>
+        {maintainers.map(({ name }) => (
+          <SC.TitleContentOverride key={name}>{name}</SC.TitleContentOverride>
+        ))}
       </SC.InfoBlock>
     </SC.PackageSidebar>
   );
 }
 
 export default function PackageSidebar() {
-  const { singlePackagesRes } = useContext(PackagePageContext);
+  const { singlePackagesRes, singlePackageVersionRes, repositoryRes, repositoryPullsRes } =
+    useContext(PackagePageContext);
 
   return (
     <FetchLayout
-      res={singlePackagesRes}
+      res={{
+        loading: !(
+          singlePackagesRes.loading === false &&
+          singlePackageVersionRes.loading === false &&
+          repositoryRes.loading === false &&
+          repositoryRes.data !== null &&
+          repositoryPullsRes.loading === false
+        ),
+        error:
+          singlePackagesRes.error ||
+          singlePackageVersionRes.error ||
+          repositoryRes.error ||
+          repositoryPullsRes.error,
+        data: {
+          singlePackages: singlePackagesRes.data,
+          singlePackageVersion: singlePackageVersionRes.data,
+          repository: repositoryRes.data,
+          repositoryPulls: repositoryPullsRes.data,
+        },
+      }}
       slots={{
         Content: PackageSidebarContainer,
       }}

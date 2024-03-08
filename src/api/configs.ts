@@ -40,3 +40,14 @@ export const npmjs = {
     return `${NPM_JS}/package/${name}/file/${hex}`;
   },
 };
+
+const GITHUB_API = 'https://api.github.com';
+
+export const githubApi = {
+  getRepoApiUrl: function (owner: string, repo: string) {
+    return `${GITHUB_API}/repos/${owner}/${repo}`;
+  },
+  getRepoPullsApiUrl: function (owner: string, repo: string) {
+    return `${GITHUB_API}/repos/${owner}/${repo}/pulls`;
+  },
+};

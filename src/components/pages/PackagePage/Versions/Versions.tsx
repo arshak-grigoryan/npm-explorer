@@ -9,7 +9,9 @@ export default function Versions() {
   return (
     <FetchLayout
       res={{
-        loading: packagePerVersionDownloadsRes.loading || singlePackagesRes.loading,
+        loading: !(
+          singlePackagesRes.loading === false && packagePerVersionDownloadsRes.loading === false
+        ),
         error: packagePerVersionDownloadsRes.error || singlePackagesRes.error,
         data: {
           downloadsData: packagePerVersionDownloadsRes.data,

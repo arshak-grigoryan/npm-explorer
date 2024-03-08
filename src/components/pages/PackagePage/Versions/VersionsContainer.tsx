@@ -9,7 +9,6 @@ export default function VersionsContainer({
   data: { downloadsData, packageData },
 }: VersionsContainerProps) {
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     time: { modified, created, ...versions },
     'dist-tags': currentTags,
   } = packageData;
@@ -20,13 +19,13 @@ export default function VersionsContainer({
     return new Date(aReleaseDate).getTime() - new Date(bReleaseDate).getTime();
   });
 
-  const versionHostoryDownloadStats: VersionHistoryStats = [];
+  const versionHistoryDownloadStats: VersionHistoryStats = [];
 
   sortedVersionHistory.forEach((value) => {
     const version = value[0];
     const downloads = downloadsData.downloads[version];
     const releaseDate = new Date(value[1]);
-    versionHostoryDownloadStats.push([version, downloads, releaseDate]);
+    versionHistoryDownloadStats.push([version, downloads, releaseDate]);
   });
 
   const currentTagsKeyValueSwaped: Record<string, string> = {};
@@ -37,7 +36,7 @@ export default function VersionsContainer({
 
   const currentTagsDownloadStats: CurrentTagsStats = [];
 
-  versionHostoryDownloadStats.filter((stats) => {
+  versionHistoryDownloadStats.filter((stats) => {
     const tag = currentTagsKeyValueSwaped[stats[0]];
     if (tag) {
       const version = stats[0];
@@ -54,7 +53,7 @@ export default function VersionsContainer({
       <VersionList data={currentTagsDownloadStats} packageName={downloadsData.package} />
       <SC.TagsHeading css={{ marginTop: '16px' }}>{text.versionHistory}</SC.TagsHeading>
       <VersionListHeader columns={[text.version, text.downloadsLast7Days, text.published]} />
-      <VersionList data={versionHostoryDownloadStats} packageName={downloadsData.package} />
+      <VersionList data={versionHistoryDownloadStats} packageName={downloadsData.package} />
     </SC.VersionsContainer>
   );
 }

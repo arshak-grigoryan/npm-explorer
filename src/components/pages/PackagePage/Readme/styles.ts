@@ -50,7 +50,7 @@ export const ReadmeContent = styled.div(
   > *:last-child {
     margin-bottom: 0
   }
-  h1:first-child {
+  h1:first-of-type {
     font-weight: 700;
     margin-top: 0
   }
@@ -317,7 +317,7 @@ export const ReadmeContent = styled.div(
       padding: 9px 13px;
       border: 1px solid #d8d8d8
   }
-  tr:nth-child(2n) td {
+  tr:nth-of-type(2n) td {
       background-color: #f4f4f4
   }
 `,

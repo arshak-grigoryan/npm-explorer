@@ -22,6 +22,8 @@ export const text = {
   homepage: 'Homepage',
   version: 'Version',
   license: 'License',
+  unpackedSize: 'Unpacked Size',
+  totalFiles: 'Total Files',
   issues: 'Issues',
   pullRequests: 'Pull Requests',
   lastPublish: 'Last Publish',

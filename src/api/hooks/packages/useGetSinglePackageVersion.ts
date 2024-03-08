@@ -7,6 +7,10 @@ export type SinglePackageversion = {
     dependencies: Record<string, string>;
     peerDependencies: Record<string, string>;
     devDependencies: Record<string, string>;
+    dist: {
+      fileCount: number;
+      unpackedSize: number;
+    };
   };
 };
 

@@ -23,6 +23,7 @@ export type SinglePackage = {
       url: string;
     };
     license: string;
+    maintainers: Array<{ name: string; email: string }>;
   };
 };
 
