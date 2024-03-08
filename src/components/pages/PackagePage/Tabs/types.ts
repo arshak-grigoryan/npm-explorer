@@ -5,6 +5,7 @@ export type TabProps = {
   label: string;
   colors: any;
   selected: boolean;
+  count: number;
 };
 
 export enum TabsEnum {

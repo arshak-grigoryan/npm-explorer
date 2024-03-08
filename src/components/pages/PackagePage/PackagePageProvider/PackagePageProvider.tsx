@@ -1,37 +1,16 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { npmjs, npmApi } from 'src/api/configs';
-import useGetRepository, { RepositoryResponse } from 'src/api/github/useGetRepository';
-import useGetRepositoryPulls, {
-  RepositoryPullsResponse,
-} from 'src/api/github/useGetRepositoryPulls';
-import useGetCodeFiles, { CodeFilesResponse } from 'src/api/hooks/code/useGetCodeFiles';
-import useGetFileCode, { FileCodeResponse } from 'src/api/hooks/code/useGetFileCode';
-import useGetPackageDownloads, {
-  DownloadsPointResponse,
-} from 'src/api/hooks/downloads/useGetPackageDownloads';
-import useGetPackagePerVersionDownloads, {
-  PerVersionDownloadsResponse,
-} from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
-import useGetSinglePackage, {
-  SinglePackageResponse,
-} from 'src/api/hooks/packages/useGetSinglePackage';
-import useGetSinglePackageVersion, {
-  SinglePackageVersionResponse,
-} from 'src/api/hooks/packages/useGetSinglePackageVersion';
-
-type PackagePageContextType = {
-  singlePackagesRes: SinglePackageResponse;
-  singlePackageVersionRes: SinglePackageVersionResponse;
-  packagePerVersionDownloadsRes: PerVersionDownloadsResponse;
-  packageVersionCodeRes: CodeFilesResponse;
-  weeklyDownloadsRes: DownloadsPointResponse;
-  fileHash: string;
-  setFileHash: Dispatch<SetStateAction<string>>;
-  packageVersionFileCodeRes: FileCodeResponse;
-  repositoryRes: RepositoryResponse;
-  repositoryPullsRes: RepositoryPullsResponse;
-};
+import useGetRepository from 'src/api/github/useGetRepository';
+import useGetRepositoryPulls from 'src/api/github/useGetRepositoryPulls';
+import useGetCodeFiles from 'src/api/hooks/code/useGetCodeFiles';
+import useGetFileCode from 'src/api/hooks/code/useGetFileCode';
+import useGetPackageDownloads from 'src/api/hooks/downloads/useGetPackageDownloads';
+import useGetPackagePerVersionDownloads from 'src/api/hooks/downloads/useGetPackagePerVersionDownloads';
+import useGetSinglePackage from 'src/api/hooks/packages/useGetSinglePackage';
+import useGetSinglePackageVersion from 'src/api/hooks/packages/useGetSinglePackageVersion';
+import { TabsEnum } from '../Tabs/types';
+import { PackagePageContextType } from './types';
 
 export const PackagePageContext = createContext<PackagePageContextType>(null as any);
 
@@ -73,6 +52,20 @@ export function PackagePageContextProvider({ children }: { children: ReactNode }
 
   const repositoryPullsRes = useGetRepositoryPulls(repoOwnerName[0], repoOwnerName[1]);
 
+  const tabCounts = useMemo(() => {
+    const counts = { [TabsEnum.dependencies]: 0, [TabsEnum.versions]: 0 };
+
+    if (singlePackageVersionRes.data?.dependencies) {
+      counts[TabsEnum.dependencies] = Object.keys(singlePackageVersionRes.data.dependencies).length;
+    }
+
+    if (singlePackagesRes.data?.versions) {
+      counts[TabsEnum.versions] = Object.keys(singlePackagesRes.data.versions).length;
+    }
+
+    return counts;
+  }, [singlePackageVersionRes, singlePackagesRes]);
+
   return (
     <PackagePageContext.Provider
       value={{
@@ -86,6 +79,7 @@ export function PackagePageContextProvider({ children }: { children: ReactNode }
         packageVersionFileCodeRes,
         repositoryRes,
         repositoryPullsRes,
+        tabCounts,
       }}
     >
       {children}
