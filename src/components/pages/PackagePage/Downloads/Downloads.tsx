@@ -3,7 +3,7 @@
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Dropdown } from 'rsuite';
+import { ChangeEvent } from 'react';
 import useGetPackageDownloadsRange from 'src/api/hooks/downloads/useGetPackageDownloadsRange';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import { PackageDownloads } from 'src/api/hooks/types';
@@ -17,55 +17,44 @@ type DownloadsLayoutProps = {
 };
 
 function DownloadsLayout(props: DownloadsLayoutProps) {
-  const {
-    packageDownloadsStartDate,
-    setPackageDownloadsStartDate,
-    downloadsRange,
-    setDownloadsRange,
-  } = usePackageContext();
+  const { setPackageDownloadsStartDate, downloadsRange, setDownloadsRange } = usePackageContext();
   const options = useGetDownloadsChartOptions(props.data, downloadsRange.value);
 
   return (
     <div>
       <SC.DownloadsDropdownContainer>
         <SC.DownloadsTypography>Downloads per</SC.DownloadsTypography>
-        <Dropdown
-          defaultValue={downloadsRange.value}
-          title={downloadsRange.label}
-          onSelect={(eventKey) => {
-            const range = rangeOptions.find(({ value }) => eventKey === value);
+        <select
+          onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+            const range = rangeOptions.find(({ value }) => Number(event.target.value) === value);
             if (range) {
               setDownloadsRange(range);
             }
           }}
         >
           {rangeOptions.map(({ label, value }) => (
-            <Dropdown.Item key={value} eventKey={value} active={value === downloadsRange.value}>
+            <option key={value} value={value}>
               {label}
-            </Dropdown.Item>
+            </option>
           ))}
-        </Dropdown>
+        </select>
         <SC.DownloadsTypography>in past</SC.DownloadsTypography>
-        <Dropdown
-          defaultValue={packageDownloadsStartDate.value}
-          title={packageDownloadsStartDate.label}
-          onSelect={(eventKey) => {
-            const range = downloadsPastDateOptions.find(({ value }) => eventKey === value);
+        <select
+          onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+            const range = downloadsPastDateOptions.find(
+              ({ value }) => Number(event.target.value) === value,
+            );
             if (range) {
               setPackageDownloadsStartDate(range);
             }
           }}
         >
           {downloadsPastDateOptions.map(({ label, value }) => (
-            <Dropdown.Item
-              key={value}
-              eventKey={value}
-              active={value === packageDownloadsStartDate.value}
-            >
+            <option key={value} value={value}>
               {label}
-            </Dropdown.Item>
+            </option>
           ))}
-        </Dropdown>
+        </select>
       </SC.DownloadsDropdownContainer>
       <SC.ChartContainer>
         <HighchartsReact highcharts={Highcharts} options={options} />

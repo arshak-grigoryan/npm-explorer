@@ -3,8 +3,7 @@
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Dropdown } from 'rsuite';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import useGetDownloadsChartOptions from 'src/hooks/useGetDownloadsChartOptions';
 import { PackageDownloads } from 'src/api/hooks/types';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
@@ -33,22 +32,20 @@ function AllDownloadsLayout(props: AllDownloadsLayoutProps) {
       <Divider css={(theme) => ({ backgroundColor: theme.staticColors.divider.c3 })} />
       <SC.DownloadsDropdownContainer>
         <SC.DownloadsTypography>Downloads per</SC.DownloadsTypography>
-        <Dropdown
-          defaultValue={range.value}
-          title={range.label}
-          onSelect={(eventKey) => {
-            const range = rangeOptions.find(({ value }) => eventKey === value);
+        <select
+          onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+            const range = rangeOptions.find(({ value }) => Number(event.target.value) === value);
             if (range) {
               setRange(range);
             }
           }}
         >
           {rangeOptions.map(({ label, value }) => (
-            <Dropdown.Item key={value} eventKey={value} active={value === range.value}>
+            <option key={value} value={value}>
               {label}
-            </Dropdown.Item>
+            </option>
           ))}
-        </Dropdown>
+        </select>
       </SC.DownloadsDropdownContainer>
       <SC.ChartContainer>
         <HighchartsReact highcharts={Highcharts} options={options} />
