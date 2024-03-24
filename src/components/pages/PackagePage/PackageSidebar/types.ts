@@ -1,5 +1,5 @@
-import { Repository } from 'src/api/github/useGetRepository';
-import { RepositoryPulls } from 'src/api/github/useGetRepositoryPulls';
+import { Repository } from 'src/api/hooks/github/useGetRepository';
+import { RepositoryPulls } from 'src/api/hooks/github/useGetRepositoryPulls';
 import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
 import { SinglePackageversion } from 'src/api/hooks/packages/useGetSinglePackageVersion';
 

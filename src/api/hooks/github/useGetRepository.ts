@@ -1,5 +1,5 @@
-import useFetch, { FetchResponse } from '../hooks/useFetch';
-import { githubApi } from '../configs';
+import useFetch, { FetchResponse } from '../useFetch';
+import { githubApi } from '../../configs';
 
 export type Repository = {
   data: {

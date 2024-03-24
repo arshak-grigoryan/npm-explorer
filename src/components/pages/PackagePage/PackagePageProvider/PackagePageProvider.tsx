@@ -1,8 +1,8 @@
-import { ReactNode, createContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { npmjs, npmApi } from 'src/api/configs';
-import useGetRepository from 'src/api/github/useGetRepository';
-import useGetRepositoryPulls from 'src/api/github/useGetRepositoryPulls';
+import useGetRepository from 'src/api/hooks/github/useGetRepository';
+import useGetRepositoryPulls from 'src/api/hooks/github/useGetRepositoryPulls';
 import useGetCodeFiles from 'src/api/hooks/code/useGetCodeFiles';
 import useGetFileCode from 'src/api/hooks/code/useGetFileCode';
 import useGetPackageDownloads from 'src/api/hooks/downloads/useGetPackageDownloads';
@@ -11,9 +11,13 @@ import useGetSinglePackage from 'src/api/hooks/packages/useGetSinglePackage';
 import useGetSinglePackageVersion from 'src/api/hooks/packages/useGetSinglePackageVersion';
 import { TabsEnum } from '../Tabs/types';
 import { PackagePageContextType } from './types';
+import { downloadsPastDateOptions, rangeOptions } from './config';
 
 export const PackagePageContext = createContext<PackagePageContextType>(null as any);
 
+export function usePackageContext() {
+  return useContext(PackagePageContext);
+}
 export function PackagePageContextProvider({ children }: { children: ReactNode }) {
   const { name, version } = useParams();
   const [fileHash, setFileHash] = useState('');
@@ -66,6 +70,12 @@ export function PackagePageContextProvider({ children }: { children: ReactNode }
     return counts;
   }, [singlePackageVersionRes, singlePackagesRes]);
 
+  const [downloadsRange, setDownloadsRange] = useState(rangeOptions[0]);
+
+  const [packageDownloadsStartDate, setPackageDownloadsStartDate] = useState(
+    downloadsPastDateOptions[0],
+  );
+
   return (
     <PackagePageContext.Provider
       value={{
@@ -80,6 +90,10 @@ export function PackagePageContextProvider({ children }: { children: ReactNode }
         repositoryRes,
         repositoryPullsRes,
         tabCounts,
+        packageDownloadsStartDate,
+        setPackageDownloadsStartDate,
+        downloadsRange,
+        setDownloadsRange,
       }}
     >
       {children}

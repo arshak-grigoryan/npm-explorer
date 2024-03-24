@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
-import { RepositoryResponse } from 'src/api/github/useGetRepository';
-import { RepositoryPullsResponse } from 'src/api/github/useGetRepositoryPulls';
+import { RepositoryResponse } from 'src/api/hooks/github/useGetRepository';
+import { RepositoryPullsResponse } from 'src/api/hooks/github/useGetRepositoryPulls';
 import { CodeFilesResponse } from 'src/api/hooks/code/useGetCodeFiles';
 import { FileCodeResponse } from 'src/api/hooks/code/useGetFileCode';
 import { DownloadsPointResponse } from 'src/api/hooks/downloads/useGetPackageDownloads';
@@ -20,4 +20,8 @@ export type PackagePageContextType = {
   repositoryRes: RepositoryResponse;
   repositoryPullsRes: RepositoryPullsResponse;
   tabCounts: any;
+  packageDownloadsStartDate: { label: string; value: number };
+  setPackageDownloadsStartDate: Dispatch<SetStateAction<{ label: string; value: number }>>;
+  downloadsRange: { label: string; value: number };
+  setDownloadsRange: Dispatch<SetStateAction<{ label: string; value: number }>>;
 };

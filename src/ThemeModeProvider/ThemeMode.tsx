@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import useCustomEventListener from 'src/ThemeModeProvider/hooks/useCustomEventListener';
 import useOsColorSchemeChange from 'src/ThemeModeProvider/hooks/useOsColorSchemeChange';
+import useHighchartsTheme from 'src/hooks/useHighchartsTheme';
 import { ThemeMode, TThemeModeContext, TThemeModeProvider } from './types';
 
 export const ThemeModeContext = createContext<TThemeModeContext>({
@@ -55,6 +56,8 @@ export const ThemeModeProvider = ({ children }: TThemeModeProvider) => {
       setColorScheme(event.matches ? ThemeMode.Dark : ThemeMode.Light);
     }
   });
+
+  useHighchartsTheme(colorScheme);
 
   return (
     <ThemeModeContext.Provider value={{ themeMode, changeThemeMode, colorScheme }}>

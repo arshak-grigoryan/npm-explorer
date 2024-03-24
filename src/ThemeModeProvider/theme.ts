@@ -174,6 +174,7 @@ const staticColors = {
   divider: {
     c1: '#fab231',
     c2: '#fee933',
+    c3: '#ea2039',
   },
   logo: {
     light: '',

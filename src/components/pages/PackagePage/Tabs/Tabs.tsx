@@ -6,6 +6,7 @@ import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';
 import Code from '../Code/Code';
 import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
+import Downloads from '../Downloads/Downloads';
 import { TabProps, TabsEnum } from './types';
 import { TabsConfig } from './configs';
 import * as SC from './styles';
@@ -16,6 +17,7 @@ export const TabComponent = {
   [TabsEnum.dependencies]: <Dependency />,
   [TabsEnum.dependents]: <></>,
   [TabsEnum.versions]: <Versions />,
+  [TabsEnum.downloads]: <Downloads />,
 };
 
 function Tab({ label, icon, colors, selected, count }: TabProps) {

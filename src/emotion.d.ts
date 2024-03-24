@@ -88,6 +88,7 @@ declare module '@emotion/react' {
       divider: {
         c1: string;
         c2: string;
+        c3: string;
       };
       logo: {
         light: string;

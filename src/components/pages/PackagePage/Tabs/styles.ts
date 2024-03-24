@@ -38,6 +38,7 @@ export const StyledLink = styled(Link)<{ colors: any }>`
   padding: 12px 15px;
   font-weight: 700;
   color: ${({ colors }) => `${colors.text}`};
+  fill: ${({ colors }) => `${colors.text}`};
   text-transform: capitalize;
   &:focus {
     outline: 1px dotted currentColor;

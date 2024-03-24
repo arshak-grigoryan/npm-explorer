@@ -7,6 +7,7 @@ export const text = {
   search: 'Search',
   discoverPackages: 'Discover packages',
   byTheNumbers: 'By the numbers',
+  downloadsStatistics: 'Download Statistics',
   downloadsLastDay: 'Downloads · Last Day',
   downloadsLastWeek: 'Downloads · Last Week',
   downloadsLastMonth: 'Downloads · Last Month',

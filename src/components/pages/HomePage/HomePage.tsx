@@ -4,6 +4,7 @@ import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading
 import Downloads from './Downloads/Downloads';
 import Keywords from './Keywords/Keywords';
 import * as SC from './styles';
+import AllDownloads from './AllPackageDownloads/AllPackageDownloads';
 
 export default function HomePage() {
   return (
@@ -12,10 +13,13 @@ export default function HomePage() {
       <SC.Main>
         <HiddenHeading as={'h1'}>{text.dashboard}</HiddenHeading>
         <SC.SectionsContainer>
-          <SC.Sections>
+          <SC.TopSections>
             <Keywords />
             <Downloads />
-          </SC.Sections>
+          </SC.TopSections>
+          <SC.BottomSection>
+            <AllDownloads />
+          </SC.BottomSection>
         </SC.SectionsContainer>
       </SC.Main>
     </div>

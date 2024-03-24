@@ -14,6 +14,7 @@ export enum TabsEnum {
   dependencies = 'dependencies',
   dependents = 'dependents',
   versions = 'versions',
+  downloads = 'downloads',
 }
 
 export type TabConfig = {

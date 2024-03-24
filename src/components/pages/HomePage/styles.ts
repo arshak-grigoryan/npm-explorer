@@ -21,8 +21,20 @@ export const SectionsContainer = styled.div(
 `,
 );
 
-export const Sections = styled.div(
+export const TopSections = styled.div(
   ({ theme }) => `
+  background-color: ${theme.colors.background.paginationItem};
+  border: 1px solid ${theme.colors.border.primary};
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+`,
+);
+
+export const BottomSection = styled.div(
+  ({ theme }) => `
+  margin-top: 16px;
   background-color: ${theme.colors.background.paginationItem};
   border: 1px solid ${theme.colors.border.primary};
   border-radius: 4px;

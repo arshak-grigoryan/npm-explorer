@@ -19,12 +19,23 @@ export const npmRegistry = {
   },
 };
 
+export const earlestDate = new Date(2015, 0, 10);
+const dayMillis = 60 * 60 * 24 * 1000;
+const daysLimit = 547;
+export const millisLimit = dayMillis * daysLimit;
+
 export const npmApi = {
   allPackagesLastDayDownloadsUrl: `${NPM_API}/downloads/point/last-day`,
   allPackagesLastWeekDownloadsUrl: `${NPM_API}/downloads/point/last-week`,
   allPackagesLastMonthDownloadsUrl: `${NPM_API}/downloads/point/last-month`,
   getLastWeekPerVersionDownloadsUrl: function (packageName: string) {
     return `${NPM_API}/versions/${encodeURIComponent(packageName)}/last-week`;
+  },
+  getAllPackageDownloadsRangeUrl: function (start: string, end: string) {
+    return `${NPM_API}/downloads/range/${start}:${end}`;
+  },
+  getPackageDownloadsRangeUrl: function (start: string, end: string, packageName: string) {
+    return `${NPM_API}/downloads/range/${start}:${end}/${packageName}`;
   },
 };
 

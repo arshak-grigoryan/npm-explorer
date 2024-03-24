@@ -1,8 +1,9 @@
 import ReadmeIcon from 'src/assets/Readme.svg?react';
 import CodeIcon from 'src/assets/Code.svg?react';
 import DependencyIcon from 'src/assets/Dependency.svg?react';
-import DependentsIcon from 'src/assets/Dependents.svg?react';
+// import DependentsIcon from 'src/assets/Dependents.svg?react';
 import VersionsIcon from 'src/assets/Versions.svg?react';
+import DownloadIcon from 'src/assets/Download.svg?react';
 import { TabConfig, TabsEnum } from './types';
 
 export const TabsConfig: TabConfig[] = [
@@ -36,16 +37,16 @@ export const TabsConfig: TabConfig[] = [
     },
     Icon: DependencyIcon,
   },
-  {
-    name: TabsEnum.dependents,
-    colors: {
-      text: 'rgb(41, 0, 138)',
-      background: 'rgba(137, 86, 255, 0.2)',
-      hover: 'rgb(237, 229, 255)',
-      border: '#8956ff',
-    },
-    Icon: DependentsIcon,
-  },
+  // {
+  //   name: TabsEnum.dependents,
+  //   colors: {
+  //     text: 'rgb(41, 0, 138)',
+  //     background: 'rgba(137, 86, 255, 0.2)',
+  //     hover: 'rgb(237, 229, 255)',
+  //     border: '#8956ff',
+  //   },
+  //   Icon: DependentsIcon,
+  // },
   {
     name: TabsEnum.versions,
     colors: {
@@ -55,5 +56,15 @@ export const TabsConfig: TabConfig[] = [
       border: '#29abe2',
     },
     Icon: VersionsIcon,
+  },
+  {
+    name: TabsEnum.downloads,
+    colors: {
+      text: 'rgb(41, 0, 138)',
+      background: 'rgba(137, 86, 255, 0.2)',
+      hover: 'rgb(237, 229, 255)',
+      border: '#8956ff',
+    },
+    Icon: DownloadIcon,
   },
 ];

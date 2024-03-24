@@ -19,12 +19,14 @@ export default function useFetch(
 ): FetchResponse {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [data, setData] = useState(() => cache.get(url) ?? null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
     async function getPackages() {
-      if (!url) {
+      const cached = cache.get(url);
+      if (!url || cached) {
+        cached && setData(cache.get(url));
         setLoading(false);
         return;
       }
