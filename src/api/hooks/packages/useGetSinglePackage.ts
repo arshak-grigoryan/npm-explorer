@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
 import useFetch, { FetchResponse } from '../useFetch';
 
-export type SinglePackage = {
+export interface SinglePackage {
   data: {
     name: string;
     readme: string;
@@ -25,15 +25,15 @@ export type SinglePackage = {
     license: string;
     maintainers: Array<{ name: string; email: string }>;
   };
-};
+}
 
-export type SinglePackageResponse = FetchResponse & SinglePackage;
+export type SinglePackageResponse = FetchResponse<SinglePackage>;
 
 export default function useGetSinglePackage() {
   const { name } = useParams();
   const url = name ? npmRegistry.getSinglePackageUrl(name) : '';
 
-  const res = useFetch(url) as SinglePackageResponse;
+  const res = useFetch<SinglePackage>(url);
 
   return res;
 }

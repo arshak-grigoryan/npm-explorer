@@ -1,15 +1,15 @@
 import useFetch, { FetchResponse } from '../useFetch';
 
-export type Downloads = {
+export interface Downloads {
   data: {
     downloads: number;
   };
-};
+}
 
-export type DownloadsPointResponse = FetchResponse & Downloads;
+export type DownloadsPointResponse = FetchResponse<Downloads>;
 
 export default function useGetPackageDownloads(url: string) {
-  const res = useFetch(url) as DownloadsPointResponse;
+  const res = useFetch<Downloads>(url);
 
   return res;
 }

@@ -1,18 +1,18 @@
 import { isEqual } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 
-export type FetchResponse = {
-  data: unknown | null;
+export interface FetchResponse<Data> {
+  data: Data | null;
   error: Error | null;
   loading: boolean;
-};
+}
 
 const cache = new Map();
 
-export default function useBulkFetch(urls: string[]): FetchResponse {
+export default function useBulkFetch<ResponseData>(urls: string[]): FetchResponse<ResponseData[]> {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [data, setData] = useState<any[] | null>(null);
+  const [data, setData] = useState<ResponseData[] | null>(null);
   const ref = useRef<string[]>();
 
   useEffect(() => {

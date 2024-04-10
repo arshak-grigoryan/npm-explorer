@@ -3,9 +3,8 @@ import { FetchResponse } from '../useFetch';
 import useBulkFetch from '../useBulkFetch';
 import { getDateRanges, getFormatedDate } from '../utils';
 import { PackageDownloads } from '../types';
-import { PackageDownloadsRangeResponse } from './useGetPackageDownloadsRange';
 
-export type AllPackageDownloadsRangeResponse = FetchResponse & PackageDownloads;
+export type AllPackageDownloadsRangeResponse = FetchResponse<PackageDownloads>;
 
 const startMillis = earlestDate.getTime();
 const endMillis = new Date().getTime();
@@ -18,5 +17,5 @@ const urls = dateRangeList.map(({ start, end }) =>
 );
 
 export default function useGetAllPackageDownloads() {
-  return useBulkFetch(urls) as PackageDownloadsRangeResponse;
+  return useBulkFetch<PackageDownloads>(urls);
 }

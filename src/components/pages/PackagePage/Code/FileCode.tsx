@@ -2,20 +2,22 @@ import { useContext, useEffect } from 'react';
 import { highlightAll } from 'prismjs';
 import { ThemeModeContext } from 'src/ThemeModeProvider/ThemeMode';
 import { ThemeMode } from 'src/ThemeModeProvider/types';
+import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
+import { FileCode } from 'src/api/hooks/code/useGetFileCode';
 import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
 import * as SC from './styles';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-export default function FileCode() {
+function FileCodeLayout(props: FileCode) {
   const { colorScheme } = useContext(ThemeModeContext);
-  const { packageVersionFileCodeRes, fileHash } = useContext(PackagePageContext);
+  const { fileHash } = useContext(PackagePageContext);
 
   useEffect(() => {
-    if (fileHash && packageVersionFileCodeRes.data) {
+    if (fileHash && props.data) {
       highlightAll();
     }
-  }, [packageVersionFileCodeRes.data, fileHash]);
+  }, [props.data, fileHash]);
 
   useEffect(() => {
     (async () => {
@@ -37,7 +39,13 @@ export default function FileCode() {
 
   return (
     <SC.Pre className="line-numbers">
-      <SC.Code className="language-javascript">{packageVersionFileCodeRes.data}</SC.Code>
+      <SC.Code className="language-javascript">{props.data}</SC.Code>
     </SC.Pre>
   );
+}
+
+export default function FileCodeContainer() {
+  const { packageVersionFileCodeRes } = useContext(PackagePageContext);
+
+  return <FetchLayout res={packageVersionFileCodeRes} slots={{ Content: FileCodeLayout }} />;
 }

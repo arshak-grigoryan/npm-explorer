@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { FetchResponse } from 'src/api/hooks/useFetch';
 
-type LayoutState = FetchResponse;
+type LayoutState = FetchResponse<unknown>;
 
 type LayoutSlots = {
   Loader?: ReactNode;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export type FetchResponse = {
-  data: unknown | null;
+export interface FetchResponse<Data> {
+  data: Data | null;
   error: Error | null;
   loading: boolean;
-};
+}
 
 export enum ContentType {
   json = 'application/json',
@@ -13,13 +13,13 @@ export enum ContentType {
 
 const cache = new Map();
 
-export default function useFetch(
+export default function useFetch<ResponseData>(
   url: string,
   contentType: string = ContentType.json,
-): FetchResponse {
+): FetchResponse<ResponseData> {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<ResponseData | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();

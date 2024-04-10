@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
 import useFetch, { FetchResponse } from '../useFetch';
 
-export type SinglePackageversion = {
+export interface SinglePackageversion {
   data: {
     dependencies: Record<string, string>;
     peerDependencies: Record<string, string>;
@@ -12,15 +12,15 @@ export type SinglePackageversion = {
       unpackedSize: number;
     };
   };
-};
+}
 
-export type SinglePackageVersionResponse = FetchResponse & SinglePackageversion;
+export type SinglePackageVersionResponse = FetchResponse<SinglePackageversion>;
 
 export default function useGetSinglePackageVersion() {
   const { name, version } = useParams();
   const url = name ? npmRegistry.getSinglePackageVersionUrl(name, version) : '';
 
-  const res = useFetch(url) as SinglePackageVersionResponse;
+  const res = useFetch<SinglePackageversion>(url);
 
   return res;
 }

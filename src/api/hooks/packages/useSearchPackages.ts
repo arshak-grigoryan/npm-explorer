@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { PAGE, PER_PAGE_PACKAGES_COUNT, npmRegistry } from 'src/api/configs';
 import useGetSearchParams from 'src/hooks/useGetSearchParams';
-import useFetch, { FetchResponse } from '../useFetch';
+import useFetch from '../useFetch';
 
-export type PackageObject = {
+export interface PackageObject {
   package: {
     name: string;
     scope: string;
@@ -38,17 +38,15 @@ export type PackageObject = {
     };
   };
   searchScore: number;
-};
+}
 
-export type SearchPackage = {
+export interface SearchPackage {
   data: {
     objects: PackageObject[];
     total: number;
     time: string;
   };
-};
-
-type SearchPackageResponse = FetchResponse & SearchPackage;
+}
 
 const {
   searchUrl,
@@ -81,7 +79,7 @@ export default function useSearchPackages() {
     return `${searchUrl}?${t}=${text}`;
   }, [text, popularity, quality, maintenance, from, isSortable]);
 
-  const res = useFetch(url) as SearchPackageResponse;
+  const res = useFetch<SearchPackage>(url);
 
   return res;
 }

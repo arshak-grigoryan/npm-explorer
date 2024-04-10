@@ -5,7 +5,6 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { ChangeEvent, useState } from 'react';
 import useGetDownloadsChartOptions from 'src/hooks/useGetDownloadsChartOptions';
-import { PackageDownloads } from 'src/api/hooks/types';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import useGetAllDownloads from 'src/api/hooks/downloads/useGetAllPackageDownloads';
 import { text } from 'src/configs/text';
@@ -13,10 +12,7 @@ import DownloadIcon from 'src/assets/Download.svg?react';
 import Divider from 'src/components/common/Divider/Divider';
 import { rangeOptions } from '../../PackagePage/PackagePageProvider/config';
 import * as SC from './styles';
-
-type AllDownloadsLayoutProps = {
-  data: PackageDownloads['data'][];
-};
+import { AllDownloadsLayoutProps } from './types';
 
 function AllDownloadsLayout(props: AllDownloadsLayoutProps) {
   const [range, setRange] = useState(rangeOptions[0]);

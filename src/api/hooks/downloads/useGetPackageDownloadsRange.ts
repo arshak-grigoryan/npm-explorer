@@ -6,7 +6,7 @@ import useBulkFetch from '../useBulkFetch';
 import { getDateRanges, getFormatedDate } from '../utils';
 import { PackageDownloads } from '../types';
 
-export type PackageDownloadsRangeResponse = FetchResponse & PackageDownloads;
+export type PackageDownloadsRangeResponse = FetchResponse<PackageDownloads>;
 
 export default function useGetPackageDownloadsRange(startMillis: number, endMillis: number) {
   const { name } = useParams();
@@ -26,7 +26,7 @@ export default function useGetPackageDownloadsRange(startMillis: number, endMill
       )
     : [];
 
-  const res = useBulkFetch(urls) as PackageDownloadsRangeResponse;
+  const res = useBulkFetch<PackageDownloads>(urls);
 
   return res;
 }
