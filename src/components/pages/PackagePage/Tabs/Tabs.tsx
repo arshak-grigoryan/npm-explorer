@@ -1,6 +1,5 @@
 import { useContext } from 'react';
-import useGetSearchParams from 'src/hooks/useGetSearchParams';
-import { ACTIVE_TAB } from 'src/api/configs';
+import useUrlSearchParams from 'src/hooks/useUrlSearchParams';
 import Readme from '../Readme/Readme';
 import Dependency from '../Dependencies/Dependencies';
 import Versions from '../Versions/Versions';
@@ -34,7 +33,7 @@ function Tab({ label, icon, colors, selected, count }: TabProps) {
 }
 
 export default function Tabs() {
-  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
+  const { activeTab } = useUrlSearchParams();
   const { tabCounts } = useContext(PackagePageContext);
 
   return (

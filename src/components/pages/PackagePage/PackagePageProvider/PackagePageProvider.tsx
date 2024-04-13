@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { npmjs, npmApi } from 'src/api/configs';
 import useGetRepository from 'src/api/hooks/github/useGetRepository';
 import useGetRepositoryPulls from 'src/api/hooks/github/useGetRepositoryPulls';
@@ -11,6 +10,7 @@ import useGetSinglePackage, { SinglePackage } from 'src/api/hooks/packages/useGe
 import useGetSinglePackageVersion, {
   SinglePackageversion,
 } from 'src/api/hooks/packages/useGetSinglePackageVersion';
+import useUrlParams from 'src/hooks/useUrlParams';
 import { TabsEnum } from '../Tabs/types';
 import { PackagePageContextType } from './types';
 import { downloadsPastDateOptions, rangeOptions } from './config';
@@ -21,7 +21,7 @@ export function usePackageContext() {
   return useContext(PackagePageContext);
 }
 export function PackagePageContextProvider({ children }: { children: ReactNode }) {
-  const { name, version } = useParams();
+  const { name, version } = useUrlParams();
   const [fileHash, setFileHash] = useState('');
 
   const singlePackagesRes = useGetSinglePackage();

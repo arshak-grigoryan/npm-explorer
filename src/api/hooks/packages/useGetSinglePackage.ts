@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
+import useUrlParams from 'src/hooks/useUrlParams';
 import useFetch, { FetchResponse } from '../useFetch';
 
 export interface SinglePackage {
@@ -30,7 +30,7 @@ export interface SinglePackage {
 export type SinglePackageResponse = FetchResponse<SinglePackage>;
 
 export default function useGetSinglePackage() {
-  const { name } = useParams();
+  const { name } = useUrlParams();
   const url = name ? npmRegistry.getSinglePackageUrl(name) : '';
 
   const res = useFetch<SinglePackage>(url);

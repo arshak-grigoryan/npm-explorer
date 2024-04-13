@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
+import useUrlParams from 'src/hooks/useUrlParams';
 import useFetch, { FetchResponse } from '../useFetch';
 
 export interface SinglePackageversion {
@@ -17,7 +17,7 @@ export interface SinglePackageversion {
 export type SinglePackageVersionResponse = FetchResponse<SinglePackageversion>;
 
 export default function useGetSinglePackageVersion() {
-  const { name, version } = useParams();
+  const { name, version } = useUrlParams();
   const url = name ? npmRegistry.getSinglePackageVersionUrl(name, version) : '';
 
   const res = useFetch<SinglePackageversion>(url);

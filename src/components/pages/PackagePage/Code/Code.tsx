@@ -1,16 +1,16 @@
 import { Fragment, useContext, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { CodeFiles } from 'src/api/hooks/code/useGetCodeFiles';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import FileIcon from 'src/assets/File.svg?react';
 import Foldercon from 'src/assets/Folder.svg?react';
+import useUrlParams from 'src/hooks/useUrlParams';
 import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
 import { humanFileSize, isFile, isFolderIterated, sort } from './utils';
 import * as SC from './styles';
 import FileCode from './FileCode';
 
 function Content({ data }: CodeFiles) {
-  const { name } = useParams();
+  const { name } = useUrlParams();
   const { fileHash, setFileHash } = useContext(PackagePageContext);
 
   const paths = useMemo(() => sort(Object.values(data.files)), [data]);

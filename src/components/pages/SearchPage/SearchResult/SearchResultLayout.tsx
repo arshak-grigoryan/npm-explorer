@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 import { SearchPackage } from 'src/api/hooks/packages/useSearchPackages';
-import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { PAGE, PER_PAGE_PACKAGES_COUNT } from 'src/api/configs';
 import { text } from 'src/configs/text';
+import useUrlSearchParams from 'src/hooks/useUrlSearchParams';
 import SortOptions from '../SortOptions/SortOptions';
 import Pagination from '../Pagination/Pagination';
 import PackageList from '../PackageList/PackageList';
@@ -10,7 +10,7 @@ import * as SC from './styles';
 
 export default function SearchResultLayout({ data }: SearchPackage) {
   const [, setSearchParams] = useSearchParams();
-  const page = Number(useGetSearchParams(PAGE, 1));
+  const { page } = useUrlSearchParams();
   const pageCount = Math.ceil(data.total / PER_PAGE_PACKAGES_COUNT);
   const showPagination = data && data.total > PER_PAGE_PACKAGES_COUNT;
 

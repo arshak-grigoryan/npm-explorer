@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { npmApi } from 'src/api/configs';
+import useUrlParams from 'src/hooks/useUrlParams';
 import { FetchResponse } from '../useFetch';
 import useBulkFetch from '../useBulkFetch';
 import { getDateRanges, getFormatedDate } from '../utils';
@@ -9,7 +9,7 @@ import { PackageDownloads } from '../types';
 export type PackageDownloadsRangeResponse = FetchResponse<PackageDownloads>;
 
 export default function useGetPackageDownloadsRange(startMillis: number, endMillis: number) {
-  const { name } = useParams();
+  const { name } = useUrlParams();
 
   const dateRangeList = useMemo(
     () => getDateRanges(startMillis, endMillis),

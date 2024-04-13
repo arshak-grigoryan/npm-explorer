@@ -1,16 +1,14 @@
-import { useParams } from 'react-router-dom';
 import Header from 'src/components/common/Header/Header';
-import useGetSearchParams from 'src/hooks/useGetSearchParams';
-import { ACTIVE_TAB } from 'src/api/configs';
+import useUrlSearchParams from 'src/hooks/useUrlSearchParams';
+import useUrlParams from 'src/hooks/useUrlParams';
 import Tabs, { TabComponent } from './Tabs/Tabs';
 import PackageSidebar from './PackageSidebar/PackageSidebar';
-import { TabsEnum } from './Tabs/types';
 import * as SC from './styles';
 import { PackagePageContextProvider } from './PackagePageProvider/PackagePageProvider';
 
 export default function PackagePage() {
-  const activeTab: TabsEnum = useGetSearchParams(ACTIVE_TAB, TabsEnum.readme);
-  const { name } = useParams();
+  const { activeTab } = useUrlSearchParams();
+  const { name } = useUrlParams();
 
   return (
     <PackagePageContextProvider>

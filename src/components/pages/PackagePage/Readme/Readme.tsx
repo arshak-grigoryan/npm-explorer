@@ -4,9 +4,9 @@ import emoji from 'markdown-it-emoji';
 import expandTabs from 'markdown-it-expand-tabs';
 import githubTaskList from 'markdown-it-task-lists';
 import { useContext, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import { SinglePackage } from 'src/api/hooks/packages/useGetSinglePackage';
+import useUrlParams from 'src/hooks/useUrlParams';
 import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
 import * as SC from './styles';
 // @ts-expect-error There is no types
@@ -20,7 +20,7 @@ export const markdown = MD({
 
 function Readme(props: SinglePackage) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { version } = useParams();
+  const { version } = useUrlParams();
 
   useEffect(() => {
     if (props.data) {

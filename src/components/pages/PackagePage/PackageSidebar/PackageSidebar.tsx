@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { format } from 'date-fns';
 import GitIcon from 'src/assets/Git.svg?react';
@@ -6,6 +5,7 @@ import LinkIcon from 'src/assets/Link.svg?react';
 import FetchLayout from 'src/components/common/FetchLayout/FetchLayout';
 import { text } from 'src/configs/text';
 import { HiddenHeading } from 'src/components/common/HiddenHeading/HiddenHeading';
+import useUrlParams from 'src/hooks/useUrlParams';
 import { PackagePageContext } from '../PackagePageProvider/PackagePageProvider';
 import { humanFileSize } from '../Code/utils';
 import * as SC from './styles';
@@ -29,7 +29,7 @@ function PackageSidebarContainer(props: PackageSidebarContainerProps) {
   const { open_issues_count } = props.data.repository;
   const pulls = props.data.repositoryPulls;
 
-  const { version } = useParams();
+  const { version } = useUrlParams();
   const isLatestVersion = !version || (version && version === distTags.latest);
   const installVersion = version ? (isLatestVersion ? name : `${name}@${version}`) : name;
 

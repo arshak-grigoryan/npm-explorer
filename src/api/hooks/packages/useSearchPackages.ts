@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { PAGE, PER_PAGE_PACKAGES_COUNT, npmRegistry } from 'src/api/configs';
-import useGetSearchParams from 'src/hooks/useGetSearchParams';
+import { PER_PAGE_PACKAGES_COUNT, npmRegistry } from 'src/api/configs';
+import useUrlSearchParams from 'src/hooks/useUrlSearchParams';
 import useFetch from '../useFetch';
 
 export interface PackageObject {
@@ -54,11 +54,7 @@ const {
 } = npmRegistry;
 
 export default function useSearchPackages() {
-  const text = useGetSearchParams(t, '');
-  const popularity = useGetSearchParams(p, 0);
-  const quality = useGetSearchParams(q, 0);
-  const maintenance = useGetSearchParams(m, 0);
-  const page = useGetSearchParams(PAGE, 1);
+  const { searchText, popularity, quality, maintenance, page } = useUrlSearchParams();
 
   const from = page * PER_PAGE_PACKAGES_COUNT - PER_PAGE_PACKAGES_COUNT;
 
@@ -67,17 +63,17 @@ export default function useSearchPackages() {
   // TODO: check for url validity
   const url = useMemo(() => {
     if (isSortable && !from) {
-      return `${searchUrl}?${t}=${text}&${p}=${popularity}&${q}=${quality}&${m}=${maintenance}`;
+      return `${searchUrl}?${t}=${searchText}&${p}=${popularity}&${q}=${quality}&${m}=${maintenance}`;
     }
     if (isSortable && from) {
-      return `${searchUrl}?${t}=${text}&${p}=${popularity}&${q}=${quality}&${m}=${maintenance}&${f}=${from}`;
+      return `${searchUrl}?${t}=${searchText}&${p}=${popularity}&${q}=${quality}&${m}=${maintenance}&${f}=${from}`;
     }
     if (!isSortable && from) {
-      return `${searchUrl}?${t}=${text}&${f}=${from}`;
+      return `${searchUrl}?${t}=${searchText}&${f}=${from}`;
     }
 
-    return `${searchUrl}?${t}=${text}`;
-  }, [text, popularity, quality, maintenance, from, isSortable]);
+    return `${searchUrl}?${t}=${searchText}`;
+  }, [searchText, popularity, quality, maintenance, from, isSortable]);
 
   const res = useFetch<SearchPackage>(url);
 

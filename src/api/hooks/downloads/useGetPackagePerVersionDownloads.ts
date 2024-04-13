@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
 import { npmApi } from 'src/api/configs';
+import useUrlParams from 'src/hooks/useUrlParams';
 import useFetch, { FetchResponse } from '../useFetch';
 
 export interface PerVersionDownloads {
@@ -12,7 +12,7 @@ export interface PerVersionDownloads {
 export type PerVersionDownloadsResponse = FetchResponse<PerVersionDownloads>;
 
 export default function useGetPackagePerVersionDownloads() {
-  const { name } = useParams();
+  const { name } = useUrlParams();
   const url = name ? npmApi.getLastWeekPerVersionDownloadsUrl(name) : '';
 
   const res = useFetch<PerVersionDownloads>(url);

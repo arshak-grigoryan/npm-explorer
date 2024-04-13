@@ -1,22 +1,16 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { npmRegistry } from 'src/api/configs';
-import useGetSearchParams from 'src/hooks/useGetSearchParams';
 import { text } from 'src/configs/text';
+import useUrlSearchParams from 'src/hooks/useUrlSearchParams';
 import * as SC from './styles';
 
 export default function SortOptions() {
   const [, setSearchParams] = useSearchParams();
 
-  const [popularity, setPopularity] = useState(
-    Number(useGetSearchParams(npmRegistry.searchParams.popularity, 0)),
-  );
-  const [quality, setQuality] = useState(
-    Number(useGetSearchParams(npmRegistry.searchParams.quality, 0)),
-  );
-  const [maintenance, setMaintenance] = useState(
-    Number(useGetSearchParams(npmRegistry.searchParams.maintenance, 0)),
-  );
+  const [popularity, setPopularity] = useState(useUrlSearchParams().popularity);
+  const [quality, setQuality] = useState(useUrlSearchParams().quality);
+  const [maintenance, setMaintenance] = useState(useUrlSearchParams().maintenance);
 
   const isSortAvailable = popularity || quality || maintenance;
 

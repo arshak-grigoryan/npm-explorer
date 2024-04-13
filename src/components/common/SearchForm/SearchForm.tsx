@@ -2,23 +2,23 @@ import { KeyboardEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import SearchIcon from 'src/assets/SearchBig.svg?react';
 import { npmRegistry } from 'src/api/configs';
-import useGetSearchParams from 'src/hooks/useGetSearchParams';
+import useUrlSearchParams from 'src/hooks/useUrlSearchParams';
 import { text } from 'src/configs/text';
 import * as SC from './styles';
 
 export default function SearchForm() {
   const navigate = useNavigate();
-  const searchString = useGetSearchParams(npmRegistry.searchParams.text, '');
-  const [inputSearchString, setInputSearchString] = useState(searchString);
+  const { searchText } = useUrlSearchParams();
+  const [inputSearchText, setInputSearchText] = useState(searchText);
 
   useEffect(() => {
-    setInputSearchString(searchString);
-  }, [searchString]);
+    setInputSearchText(searchText);
+  }, [searchText]);
 
   const serachWrap = () => {
     navigate({
       pathname: '/search',
-      search: createSearchParams({ [npmRegistry.searchParams.text]: inputSearchString }).toString(),
+      search: createSearchParams({ [npmRegistry.searchParams.text]: inputSearchText }).toString(),
     });
   };
 
@@ -34,8 +34,8 @@ export default function SearchForm() {
           <SearchIcon style={{ width: 18, height: 18 }} />
         </SC.SearchIconContainer>
         <SC.Input
-          value={inputSearchString}
-          onChange={(e) => setInputSearchString(e.target.value)}
+          value={inputSearchText}
+          onChange={(e) => setInputSearchText(e.target.value)}
           onKeyUp={(e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === 'Enter') {
               serachWrap();
