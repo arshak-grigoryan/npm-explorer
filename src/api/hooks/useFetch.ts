@@ -15,7 +15,7 @@ const cache = new Map();
 
 export default function useFetch<ResponseData>(
   url: string,
-  contentType: string = ContentType.json,
+  expectedCcontentType?: ContentType,
 ): FetchResponse<ResponseData> {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -39,20 +39,25 @@ export default function useFetch<ResponseData>(
         if (!response.ok) {
           throw new Error(response.statusText);
         }
+        const resContentType = response.headers.get('Content-Type');
         let result;
-        if (contentType === ContentType.binary) {
+        if (
+          expectedCcontentType === ContentType.binary ||
+          (!expectedCcontentType && resContentType === ContentType.binary)
+        ) {
           const buffer = await response.arrayBuffer();
           const decoder = new TextDecoder('utf-8');
           result = decoder.decode(buffer);
-        } else {
+        } else if (
+          expectedCcontentType === ContentType.json ||
+          (!expectedCcontentType && resContentType?.includes(ContentType.json))
+        ) {
           result = await response.json();
-        }
-        if (result.error) {
-          throw new Error(result.error);
         } else {
-          cache.set(url, result);
-          setData(result);
+          throw new Error('Unexpected content type');
         }
+        cache.set(url, result);
+        setData(result);
       } catch (error) {
         setError(error as Error);
       }
@@ -62,7 +67,7 @@ export default function useFetch<ResponseData>(
     getPackages();
 
     return () => controller.abort();
-  }, [url, contentType]);
+  }, [url, expectedCcontentType]);
 
   return { data, error, loading };
 }

@@ -1,4 +1,4 @@
-import useFetch, { ContentType, FetchResponse } from '../useFetch';
+import useFetch, { FetchResponse } from '../useFetch';
 
 export interface FileCode {
   data: string;
@@ -7,7 +7,7 @@ export interface FileCode {
 export type FileCodeResponse = FetchResponse<FileCode>;
 
 export default function useGetFileCode(url: string) {
-  const res = useFetch<FileCode>(url, ContentType.binary);
+  const res = useFetch<FileCode>(url);
 
   return res;
 }

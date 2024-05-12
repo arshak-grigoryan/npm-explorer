@@ -1,4 +1,4 @@
-import useFetch, { FetchResponse } from '../useFetch';
+import useFetch, { ContentType, FetchResponse } from '../useFetch';
 
 export interface PathObj {
   contentType: string;
@@ -17,7 +17,7 @@ export interface CodeFiles {
 export type CodeFilesResponse = FetchResponse<CodeFiles>;
 
 export default function useGetCodeFiles(url: string) {
-  const res = useFetch<CodeFiles>(url);
+  const res = useFetch<CodeFiles>(url, ContentType.json);
 
   return res;
 }
