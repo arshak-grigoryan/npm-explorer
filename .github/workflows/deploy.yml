@@ -28,6 +28,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 21.1.0
+      - name: Set up Yarn
+        uses: borales/actions-yarn@v4
+        with:
           yarn-version: 1.22.21
           cache: 'yarn'
       - name: Install dependencies
