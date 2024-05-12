@@ -28,6 +28,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 21.1.0
+          yarn-version: 1.22.21
           cache: 'yarn'
       - name: Install dependencies
         run: yarn --frozen-lockfile
