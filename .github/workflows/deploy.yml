@@ -27,9 +27,9 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 21.1.0
+          node-version: 22.22.0
       - name: Install Yarn
-        run: npm install -g yarn@1.22.21
+        run: npm i -g yarn@1.22.22
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Build

@@ -13,9 +13,9 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "21.1.0",
-    "npm": "10.2.0",
-    "yarn": "1.22.21"
+    "node": "22.22.0",
+    "npm": "10.9.4",
+    "yarn": "1.22.22"
   },
   "dependencies": {
     "@emotion/css": "^11.11.2",
